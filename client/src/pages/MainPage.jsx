@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/organisms/Header'
 import Main from '../components/organisms/Main'
@@ -5,7 +6,12 @@ import Main from '../components/organisms/Main'
 import { MAIN, HEADER, TEST } from '../styles/MainPage.styled'
 
 
+export const MAIN = styled.div`
+  margin: 3rem;
+  background-color: tomato;
+`;
 const MainPage = () => {
+
 // styled 분리화
   // const MAIN = styled.div`
   //   margin: 3rem;
@@ -35,6 +41,7 @@ const MainPage = () => {
           <Main />
         </MAIN>
       </div>
+
   );
 };
 
