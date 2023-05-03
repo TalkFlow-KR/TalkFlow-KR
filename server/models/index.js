@@ -14,6 +14,19 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// TODO: model 연결
-// db.Todo = require("./Todo")(sequelize, Sequelize);
+db.USER = require('./USER')(sequelize,Sequelize)
+db.ROOM = require('./ROOM')(sequelize,Sequelize)
+db.MSG = require('./MSG')(sequelize,Sequelize)
+
+
+sequelize.sync({force:false})
+.then(()=>{
+  console.log('db연결됨')
+})
+.catch((err)=>{
+  console.error(err)
+})
 module.exports = db;
+
+
+// 외래키 설정 부분 이해가 안되서 선생님에게 여쭈어볼 예정
