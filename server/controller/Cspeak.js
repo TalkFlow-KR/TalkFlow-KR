@@ -1,7 +1,7 @@
 const models = require("../models");
 
 exports.main = (req, res) => {
-  res.send("hi");
+  res.send("hi1");
 };
 
 // 1. 회원가입
@@ -10,7 +10,7 @@ exports.signup = async (req, res) => {
     id: req.body.id,
     name: req.body.name,
     password: req.body.password,
-    salt: ,
+    // salt: ,
     gender: req.body.gender,
     telephone: req.body.telephone,
   });
@@ -36,4 +36,9 @@ exports.msg = async (req, res) => {
 exports.room = async (req, res) => {
   const result = await models.Room.findAll();
   res.send(result);
+};
+
+// 5. /stt 음성을 텍스트로 출력.
+exports.sst = (req, res) => {
+  res.render("index");
 };

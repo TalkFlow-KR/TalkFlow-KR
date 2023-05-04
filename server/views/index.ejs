@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web Speech API Example</title>
+  </head>
+  <body>
+    <div>
+      <button id="start-btn">Start Recognition</button>
+      <button id="stop-btn">Stop Recognition</button>
+    </div>
+    <div>
+      <p id="transcription"></p>
+    </div>
+
+    <script>
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      const startBtn = document.getElementById("start-btn");
+      const stopBtn = document.getElementById("stop-btn");
+      const transcription = document.getElementById("transcription");
+
+      startBtn.onclick = () => {
+        recognition.start();
+        console.log("Recognition started");
+      };
+
+      stopBtn.onclick = () => {
+        recognition.stop();
+        console.log("Recognition stopped");
+      };
+
+      recognition.onresult = (event) => {
+        let interimTranscript = "";
+        let finalTranscript = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+        transcription.innerHTML = finalTranscript + " " + interimTranscript;
+      };
+
+      recognition.onerror = (event) => {
+        console.log("Recognition error", event);
+      };
+    </script>
+  </body>
+</html>
