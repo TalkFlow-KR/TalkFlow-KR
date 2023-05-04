@@ -1,11 +1,11 @@
-import React from 'react';
-import LoginArticle from '../molecules/LoginArticle'
+import React from "react";
+import LoginArticle from "../molecules/LoginArticle";
 
 const Main = () => {
   return (
-      <main>
-<LoginArticle/>
-      </main>
+    <main>
+      <LoginArticle />
+    </main>
   );
 };
 
