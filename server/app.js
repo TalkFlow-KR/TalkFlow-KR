@@ -8,12 +8,8 @@ const PORT = 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("speak");
-});
-
 const speakRouter = require("./routes/speak");
-app.use("/api", speakRouter);
+app.use("/", speakRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

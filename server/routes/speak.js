@@ -5,10 +5,12 @@ const router = express.Router();
 router.get("/", controller.main);
 
 // 1. 회원가입
-router.post('/signup', controller.signup);
+router.get('/signup',controller.signup)
+router.post('/post_signup', controller.post_signup);
 
 // 2. 로그인
-router.post('/login', controller.login);
+router.get('/login',controller.login)
+router.post('/post_login', controller.post_login);
 
 //  3. /msg 데이터 과거 대화 내용 조회
 router.get("/msg", controller.msg);
