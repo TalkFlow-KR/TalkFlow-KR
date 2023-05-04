@@ -26,7 +26,29 @@ sequelize.sync({force:false})
 .catch((err)=>{
   console.error(err)
 })
+
+db.USER.hasMany(db.ROOM,{
+  foreignKey : 'id',
+  sourceKey : 'id'
+})
+
+db.ROOM.belongsTo(db.USER,{
+  foreignKey : 'id',
+  sourceKey : 'id'
+})
+
+db.ROOM.hasMany(db.MSG,{
+  foreignKey : 'room_id',
+  sourceKey : 'room_id'
+})
+
+db.ROOM.belongsTo(db.USER,{
+  foreignKey : 'room_id',
+  sourceKey : 'room_id'
+})
+
 module.exports = db;
+
 
 
 // 외래키 설정 부분 이해가 안되서 선생님에게 여쭈어볼 예정
