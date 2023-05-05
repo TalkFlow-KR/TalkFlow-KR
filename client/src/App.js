@@ -1,13 +1,11 @@
-import './App.css';
-import MainPage from './pages/MainPage.jsx'
-
-
+import './styles/App.css';
+import MainPage from 'pages/MainPage.jsx'
 
 function App() {
   return (
-      <>
-    <MainPage/>
-      </>
+    <>
+      <MainPage />
+    </>
   );
 }
 
