@@ -1,6 +1,6 @@
 import SearchArticle from "../molecules/SearchArticle";
 import styled from "styled-components";
-import MainPage, { MAIN } from "pages/MainPage";
+import { MAIN } from "styles/MainPage.styled";
 
 const Test = styled(MAIN)`
   background-color: tan;
