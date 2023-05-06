@@ -1,10 +1,10 @@
-import SearchArticle from '../molecules/SearchArticle'
+import SearchArticle from "../molecules/SearchArticle";
 
 const Header = () => {
   return (
-      <nav>
-        <SearchArticle/>
-      </nav>
+    <nav>
+      <SearchArticle />
+    </nav>
   );
 };
 
