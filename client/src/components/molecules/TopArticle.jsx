@@ -1,6 +1,5 @@
 import React from "react";
 import { Wrapper } from "styles/TopArticle.styled";
-import styled from "styled-components";
 import Button from "../atoms/Button";
 
 const text = {

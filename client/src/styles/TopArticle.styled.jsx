@@ -7,8 +7,8 @@ export const Wrapper = styled(Box)`
   border-radius: ${(props) => props.theme.layout.radius.l};
   display: flex;
   justify-content: space-between;
-  margin: 0 2.8rem;
   padding: 0 2.4rem;
+  margin: 0 2.8rem;
 
   & button {
     width: 11.6rem;
@@ -20,5 +20,8 @@ export const Wrapper = styled(Box)`
     filter: drop-shadow(0px 6px 10px rgba(64, 195, 247, 0.25))
       drop-shadow(0px 2px 6px rgba(64, 195, 247, 0.1))
       drop-shadow(0px 1px 3px rgba(64, 195, 247, 0.25));
+  }
+  &article {
+    flex: 1 1 0;
   }
 `;

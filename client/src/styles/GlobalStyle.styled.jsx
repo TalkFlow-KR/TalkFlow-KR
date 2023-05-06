@@ -10,10 +10,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    //background
+    ${(props) => props.theme.color.background};
+    // layout 
     line-height: ${(props) => props.theme.lineHeight};
      font-size: ${(props) => props.theme.fontSizes.body};
      letter-spacing: ${(props) => props.theme.layout.spacing};
-    ${(props) => props.theme.color.background};
     height: 100vh;
     width: 100vw;
      //letter-spacing: -2.5rem;

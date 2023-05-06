@@ -1,9 +1,20 @@
 import React from "react";
 import Header from "../components/organisms/Header";
-// import Header from "../components/organisms/Header";
-// import Main from "../components/organisms/Main";
+import Main from "../components/organisms/Main";
+import styled from "styled-components";
 
-// import { MAIN, HEADER, TEST } from "../styles/MainPage.styled";
+const MainLayout = styled.main`
+  width: 100vw;
+  height: 100%;
+  display: flex;
+`;
+const Test = styled.aside`
+  margin-left: 2.8rem;
+  width: 22.2rem;
+  background-color: orange;
+  margin-top: 2rem;
+  height: 34.4rem;
+`;
 
 const MainPage = () => {
   // styled 분리화
@@ -23,6 +34,10 @@ const MainPage = () => {
   return (
     <div>
       <Header />
+      <MainLayout>
+        <Test>NAV 구역</Test>
+        <Main />
+      </MainLayout>
     </div>
   );
 };
