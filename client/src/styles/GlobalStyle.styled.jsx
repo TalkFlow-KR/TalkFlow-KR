@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Token from '../assets/design-tokens.json'
+import Layout from '../assets/layout.json'
 
 
 const pxtorem = (px) =>{
@@ -15,6 +16,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1.5;
+    font-size: ${pxtorem(Token.style.typography["font-500-18"].size.value)}
+    letter-spacing: ${Layout.spacing};
+    
   }
 
   li {
