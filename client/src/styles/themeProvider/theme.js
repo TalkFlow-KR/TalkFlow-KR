@@ -30,6 +30,7 @@ const layout = {
   },
   height: {
     top: "10rem",
+    recent: "7.5rem",
   },
   flexCenter: `
   display:flex;
@@ -38,6 +39,9 @@ const layout = {
   `,
 };
 const color = {
+  background: `
+    background: linear-gradient(120deg, #121316 -5%, #36383E 90%) center/cover no-repeat;
+  `,
   boxBackground: Token.style.color.charcoal["charcoal-900"].value,
   boxTextColor: Token.style.color.charcoal["charcoal-100"].value,
   selectedColor: Token.style.color.charcoal["charcoal-200"].value,
