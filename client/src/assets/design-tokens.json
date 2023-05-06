@@ -1,0 +1,1074 @@
+{
+    "style": {
+        "color": {
+            "primary": {
+                "indigo-50": {
+                    "type": "SOLID",
+                    "value": "#e0e8f9"
+                },
+                "indigo-100": {
+                    "type": "SOLID",
+                    "value": "#bed0f7"
+                },
+                "indigo-200": {
+                    "type": "SOLID",
+                    "value": "#98aeeb"
+                },
+                "indigo-300": {
+                    "type": "SOLID",
+                    "value": "#7b93db"
+                },
+                "indigo-400": {
+                    "type": "SOLID",
+                    "value": "#647acb"
+                },
+                "indigo-500": {
+                    "type": "SOLID",
+                    "value": "#4c63b6"
+                },
+                "indigo-600": {
+                    "type": "SOLID",
+                    "value": "#4055a8"
+                },
+                "indigo-700": {
+                    "type": "SOLID",
+                    "value": "#35469c"
+                },
+                "indigo-800": {
+                    "type": "SOLID",
+                    "value": "#2d3a8c"
+                },
+                "ndigo-900": {
+                    "type": "SOLID",
+                    "value": "#19216c"
+                }
+            },
+            "background": {
+                "grey-50": {
+                    "type": "SOLID",
+                    "value": "#f5f7fa"
+                },
+                "grey-100": {
+                    "type": "SOLID",
+                    "value": "#e4e7eb"
+                },
+                "grey-200": {
+                    "type": "SOLID",
+                    "value": "#cbd2d9"
+                },
+                "grey-300": {
+                    "type": "SOLID",
+                    "value": "#9aa5b1"
+                },
+                "grey-400": {
+                    "type": "SOLID",
+                    "value": "#7b8794"
+                },
+                "grey-500": {
+                    "type": "SOLID",
+                    "value": "#616e7c"
+                },
+                "grey-600": {
+                    "type": "SOLID",
+                    "value": "#52606d"
+                },
+                "grey-700": {
+                    "type": "SOLID",
+                    "value": "#3e4c59"
+                },
+                "grey-800": {
+                    "type": "SOLID",
+                    "value": "#323f4b"
+                },
+                "grey-900": {
+                    "type": "SOLID",
+                    "value": "#1f2933"
+                }
+            },
+            "lightblue": {
+                "lb-50": {
+                    "type": "SOLID",
+                    "value": "#e3f8ff"
+                },
+                "lb-100": {
+                    "type": "SOLID",
+                    "value": "#b3ecff"
+                },
+                "lb-200": {
+                    "type": "SOLID",
+                    "value": "#81defd"
+                },
+                "lb-300": {
+                    "type": "SOLID",
+                    "value": "#5ed0fa"
+                },
+                "lb-400": {
+                    "type": "SOLID",
+                    "value": "#40c3f7"
+                },
+                "lb-500": {
+                    "type": "SOLID",
+                    "value": "#2bb0ed"
+                },
+                "lb-600": {
+                    "type": "SOLID",
+                    "value": "#1992d4"
+                },
+                "lb-700": {
+                    "type": "SOLID",
+                    "value": "#127fbf"
+                },
+                "lb-800": {
+                    "type": "SOLID",
+                    "value": "#0b69a3"
+                },
+                "lb-900": {
+                    "type": "SOLID",
+                    "value": "#035388"
+                }
+            },
+            "yellow": {
+                "yel-50": {
+                    "type": "SOLID",
+                    "value": "#fffbea"
+                },
+                "yel-100": {
+                    "type": "SOLID",
+                    "value": "#fff3c4"
+                },
+                "yel-200": {
+                    "type": "SOLID",
+                    "value": "#fce588"
+                },
+                "yel-300": {
+                    "type": "SOLID",
+                    "value": "#fadb5f"
+                },
+                "yel-400": {
+                    "type": "SOLID",
+                    "value": "#f7c948"
+                },
+                "yel-500": {
+                    "type": "SOLID",
+                    "value": "#f0b429"
+                },
+                "yel-600": {
+                    "type": "SOLID",
+                    "value": "#de911d"
+                },
+                "yel-700": {
+                    "type": "SOLID",
+                    "value": "#cb6e17"
+                },
+                "yel-800": {
+                    "type": "SOLID",
+                    "value": "#b44d12"
+                },
+                "yel-900": {
+                    "type": "SOLID",
+                    "value": "#8d2b0b"
+                }
+            },
+            "teal": {
+                "teal-50": {
+                    "type": "SOLID",
+                    "value": "#effcf6"
+                },
+                "teal-100": {
+                    "type": "SOLID",
+                    "value": "#c6f7e2"
+                },
+                "teal-200": {
+                    "type": "SOLID",
+                    "value": "#8eedc7"
+                },
+                "teal-300": {
+                    "type": "SOLID",
+                    "value": "#65d6ad"
+                },
+                "teal-400": {
+                    "type": "SOLID",
+                    "value": "#3ebd93"
+                },
+                "teal-500": {
+                    "type": "SOLID",
+                    "value": "#27ab83"
+                },
+                "teal-600": {
+                    "type": "SOLID",
+                    "value": "#199473"
+                },
+                "teal-700": {
+                    "type": "SOLID",
+                    "value": "#147d64"
+                },
+                "teal-800": {
+                    "type": "SOLID",
+                    "value": "#0c6b58"
+                },
+                "teal-900": {
+                    "type": "SOLID",
+                    "value": "#014d40"
+                }
+            },
+            "grayscale": {
+                "white": {
+                    "type": "SOLID",
+                    "value": "#ffffff"
+                },
+                "gray-100": {
+                    "type": "SOLID",
+                    "value": "#fcfcfc"
+                },
+                "gray-200": {
+                    "type": "SOLID",
+                    "value": "#efefef"
+                },
+                "gray-300": {
+                    "type": "SOLID",
+                    "value": "#dfdfdf"
+                },
+                "gray-400": {
+                    "type": "SOLID",
+                    "value": "#b7b7b7"
+                },
+                "gray-500": {
+                    "type": "SOLID",
+                    "value": "#949494"
+                },
+                "gray-600": {
+                    "type": "SOLID",
+                    "value": "#777777"
+                },
+                "gray-700": {
+                    "type": "SOLID",
+                    "value": "#555555"
+                },
+                "gray-800": {
+                    "type": "SOLID",
+                    "value": "#2a2a2a"
+                },
+                "gray-900": {
+                    "type": "SOLID",
+                    "value": "#111111"
+                },
+                "black": {
+                    "type": "SOLID",
+                    "value": "#000000"
+                }
+            },
+            "red": {
+                "red-50": {
+                    "type": "SOLID",
+                    "value": "#ffe3e3"
+                },
+                "red-100": {
+                    "type": "SOLID",
+                    "value": "#ffbdbd"
+                },
+                "red-200": {
+                    "type": "SOLID",
+                    "value": "#ff9b9b"
+                },
+                "red-300": {
+                    "type": "SOLID",
+                    "value": "#f86a6a"
+                },
+                "red-400": {
+                    "type": "SOLID",
+                    "value": "#ef4e4e"
+                },
+                "red-500": {
+                    "type": "SOLID",
+                    "value": "#e12d39"
+                },
+                "red-600": {
+                    "type": "SOLID",
+                    "value": "#cf1124"
+                },
+                "red-700": {
+                    "type": "SOLID",
+                    "value": "#ab091e"
+                },
+                "red-800": {
+                    "type": "SOLID",
+                    "value": "#8a041a"
+                },
+                "red-900": {
+                    "type": "SOLID",
+                    "value": "#610316"
+                }
+            },
+            "charcoal": {
+                "charcoal-900": {
+                    "type": "SOLID",
+                    "value": "#2a2b2d"
+                },
+                "charcoal-800": {
+                    "type": "SOLID",
+                    "value": "#414245"
+                },
+                "charcoal-700": {
+                    "type": "SOLID",
+                    "value": "#595a5c"
+                },
+                "charcoal-600": {
+                    "type": "SOLID",
+                    "value": "#717173"
+                },
+                "charcoal-500": {
+                    "type": "SOLID",
+                    "value": "#89898b"
+                },
+                "charcoal-400": {
+                    "type": "SOLID",
+                    "value": "#a0a1a2"
+                },
+                "charcoal-300": {
+                    "type": "SOLID",
+                    "value": "#b8b8b9"
+                },
+                "charcoal-200": {
+                    "type": "SOLID",
+                    "value": "#d0d0d0"
+                },
+                "charcoal-100": {
+                    "type": "SOLID",
+                    "value": "#e7e7e8"
+                },
+                "charcoal": {
+                    "type": "SOLID",
+                    "value": "#121316"
+                }
+            }
+        },
+        "typography": {
+            "font-900-72": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 72
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-72": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 72
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-72": {
+                "fontName": {
+                    "value": "Pretendard-Medium"
+                },
+                "size": {
+                    "value": 72
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-72": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 72
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-900-60": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 60
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-60": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 60
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-60": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 60
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-60": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 60
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-900-48": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 48
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PIXELS"
+                }
+            },
+            "font-700-48": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 48
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-48": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 48
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-48": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 48
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-900-36": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 36
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-36": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 36
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-36": {
+                "fontName": {
+                    "value": "Inter-Regular"
+                },
+                "size": {
+                    "value": 36
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-36": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 36
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-900-24": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 24
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-24": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 24
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-24": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 24
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-24": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 24
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-900-18": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 18
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-18": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 18
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-18": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 18
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-18": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 18
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-900-16": {
+                "fontName": {
+                    "value": "Pretendard-Black"
+                },
+                "size": {
+                    "value": 16
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-16": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 16
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-16": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 16
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-16": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 16
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "racing-48": {
+                "fontName": {
+                    "value": "Racing Sans One-Regular"
+                },
+                "size": {
+                    "value": 48
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-700-12": {
+                "fontName": {
+                    "value": "Pretendard-Bold"
+                },
+                "size": {
+                    "value": 12
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-500-12": {
+                "fontName": {
+                    "value": "Pretendard-Regular"
+                },
+                "size": {
+                    "value": 12
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "font-400-12": {
+                "fontName": {
+                    "value": "Pretendard-Light"
+                },
+                "size": {
+                    "value": 12
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            },
+            "racing-24": {
+                "fontName": {
+                    "value": "Racing Sans One-Regular"
+                },
+                "size": {
+                    "value": 24
+                },
+                "transform": {
+                    "value": "none"
+                },
+                "decoration": {
+                    "value": "none"
+                },
+                "letterSpacing": {
+                    "value": 0,
+                    "unit": "PERCENT"
+                },
+                "lineHeight": {
+                    "value": "150",
+                    "unit": "PERCENT"
+                }
+            }
+        }
+    }
+}
