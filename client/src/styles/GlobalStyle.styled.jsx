@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: ${(props) => props.theme.lineHeight};
-     font-size: ${(props) => props.theme.fontSizes.mainTitle};
+     font-size: ${(props) => props.theme.fontSizes.body};
      letter-spacing: ${(props) => props.theme.layout.spacing};
      //letter-spacing: -2.5rem;
 

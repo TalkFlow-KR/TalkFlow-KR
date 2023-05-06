@@ -1,4 +1,4 @@
-import Token from "../assets/design-tokens.json";
+import Token from "assets/design-tokens.json";
 
 // 반응형 디자인을 위한 픽셀 REM 컨버팅
 // design token 은 컨버팅 해야함
@@ -49,6 +49,7 @@ const fontSizes = {
   // layout
   boxTitle: px2Rem(Token.style.typography["font-700-18"].size.value),
   boxNormal: px2Rem(Token.style.typography["font-500-18"].size.value),
+  body: px2Rem(Token.style.typography["font-500-18"].size.value),
   // header
 
   // main

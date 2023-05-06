@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Article from "../components/atoms/Article";
+import { Box } from "./Article.styled";
 
-export const Wrapper = styled(Article)`
+export const Wrapper = styled(Box)`
   //width: 22.2rem;
   //height: 10rem;
   //padding: 0 1.2rem;

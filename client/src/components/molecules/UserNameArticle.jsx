@@ -1,14 +1,16 @@
 import React from "react";
-import { Wrapper } from "../../styles/UserNameArticle.styled";
-import { Box } from "../../styles/Article.styled";
 import LogoIcon from "../atoms/LogoIcon";
+import { Wrapper } from "../../styles/UserNameArticle.styled";
+
+// 더미 데이터
+const UserInfo = {
+  userName: "UserName",
+};
 const UserNameArticle = () => {
   return (
     <Wrapper>
-      <Box>
-        <LogoIcon />
-        <h2>userdata</h2>
-      </Box>
+      <LogoIcon />
+      <h2>{UserInfo.userName}</h2>
     </Wrapper>
   );
 };
