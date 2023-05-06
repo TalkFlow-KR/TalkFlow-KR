@@ -1,10 +1,10 @@
-import SearchArticle from "../molecules/SearchArticle";
+import React from "react";
 
 const Header = () => {
   return (
-    <nav>
-      <SearchArticle />
-    </nav>
+    <div>
+      <UserNameArticle/>
+    </div>
   );
 };
 
