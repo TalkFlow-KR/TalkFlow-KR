@@ -1,12 +1,22 @@
-import "styles/App.css";
+//components
 import MainPage from "pages/MainPage.jsx";
-import { GlobalStyle } from "./styles/GlobalStyle.styled";
 
-function App () {
+//style
+import { GlobalStyle } from "./styles/GlobalStyle.styled";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme";
+
+//Route
+
+function App() {
   return (
     <>
-      <GlobalStyle />
-      <MainPage />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        TEST
+        <p>TEST</p>
+        <MainPage />
+      </ThemeProvider>
     </>
   );
 }
