@@ -1,6 +1,7 @@
 const models = require("../models");
 const crypto = require("crypto");
 
+
 // 솔트 생성
 const createSalt = () => {
   return new Promise((resolve, reject) => {
@@ -41,8 +42,6 @@ const getCryptoPassword = (plainPassword, salt) => {
 
 exports.main = async (req, res) => {
   res.send("hi");
-  let cryptoPassword = await createCryptoPassword("1234");
-  console.log("cry: ", cryptoPassword);
 };
 
 // 1. 회원가입
@@ -66,6 +65,7 @@ exports.post_signup = async (req, res) => {
     email: req.body.email,
     password: cryptoPassword.password,
     salt: cryptoPassword.salt,
+
     gender: req.body.gender,
     telephone: req.body.telephone,
   });
@@ -120,7 +120,9 @@ exports.room = async (req, res) => {
   })
 };
 
+
 // 5. /stt 음성을 텍스트로 출력.
 exports.sst = (req, res) => {
   res.render("index");
 };
+

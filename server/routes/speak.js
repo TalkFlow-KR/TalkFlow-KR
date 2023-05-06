@@ -6,6 +6,7 @@ router.get("/", controller.main);
 
 router.get('/test',controller.tmp)
 // 1. 회원가입
+
 router.get('/signup',controller.signup)
 router.post('/post_signup', controller.post_signup);
 
@@ -18,5 +19,8 @@ router.get("/msg/:roomid", controller.msg);
 
 // 4. /room/:rommid 회화 채팅 방
 router.post("/room/:userid", controller.room);
+
+// 5. /stt 음성을 텍스트로 출력.
+router.get("/sst", controller.sst);
 
 module.exports = router;
