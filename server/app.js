@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const speakRouter = require("./routes/speak");
-app.use("/", speakRouter);
+app.use("/api", speakRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

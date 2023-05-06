@@ -1,88 +1,126 @@
 const models = require("../models");
-const crypto = require("crypto")
+const crypto = require("crypto");
 
 // 솔트 생성
 const createSalt = () => {
   return new Promise((resolve, reject) => {
     crypto.randomBytes(64, (err, buf) => {
-      if (err) reject(err)
-      resolve(buf.toString("base64"))
-    })
-  })
-}
+      if (err) reject(err);
+      resolve(buf.toString("base64"));
+    });
+  });
+};
 
 // 암호비번 생성
 const createCryptoPassword = async (plainPassword) => {
-  const salt = await createSalt()
+  console.log(">>>>>>>>>>", plainPassword);
+  const salt = await createSalt();
   return new Promise((resolve, reject) => {
     crypto.pbkdf2(plainPassword, salt, 10000, 64, "sha512", (err, key) => {
-      if (err) reject(err)
-      resolve({ password: key.toString("base64"), salt })
-    })
-  })
-}
+      if (err) {
+        console.log("createCryptoPassword 에서 에러 발생");
+        reject(err);
+      }
+      resolve({ password: key.toString("base64"), salt });
+    });
+  });
+};
 
 // 비밀번호 검증
 const getCryptoPassword = (plainPassword, salt) => {
   return new Promise((resolve, reject) => {
-    crypto.pbkdf2(plainPassword, salt, 9999, 64, "sha512", (err, key) => {
-      if (err) reject(err)
-      resolve({ password: key.toString("base64"), salt })
-    })
-  })
-}
+    crypto.pbkdf2(plainPassword, salt, 10000, 64, "sha512", (err, key) => {
+      if (err) {
+        console.log("getCryptoPassword 에서 에러 발생");
+        reject(err);
+      }
+      resolve({ password: key.toString("base64"), salt });
+    });
+  });
+};
 
 exports.main = async (req, res) => {
   res.send("hi");
+  let cryptoPassword = await createCryptoPassword("1234");
+  console.log("cry: ", cryptoPassword);
 };
 
 // 1. 회원가입
-exports.signup = (req,res)=>{
-  res.send('signup')
-}
+exports.signup = (req, res) => {
+  res.send("signup");
+};
 
 exports.post_signup = async (req, res) => {
-  let crytpoPassword = createCryptoPassword(req.body.password)
+  let cryptoPassword = await createCryptoPassword(req.body.password);
+  //   {
+  // 
+  //     "name": "hyun",
+  //     "email" : "test0@gmail.com",
+  //     "password": "jES+dWXgr1iEF5acH3zXrCxMiYzlRzTKjadKt154kAkk6d5VjTHPlnhXv6YAGkfrxARgIdsxBIY35H1fFDDyFg==",
+  //     "salt": "52Pi2AqFX9fC/+Dm55KYIJDCpPzWF/28x8QX3P6RzJk7pVEL3ZUQlF/TdWcwIvE2+US+vIlBrC14hGI5cRrzIA==",
+  //     "gender": "male",
+  //     "telephone": "01012345678"
+  // }
   const result = await models.USER.create({
-    id: req.body.id,
     name: req.body.name,
-    email : req.body.email,
-    password: crytpoPassword.password,
-    salt: crytpoPassword.salt,
+    email: req.body.email,
+    password: cryptoPassword.password,
+    salt: cryptoPassword.salt,
     gender: req.body.gender,
     telephone: req.body.telephone,
   });
-  res.send(result);
+  // res.send('signup success')
+  res.sendFile(__dirname + "/result.html");
 };
 
-// 2. 로그인
-exports.login = (req,res)=>{
-  res.send('login')
+exports.tmp = (req,res) =>{
+  res.sendFile(__dirname + "/test.html")
 }
+
+// 2. 로그인
+exports.login = (req, res) => {
+  res.send("login");
+};
 
 exports.post_login = async (req, res) => {
   // 입력받은 아이디를 가진 사람을 찾아 salt와 입력한 비밀번호를 조합하며 저장된 비번과 같은지 확인
   const result = await models.USER.findOne({
-    id: req.body.id,
+    email: req.body.email,
   });
-  if(getCryptoPassword(req.body.password,result.salt)==result.password){
-    res.send('success')
-  }
-  else{
-    res.send('wrong')
+  const getCry = await getCryptoPassword(req.body.password, result.salt)
+  console.log('getCry: ', getCry.password)
+  console.log(result.password)
+  if (getCry.password === result.password) {
+    // res.send("success");
+    res.sendFile(__dirname + "/result.html");
+  } else {
+    res.send("wrong");
   }
 };
 
-//  3. /msg 데이터 과거 대화 내용 조회
+//  3. /msg/:roomid 과거 대화 내용 조회
 exports.msg = async (req, res) => {
-  const result = await models.MSG.findAll();
+  const roomId = req.params;
+  const result = await models.MSG.findAll({
+    where: {
+      room_id: roomId,
+    },
+  });
   res.send(result);
 };
 
-// 4. /room/:rommid 회화 채팅 방
+// 4. /room/:userid : room setting
 exports.room = async (req, res) => {
-  const result = await models.ROOM.findAll();
-  res.send(result);
+  console.log(req.body)
+  const result = await models.ROOM.create({
+    id : req.body.id, // user_id
+    situation : req.body.situation,
+    accent : req.body.accent,
+    language : req.body.language
+  })
 };
 
-//5. 방 세팅
+// 5. /stt 음성을 텍스트로 출력.
+exports.sst = (req, res) => {
+  res.render("index");
+};
