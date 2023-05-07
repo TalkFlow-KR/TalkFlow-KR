@@ -2,18 +2,18 @@ import React from "react";
 import Header from "../components/organisms/Header";
 import Main from "../components/organisms/Main";
 import styled from "styled-components";
+import Aside from "components/organisms/Aside";
 
 const MainLayout = styled.main`
   width: 100vw;
   height: 100%;
   display: flex;
-`;
-const Test = styled.aside`
-  margin-left: 2.8rem;
-  width: 22.2rem;
-  background-color: orange;
-  margin-top: 2rem;
-  height: 34.4rem;
+  background-color: tan;
+  justify-content: center;
+
+  /* @media screen { (max-width:{(props)=>props.theme.layout.width.mobile)}{
+    ba
+  } */
 `;
 
 const MainPage = () => {
@@ -35,7 +35,7 @@ const MainPage = () => {
     <div>
       <Header />
       <MainLayout>
-        <Test>NAV 구역</Test>
+        <Aside />
         <Main />
       </MainLayout>
     </div>
