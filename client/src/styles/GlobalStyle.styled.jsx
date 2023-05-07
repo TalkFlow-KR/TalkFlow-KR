@@ -1,25 +1,24 @@
 import { createGlobalStyle } from "styled-components";
-import Token from '../assets/design-tokens.json'
-import Layout from '../assets/layout.json'
-
-
-const pxtorem = (px) =>{
-return `${px/16}rem`
-}
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  html {
     font-size: 62.5%;
   }
 
   body {
-    line-height: 1.5;
-    font-size: ${pxtorem(Token.style.typography["font-500-18"].size.value)}
-    letter-spacing: ${Layout.spacing};
-    
-  }
+    //background
+    ${(props) => props.theme.color.background};
+    // layout 
+    line-height: ${(props) => props.theme.lineHeight};
+     font-size: ${(props) => props.theme.fontSizes.body};
+     letter-spacing: ${(props) => props.theme.layout.spacing};
+    height: 100vh;
+    width: 100vw;
+     //letter-spacing: -2.5rem;
 
   li {
     list-style: none;
@@ -31,8 +30,11 @@ export const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: 0;
+    
+    
   }
   p {
-    font-size: ${pxtorem(Token.style.typography["font-500-16"].size.value)}
+  }
   }
 `;
