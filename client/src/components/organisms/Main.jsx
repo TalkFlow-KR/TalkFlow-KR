@@ -5,7 +5,6 @@ import RecentArticle from "../molecules/RecentArticle";
 const Container = styled.main`
   width: 114.2rem;
   height: 100%;
-  //background-color: tan;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -16,7 +15,7 @@ const Main = () => {
   return (
     <Container>
       <RecentArticle />
-      <ChatComponent />
+      {/* <ChatComponent /> */}
     </Container>
   );
 };

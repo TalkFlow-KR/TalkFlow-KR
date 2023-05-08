@@ -27,10 +27,12 @@ const layout = {
     left: "22.2rem",
     top: "114.2rem",
     main: "92.4rem",
+    mobileTop: "36rem",
   },
   height: {
     top: "10rem",
     recent: "7.5rem",
+    nav: "34.4rem"
   },
   flexCenter: `
   display:flex;
@@ -61,6 +63,9 @@ const fontSizes = {
   mainSubtitle: px2Rem(Token.style.typography["font-500-36"].size.value),
   mainDesc: px2Rem(Token.style.typography["font-500-24"].size.value),
   mainBtn: px2Rem(Token.style.typography["font-900-24"].size.value),
+
+  // nav
+  navMenu: px2Rem(Token.style.typography["font-500-24"].size.value),
 };
 const lineHeight = 1.5;
 

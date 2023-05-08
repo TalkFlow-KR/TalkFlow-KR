@@ -24,4 +24,9 @@ export const Wrapper = styled(Box)`
   &article {
     flex: 1 1 0;
   }
+
+  @media (max-width: ${(props) => props.theme.layout.width.mobileTop}) {
+    width: ${(props) => props.theme.layout.width.mobileTop};
+    background-color: white;
+  }
 `;

@@ -6,19 +6,44 @@ import { GlobalStyle } from "styles/GlobalStyle.styled";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
 
-//Route
+// responsive
+import { useMediaQuery } from "react-responsive";
+
+export const Mobile = ({ children }) => {
+  const isMobile = useMediaQuery({
+    query: "(max-width:360px)"
+  });
+  return <>{isMobile && children}</>
+}
+
+export const Pc = ({ children }) => {
+  const isPc = useMediaQuery({
+    query: "(min-width:360px)"
+  });
+  return <>{isPc && children}</>
+}
+
+// Route
+
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
         TEST
         <p>TEST</p>
-        <MainPage />
+        <GlobalStyle />
+        <Mobile>
+          <mobileTest>test</mobileTest>
+          <MainPage />
+        </Mobile>
+        <Pc>
+          <MainPage />
+        </Pc>
       </ThemeProvider>
     </>
   );
 }
+
 
 export default App;
