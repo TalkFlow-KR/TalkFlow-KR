@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import InputWIthLabels from "../../molecules/InputWIthLabels";
+import InputWithLabels from "../../molecules/InputWithLabels";
 import Button from "../../atoms/Button";
 
-
 const Wrapper = styled.div`
-  ${ ({ theme }) => theme.layout.flexCenter };
+  ${({ theme }) => theme.layout.flexCenter};
   align-items: center;
 `;
 
@@ -14,9 +13,9 @@ const LoginForm = () => {
     <>
       <Wrapper>
         <form action="">
-          <InputWIthLabels />
-          <InputWIthLabels />
-          <Button/>
+          <InputWithLabels />
+          <InputWithLabels />
+          <Button />
         </form>
       </Wrapper>
     </>
