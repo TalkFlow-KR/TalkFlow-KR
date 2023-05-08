@@ -3,16 +3,18 @@ import React from "react";
 import styled from "styled-components";
 // import Overlay from "../atoms/Overlay";
 
-const Wrapper = styled.section`
-  width: 92.4rem;
-  height: 33.6rem;
-  background-color: tan;
-  margin-top: 2.4rem;
-  border-radius: 2rem;
-`;
+// const Wrapper = styled.section`
+//   width: 92.4rem;
+//   height: 33.6rem;
+//   background-color: tomato;
+//   margin-top: 2.4rem;
+//   border-radius: 2rem;
+// `;
 const ChatComponent = () => {
   return (
-    <Wrapper>
+    <>
+    
+    {/* <Wrapper> */}
       <div className="img-wrap">
         <img src="" alt="" />
         <div className="title-box">
@@ -29,7 +31,8 @@ const ChatComponent = () => {
         </span>
         <span>DATE : 2099.09.99</span>
       </div>
-    </Wrapper>
+    {/* </Wrapper> */}
+    </>
   );
 };
 

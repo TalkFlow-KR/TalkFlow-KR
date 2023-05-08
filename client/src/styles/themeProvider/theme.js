@@ -50,6 +50,7 @@ const color = {
   highlightColor: Token.style.color.lightblue["lb-400"].value,
   blueColor: Token.style.color.primary["indigo-600"].value,
   chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
+  chatBackground: Token.style.color.charcoal["charcoal-800"].value,
 };
 const fontSizes = {
   // layout

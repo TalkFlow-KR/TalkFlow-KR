@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import RecentArticle from "../molecules/RecentArticle";
 import ChatComponent from "../molecules/ChatComponent";
+import { MainChatComponent } from "styles/Chat.styled";
 
 const Container = styled.div`
   //width: 114.2rem;
@@ -20,7 +21,9 @@ const Main = () => {
   return (
     <Container>
       <RecentArticle />
-      <ChatComponent />
+      <MainChatComponent>
+      <ChatComponent/>
+      </MainChatComponent>
     </Container>
   );
 };
