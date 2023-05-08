@@ -8,6 +8,7 @@ import theme from "styles/themeProvider/theme";
 
 // responsive
 import { useMediaQuery } from "react-responsive";
+import AuthForm from "./components/organisms/Auth/AuthForm";
 
 export const Mobile = ({ children }) => {
   const isMobile = useMediaQuery({
@@ -30,16 +31,17 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        TEST
-        <p>TEST</p>
         <GlobalStyle />
-        <Mobile>
-          <mobileTest>test</mobileTest>
-          <MainPage />
-        </Mobile>
-        <Pc>
-          <MainPage />
-        </Pc>
+        <AuthForm/>
+        {/*TEST*/}
+        {/*<p>TEST</p>*/}
+        {/*<Mobile>*/}
+        {/*  <mobileTest>test</mobileTest>*/}
+        {/*  <MainPage />*/}
+        {/*</Mobile>*/}
+        {/*<Pc>*/}
+        {/*  <MainPage />*/}
+        {/*</Pc>*/}
       </ThemeProvider>
     </>
   );
