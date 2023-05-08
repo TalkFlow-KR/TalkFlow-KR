@@ -23,4 +23,7 @@ router.post("/room/:userid", controller.room);
 // 5. /stt 음성을 텍스트로 출력.
 router.get("/sst", controller.sst);
 
+// 6. /kakao
+router.get("/kakao", controller.kakao);
+
 module.exports = router;
