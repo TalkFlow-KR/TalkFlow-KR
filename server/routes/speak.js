@@ -6,7 +6,6 @@ router.get("/", controller.main);
 
 router.get('/test',controller.tmp)
 // 1. 회원가입
-
 router.get('/signup',controller.signup)
 router.post('/post_signup', controller.post_signup);
 
