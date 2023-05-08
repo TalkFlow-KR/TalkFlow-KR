@@ -13,10 +13,9 @@ const speakRouter = require("./routes/speak");
 
 app.use("/api", speakRouter);
 
-
 app.use("/", speakRouter);
 app.use("/sst", speakRouter);
-
+app.use("/kakao", speakRouter);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
