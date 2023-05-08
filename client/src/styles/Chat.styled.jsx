@@ -70,7 +70,6 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: yellow; */
   background-color: ${(props) => props.theme.color.boxBackground};
   box-shadow: 0 -0.3rem 1rem rgba(0, 0, 0, 0.25);
   
