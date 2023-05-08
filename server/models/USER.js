@@ -32,6 +32,10 @@ const USER = function(Sequelize,DataTypes){
                 type: DataTypes.STRING(30),
                 allowNull : false
             },
+            kakaoId:{
+              type: DataTypes.STRING(20),
+              allowNull :false
+            }
         },{
             tableName: "USER", // 실제 db table명
             freezeTableName: true, // 테이블명 고정!
