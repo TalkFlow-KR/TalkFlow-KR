@@ -5,6 +5,7 @@ const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
   // console.log("prpps", props);
   // const { label, placeholder, type, value, onChange, ...rest } = data;
   if (data.male && data.female) {
+    console.log(data.male.value);
     return (
       <>
         <label>
@@ -19,7 +20,7 @@ const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
             checked={value === data.male.value}
             {...rest}
           />
-          {data.male.label}
+          <label htmlFor={data.male.id}>{data.male.label}</label>
           <br />
           <input
             type={data.female.type}
@@ -30,12 +31,11 @@ const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
             checked={value === data.female.value}
             {...rest}
           />
-          {data.female.label}
+          <label htmlFor={data.female.id}>{data.female.label}</label>
         </label>
       </>
     );
   }
-
   return (
     <>
       <label htmlFor="">

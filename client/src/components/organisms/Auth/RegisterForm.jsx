@@ -92,7 +92,7 @@ const RegisterForm = () => {
   };
 
   const onChange = (e, setState) => {
-    e.preventDefault();
+    // e.preventDefault();
     setState(e.target.value);
   };
   const onSubmit = () => {
