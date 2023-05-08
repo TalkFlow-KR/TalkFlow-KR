@@ -6,7 +6,9 @@
 https://github.com/TalkFlow-KR/TalkFlow-KR.git
 ```
 #2. Download SOX
+```c 
 SoX (Sound eXchange) is a command-line tool for processing audio files on Linux and other Unix-like operating systems. It can be used to convert audio files between different formats, apply various digital signal processing (DSP) effects, and perform other operations such as mixing and concatenation.
+```
 - mac OS
 ```c
 brew install sox
