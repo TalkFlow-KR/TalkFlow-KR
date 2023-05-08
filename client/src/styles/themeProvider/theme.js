@@ -32,7 +32,7 @@ const layout = {
   height: {
     top: "10rem",
     recent: "7.5rem",
-    nav: "34.4rem"
+    nav: "34.4rem",
   },
   flexCenter: `
   display:flex;
@@ -78,3 +78,4 @@ const theme = {
 };
 
 export default theme;
+// theme  를 dark / light 로 나누어 다크모드
