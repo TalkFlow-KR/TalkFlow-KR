@@ -50,13 +50,18 @@ exports.signup = (req, res) => {
 
 exports.post_signup = async (req, res) => {
   let cryptoPassword = await createCryptoPassword(req.body.password);
-  const result = await models.USER.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: cryptoPassword.password,
-    salt: cryptoPassword.salt,
-    gender: req.body.gender,
-    telephone: req.body.telephone,
+  const result = await models.USER.findOrCreate({
+    where : {
+      email: req.body.email,
+    },
+    default : {
+      name: req.body.name,
+      email: req.body.email,
+      password: cryptoPassword.password,
+      salt: cryptoPassword.salt,
+      gender: req.body.gender,
+     telephone: req.body.telephone,
+    }
   });
   // res.send('signup success')
   res.sendFile(__dirname + "/result.html");
@@ -118,40 +123,25 @@ exports.sst = (req, res) => {
 
 // 6. /kakao
 //프론트 분리 전까지 기능 확인하고 싶으면 아래 render 주석 풀기
-// exports.kakao = (req, res) => {
-//   res.render("kakao");
-// };
+exports.kakao = (req, res) => {
+  res.render("kakao");
+};
 
-exports.kakao = async (req, res) => {
+exports.kakao2 = async (req, res) => {
   try {
-    const response = await new Promise((resolve, reject) => {
-      Kakao.Auth.login({
-        success: resolve,
-        fail: reject,
-      });
-    });
-
-    const profile = await new Promise((resolve, reject) => {
-      Kakao.API.request({
-        url: "/v2/user/me",
-        success: resolve,
-        fail: reject,
-      });
-    });
-    console.log(profile);
-    console.log("Login_nickname > ", response.nickname);
-
-    const [user, created] = await models.USER.findOrCreate({
-      where: {
-        kakaoId: profile.id,
+    console.log(req.body)
+    const result = await models.KAKAO.findOrCreate({
+      where : {
+        kakaoId : req.body.id.toString()
       },
-      default: {
-        nickname: profile.nickname,
+      default : {
+        kakaoId : req.body.id.toString(),
+        kakao_nickname : req.body.nickname
       }
-    });
-    console.log(`kakao User > ${user.kakaoId}: ${created}`);
+    })
+    
+    console.log(result);
 
-    res.json(user);
   } catch (error) {
     res.status(500).send("Error");
   }
