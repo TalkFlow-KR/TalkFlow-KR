@@ -18,7 +18,7 @@ brew install sox
 sudo apt-get install sox
 ```
 - window 
-최신 버전의 sox 다운로드 받은 뒤, 환경변수의 유저, 시스템 path에 각각 해당 경로 등록.
+
 
 1. 아래의 사이트에 들어가서 가장 최신 버전의 파일을 다운로드 받는다.
 ```c
