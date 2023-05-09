@@ -1,4 +1,28 @@
-<!-- 프론트 카카오톡 간편 로그인 -->
+<!-- 프론트 카카오톡 간편 로그인 !!!!!!!!!!!!!-->
+<!-- 프론트로 분리 후 프론트 check 
+프론트엔드와 백엔드가 연결되어야 하는데, 프론트엔드에서는 카카오 로그인 버튼 클릭 시 백엔드의 /auth/kakao/login 엔드포인트로 요청을 보내주셔야 합니다.
+프론트엔드 코드에서는 kakaoLogin() 함수를 클릭 이벤트로 호출하는 부분 만들주시고
+함수 내부에서는 fetch()를 사용하여 /auth/kakao/login 엔드포인트로 POST 요청을 보내도록 작성하면 됩니다.
+-->
+<!--ex)  카카오 로그인 버튼 -->
+<!-- <button id="kakao-login-btn">카카오 로그인</button>
+<script>
+  const kakaoLoginBtn = document.getElementById("kakao-login-btn");
+
+  kakaoLoginBtn.addEventListener("click", async () => {
+    try {
+      const response = await fetch("/auth/kakao/login", {
+        method: "POST",
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script> -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,7 +59,8 @@
               url: "/v2/user/me",
               success: function (response) {
                 console.log(response);
-                console.log("Login_id:", response.id);
+                nickname = response.properties.nickname;
+                console.log("Login_nickname > ", nickname);
               },
               fail: function (error) {
                 console.log(error);
@@ -55,6 +80,7 @@
             url: "/v1/user/unlink",
             success: function (response) {
               console.log("Logout_id:", response.id);
+              console.log("Logout_nickname > ", nickname);
             },
             fail: function (error) {
               console.log(error);

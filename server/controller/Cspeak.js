@@ -117,71 +117,42 @@ exports.sst = (req, res) => {
 };
 
 // 6. /kakao
-exports.kakao = (req, res) => {
-  res.render("kakao");
+//프론트 분리 전까지 기능 확인하고 싶으면 아래 render 주석 풀기
+// exports.kakao = (req, res) => {
+//   res.render("kakao");
+// };
+
+exports.kakao = async (req, res) => {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      Kakao.Auth.login({
+        success: resolve,
+        fail: reject,
+      });
+    });
+
+    const profile = await new Promise((resolve, reject) => {
+      Kakao.API.request({
+        url: "/v2/user/me",
+        success: resolve,
+        fail: reject,
+      });
+    });
+    console.log(profile);
+    console.log("Login_nickname > ", response.nickname);
+
+    const [user, created] = await models.USER.findOrCreate({
+      where: {
+        kakaoId: profile.id,
+      },
+      default: {
+        nickname: profile.nickname,
+      }
+    });
+    console.log(`kakao User > ${user.kakaoId}: ${created}`);
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).send("Error");
+  }
 };
-
-// // 카카오 로그인 데베 연결중...
-// exports.kakaoLogin = async function (req, res) {
-//   try {
-//     const response = await new Promise((resolve, reject) => {
-//       Kakao.Auth.login({
-//         success: resolve,
-//         fail: reject,
-//       });
-//     });
-
-//     const profile = await new Promise((resolve, reject) => {
-//       Kakao.API.request({
-//         url: "/v2/user/me",
-//         success: resolve,
-//         fail: reject,
-//       });
-//     });
-
-//     console.log(profile);
-//     console.log("Login_id:", profile.id);
-
-//     const [user, created] = await models.USER.findOrCreate({
-//       where: {
-//         kakaoId: profile.id,
-//       },
-//     });
-
-//     console.log(`Created user ${user.kakaoId}: ${created}`);
-
-//     res.json(user);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// };
-
-// exports.kakaoLogout = async function (req, res) {
-//   try {
-//     if (Kakao.Auth.getAccessToken()) {
-//       const profile = await new Promise((resolve, reject) => {
-//         Kakao.API.request({
-//           url: "/v2/user/me",
-//           success: resolve,
-//           fail: reject,
-//         });
-//       });
-
-//       console.log("Logout_id:", profile.id);
-
-//       await models.USER.destroy({
-//         where: {
-//           kakaoId: profile.id,
-//         },
-//       });
-
-//       console.log(`Deleted user ${profile.id}`);
-//     }
-
-//     Kakao.Auth.setAccessToken(undefined);
-//     res.send("Logout Successful");
-//   } catch (error) {
-//     res.status(500).send("Internal Server Error");
-//   }
-// };
