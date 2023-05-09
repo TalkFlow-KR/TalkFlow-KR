@@ -2,7 +2,7 @@
 import MainPage from "pages/MainPage.jsx";
 import Chat from "pages/Chat.jsx";
 // import Register from "pages/Register"
-// import AuthForm from "./components/organisms/Auth/AuthForm";
+import AuthForm from "./components/organisms/Auth/AuthForm";
 
 //style
 import { GlobalStyle } from "styles/GlobalStyle.styled";
@@ -34,18 +34,18 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {/* <AuthForm/> */}
+        {/* <AuthForm /> */}
         {/*TEST*/}
         {/*<p>TEST</p>*/}
         {/*<Mobile>*/}
         {/*  <mobileTest>test</mobileTest>*/}
-         {/* <MainPage /> */}
+        {/* <MainPage /> */}
         {/*</Mobile>*/}
         {/*<Pc>*/}
         {/*  <MainPage />*/}
         {/*</Pc>*/}
-        {/* <Register/> */}
-        <Chat/>
+        {/* <Register /> */}
+        <Chat />
       </ThemeProvider>
     </>
   );
