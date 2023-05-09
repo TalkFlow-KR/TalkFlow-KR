@@ -98,7 +98,7 @@ messages = [
   {
     role: "system",
     content:
-      "You are a conversation practice bot. Take on any role you want and talk to me.",
+      "You are a conversation practice bot. Take on any role you want and talk to me. Answer concisely in one or two sentences if possible, and ask questions from time to time.",
   },
 ];
 
@@ -116,9 +116,7 @@ app.get("/start", (req, res) => {
   }-${now.getDate()}_${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}.wav`;
 
   recordAudio(newFilename).then(() => {
-    // res.sendStatus(200);
-
-    //녹음이 종료됐음을 알기 위한 플레그.
+    //녹음이 종료된 후, flag 초기화
     flag = 0;
     console.log("녹음 종료되었습니다.");
     res.json(flag);
