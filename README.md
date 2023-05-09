@@ -34,16 +34,21 @@ C:\Program Files (x86)\sox-14-4-2
 ![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/e30442b6-7f2b-4e6e-8214-2da38743e935)
 
 4. 시스템 속성 창이 떴다면 `환경변수` 버튼을 눌러준다.
-![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/8d5c1bd0-21fc-45f1-b7ce-44359fe7316c)
+![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/390bf91f-0c8c-40c9-b09f-f7ff5f3ff113)
 
-5. 본인의 컴퓨터 이름에 사용자 변수(U)와 그냥 시스템 변수(S)가 있는데 둘다 동일한 방식으로 설정해준다. 우선 본인의 이름에 해당하는 (필자의 경우 `yoon`) 창의 `Pa![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/ca558618-cee6-47e8-84e2-7756343a8e42)
-th` 변수를 찾고 더 블클릭 해준다. 
-![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/03527653-809f-44b6-9c82-e1be2a28d822)
 
-6. 이후, `환경 변수 편집` 창이 뜨면, `새로 만들기`를 클릭한 후, SOX가 다운로드된 경로를 `복사` 해서 `붙여넣기`해준다. 필자의 경우 경로는 C:\Program Files(x86)\sox-14-4-2 였다. 그리고 확인 버튼을 누른다.
-![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/2d5941a8-8ff5-4463-8fa0-6b103e6a8aff)
+5. 본인의 컴퓨터 이름에 사용자 변수(U)와 그냥 시스템 변수(S)가 있다. 우선 사용자 변수(S) 칸에서 `Path` 변수를 찾고 더 블클릭 해준다.
 
-7. 동일한 방법으로 `시스템 변수(S)`의 `Path` 설정을 한다.!
+![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/36a63282-333d-403c-9f4c-c8e002a53a23)
+
+
+
+6. `환경 변수 편집` 창이 뜨면, `새로 만들기`를 클릭한 후, SOX가 다운로드된 경로를 `복사` 해서 `붙여넣기`해준다. 필자의 경우 경로는 C:\Program Files(x86)\sox-14-4-2 였다. 그리고 확인 버튼을 누른다.
+
+![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/1150e0df-3bb3-46e3-9ac2-4744d4bbbe30)
+
+
+7. 동일한 방법으로 `시스템 변수(S)`의 `Path` 설정을 한다.
 ![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/5cb56271-74fb-4621-a499-9b662fd54fdf)
 
 
