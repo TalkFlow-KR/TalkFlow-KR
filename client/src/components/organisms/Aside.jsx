@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NavArticle from "components/molecules/NavArticle";
+import UserNameArticle from "components/molecules/UserNameArticle";
 
 const LeftSection = styled.section`
   width: 34.4rem;
@@ -13,6 +14,7 @@ const LeftSection = styled.section`
 const Aside = () => {
   return (
     <LeftSection>
+      {/* <UserNameArticle /> */}
       <NavArticle />
     </LeftSection>
   );
