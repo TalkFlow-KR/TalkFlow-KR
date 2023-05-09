@@ -8,8 +8,13 @@ const Wrapper = styled.article`
   //background-color: ${(props) => theme.color.boxBackground};
   //background-color: #dae2f9;
   border-radius: ${(props) => theme.layout.radius.l};
-  color: white;
+  color: ${(props) => theme.color.textColor};
   margin: ${(props) => theme.layout.margin.l};
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 const MainArticle = ({ children, bgColor }) => {

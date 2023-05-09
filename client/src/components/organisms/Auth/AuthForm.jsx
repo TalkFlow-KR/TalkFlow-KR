@@ -17,7 +17,7 @@ const Wrapper = styled.main`
     height: 50rem;
     background-color: tan;
     border-radius: 2.2rem;
-    flex: 1 1 0 ;
+    flex: 1 1 0;
   }
 `;
 
@@ -43,7 +43,7 @@ const AuthForm = () => {
   return (
     <Wrapper>
       {/*  Loginform*/}
-      {/*<LoginForm/>*/}
+      <LoginForm />
       {/*{endpoint ==='login' && <LoginForm data={LOGIN_DATA}/>}*/}
       {/*  Registerform*/}
       {/*{endpoint ==='register' && <RegisterForm data={JOIN_DATA}/>}*/}

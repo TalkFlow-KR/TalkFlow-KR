@@ -8,13 +8,15 @@ import theme from "../../styles/themeProvider/theme";
 
 const Wrapper = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  padding: ${(props) => theme.layout.margin.xl};
 `;
 const Button = styled.button`
   width: 51.2rem;
   height: 6rem;
-  background-color: #fff;
-  margin: 1rem;
+  background-color: #dae2f9;
+  margin: 0 auto;
+  border-radius: 1rem;
 `;
 
 // { ...props} 로 보내서 Article 마다 스타일 차별화 주기
@@ -37,7 +39,13 @@ const First = () => {
           </Button>
         </MainArticle>
         <MainArticle bgColor="#dae2f9">
-          <Lottie animationData={learning} />
+          <Lottie
+            animationData={learning}
+            style={{
+              height: "auto",
+              width: "auto",
+            }}
+          />
         </MainArticle>
         {/*<MainArticle>Test</MainArticle>*/}
       </Wrapper>
