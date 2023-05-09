@@ -1,23 +1,44 @@
 import React from "react";
 import Header from "../components/organisms/Header";
 import Main from "../components/organisms/Main";
+import styled from "styled-components";
+import Aside from "components/organisms/Aside";
 
-import { MAIN, HEADER, TEST, CONTAINER, BODY } from "../styles/MainPage.styled";
+const MainLayout = styled.main`
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  background-color: tan;
+  justify-content: center;
+
+  /* @media screen { (max-width:{(props)=>props.theme.layout.width.mobile)}{
+    ba
+  } */
+`;
+
 const MainPage = () => {
+  // styled 분리화
+  // const MAIN = styled.div`
+  //   margin: 3rem;
+  //   background-color: tomato;
+  // `
+  //
+  // const HEADER = styled.div`
+  // margin: 3rem;
+  //   background-color: #0cf22a;
+  // `
+  // const TEST = styled(MAIN)`
+  // background-color: tan;
+  //
+
   return (
-    <BODY>
-      <CONTAINER>
-        {/* <h1>MAIN PAGE</h1> */}
-        {/* <h2>아토믹 디자인 이해용 테스트 컴포넌트</h2> */}
-        {/* <TEST>test</TEST> */}
-        {/* <HEADER>
-        <Header test={TEST} />
-      </HEADER> */}
-        <MAIN>
-          <Main />
-        </MAIN>
-      </CONTAINER>
-    </BODY>
+    <div>
+      <Header />
+      <MainLayout>
+        <Aside />
+        <Main />
+      </MainLayout>
+    </div>
   );
 };
 

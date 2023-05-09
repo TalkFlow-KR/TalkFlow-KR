@@ -1,18 +1,19 @@
-import SearchArticle from "../molecules/SearchArticle";
+import React from "react";
 import styled from "styled-components";
-import { MAIN } from "styles/MainPage.styled";
+import UserNameArticle from "../molecules/UserNameArticle";
+import TopArticle from "../molecules/TopArticle";
 
-const Test = styled(MAIN)`
-  background-color: tan;
+const TopSection = styled.section`
+  display: flex;
+  justify-content: center;
+  background-color: teal;
 `;
 const Header = () => {
   return (
-    <nav>
-      <Test>
-        test
-        <SearchArticle />
-      </Test>
-    </nav>
+    <TopSection>
+      <UserNameArticle />
+      <TopArticle />
+    </TopSection>
   );
 };
 

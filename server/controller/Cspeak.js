@@ -62,9 +62,9 @@ exports.post_signup = async (req, res) => {
   res.sendFile(__dirname + "/result.html");
 };
 
-exports.tmp = (req,res) =>{
-  res.sendFile(__dirname + "/test.html")
-}
+exports.tmp = (req, res) => {
+  res.sendFile(__dirname + "/test.html");
+};
 
 // 2. 로그인
 exports.login = (req, res) => {
@@ -76,9 +76,9 @@ exports.post_login = async (req, res) => {
   const result = await models.USER.findOne({
     email: req.body.email,
   });
-  const getCry = await getCryptoPassword(req.body.password, result.salt)
-  console.log('getCry: ', getCry.password)
-  console.log(result.password)
+  const getCry = await getCryptoPassword(req.body.password, result.salt);
+  console.log("getCry: ", getCry.password);
+  console.log(result.password);
   if (getCry.password === result.password) {
     // res.send("success");
     res.sendFile(__dirname + "/result.html");
@@ -110,9 +110,78 @@ exports.room = async (req, res) => {
   })
   console.log(result)
 };
- 
+
 // 5. /stt 음성을 텍스트로 출력.
 exports.sst = (req, res) => {
   res.render("index");
 };
 
+// 6. /kakao
+exports.kakao = (req, res) => {
+  res.render("kakao");
+};
+
+// // 카카오 로그인 데베 연결중...
+// exports.kakaoLogin = async function (req, res) {
+//   try {
+//     const response = await new Promise((resolve, reject) => {
+//       Kakao.Auth.login({
+//         success: resolve,
+//         fail: reject,
+//       });
+//     });
+
+//     const profile = await new Promise((resolve, reject) => {
+//       Kakao.API.request({
+//         url: "/v2/user/me",
+//         success: resolve,
+//         fail: reject,
+//       });
+//     });
+
+//     console.log(profile);
+//     console.log("Login_id:", profile.id);
+
+//     const [user, created] = await models.USER.findOrCreate({
+//       where: {
+//         kakaoId: profile.id,
+//       },
+//     });
+
+//     console.log(`Created user ${user.kakaoId}: ${created}`);
+
+//     res.json(user);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// };
+
+// exports.kakaoLogout = async function (req, res) {
+//   try {
+//     if (Kakao.Auth.getAccessToken()) {
+//       const profile = await new Promise((resolve, reject) => {
+//         Kakao.API.request({
+//           url: "/v2/user/me",
+//           success: resolve,
+//           fail: reject,
+//         });
+//       });
+
+//       console.log("Logout_id:", profile.id);
+
+//       await models.USER.destroy({
+//         where: {
+//           kakaoId: profile.id,
+//         },
+//       });
+
+//       console.log(`Deleted user ${profile.id}`);
+//     }
+
+//     Kakao.Auth.setAccessToken(undefined);
+//     res.send("Logout Successful");
+//   } catch (error) {
+//     res.status(500).send("Internal Server Error");
+//   }
+// };
