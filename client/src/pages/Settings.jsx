@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { ChatContainer, ChatCover } from "../../styles/Chat.styled";
 import styled from "styled-components";
 
@@ -20,13 +20,14 @@ const SettingArticle = styled.article`
   padding: 2rem;
 
   & p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 2rem;
     border-radius: .8rem;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), #B7B7B7;
     width: 6rem;
     height: 4rem;
-    text-align: center;
-    align-self: center;
   }
 
   & button {
@@ -102,103 +103,134 @@ const ChatCover = styled.div`
   color: #fff;
   border-radius: 2rem 2rem 0 0;
 `;
-
+const Result = styled.p`
+  display: flex;
+  justify-content: center;
+  font-size: 3.6rem;
+`;
+//
+//
+//
 const Settings = () => {
-  return (<ChatContainer>
-    {/*flex column*/ }
-    {/*50vh*/ }
-    <ChatCover>
-      <Title>
-        <h2>Create a new chat </h2>
-      </Title>
-      <div>
-        <SettingArticle>
-          <p>상대</p>
-          <button>테스트1</button>
-          <button>테스트2</button>
-          <button>테스트3</button>
-          <button>테스트4</button>
-        </SettingArticle>
-        <SettingArticle>
-          <p>상대</p>
-          <button>테스트1</button>
-          <button>테스트2</button>
-          <button>테스트3</button>
-          <button>테스트4</button>
-        </SettingArticle>
-        <SettingArticle>
-          <p>상대</p>
-          <button>테스트1</button>
-          <button>테스트2</button>
-          <button>테스트3</button>
-          <button>테스트4</button>
-        </SettingArticle>
+    const [ bgc, SetBgc ] = useState("#B7B7B7");
+    const [ lang, setLang ] = useState("");
+    const [ theme, setTheme ] = useState("");
+    const [ partner, setPartner ] = useState("");
 
-      </div>
-    </ChatCover>
-    {/*flex center*/ }
-    {/**/ }
-    <Body>
-      <div>
-        <h2>Recent Chat</h2>
-        <article>
-          <ImgBox>
-            <img src="https://picsum.photos/200/300" alt="profile photo" />
-          </ImgBox>
+    const changeSettings = (setState, value, e) => {
+      e.preventDefault();
+      setState(value);
+    };
+
+    return (<ChatContainer>
+      {/*flex column*/ }
+      {/*50vh*/ }
+      <ChatCover>
+        <Title>
+          <h2>Create a new chat </h2>
+        </Title>
+        <div>
+          <SettingArticle>
+            <p>언어</p>
+            <button onClick={ (e) => changeSettings(setLang, "영어", e) }
+                    style={ { backgroundColor:lang === "영어" ? "#2BB0ED" : "#B7B7B7" } }>영어
+            </button>
+            <button onClick={ (e) => changeSettings(setLang, "일본어", e) }
+                    style={ { backgroundColor:lang === "일본어" ? "#2BB0ED" : "#B7B7B7" } }>일본어
+            </button>
+            <button onClick={ (e) => changeSettings(setLang, "중국어", e) }
+                    style={ { backgroundColor:lang === "중국어" ? "#2BB0ED" : "#B7B7B7" } }>중국어
+            </button>
+            <button onClick={ (e) => changeSettings(setLang, "한국어", e) }
+                    style={ { backgroundColor:lang === "한국어" ? "#2BB0ED" : "#B7B7B7" } }>한국어
+            </button>
+          </SettingArticle>
+          <SettingArticle>
+            <p>주제</p>
+            <button>테스트1</button>
+            <button>테스트2</button>
+            <button>테스트3</button>
+            <button>테스트4</button>
+          </SettingArticle>
+          <SettingArticle>
+            <p>상대</p>
+            <button>테스트1</button>
+            <button>테스트2</button>
+            <button>테스트3</button>
+            <button>테스트4</button>
+          </SettingArticle>
           <div>
-            <p>Taylor</p>
-            <span>#영어/#식당/#남성</span>
+            <Result>{ lang } / { theme } / { partner }</Result>
+            { (lang && theme && partner) && <button>TEXT</button> }
 
-            <span>date</span>
           </div>
-        </article>
-        <article>
-          <ImgBox>
-            <img src="https://picsum.photos/200/300" alt="profile photo" />
-          </ImgBox>
-          <div>
-            <p>Taylor</p>
-            <span>#영어/#식당/#남성</span>
 
-            <span>date</span>
-          </div>
-        </article>
-        <article>
-          <ImgBox>
-            <img src="https://picsum.photos/200/300" alt="profile photo" />
-          </ImgBox>
-          <div>
-            <p>Taylor</p>
-            <span>#영어/#식당/#남성</span>
+        </div>
+      </ChatCover>
+      {/*flex center*/ }
+      {/**/ }
+      <Body>
+        <div>
+          <h2>Recent Chat</h2>
+          <article>
+            <ImgBox>
+              <img src="https://picsum.photos/200/300" alt="profile photo" />
+            </ImgBox>
+            <div>
+              <p>Taylor</p>
+              <span>#영어/#식당/#남성</span>
 
-            <span>date</span>
-          </div>
-        </article>
-        <article>
-          <ImgBox>
-            <img src="https://picsum.photos/200/300" alt="profile photo" />
-          </ImgBox>
-          <div>
-            <p>Taylor</p>
-            <span>#영어/#식당/#남성</span>
+              <span>date</span>
+            </div>
+          </article>
+          <article>
+            <ImgBox>
+              <img src="https://picsum.photos/200/300" alt="profile photo" />
+            </ImgBox>
+            <div>
+              <p>Taylor</p>
+              <span>#영어/#식당/#남성</span>
 
-            <span>date</span>
-          </div>
-        </article>
-        <article>
-          <ImgBox>
-            <img src="https://picsum.photos/200/300" alt="profile photo" />
-          </ImgBox>
-          <div>
-            <p>Taylor</p>
-            <span>#영어/#식당/#남성</span>
+              <span>date</span>
+            </div>
+          </article>
+          <article>
+            <ImgBox>
+              <img src="https://picsum.photos/200/300" alt="profile photo" />
+            </ImgBox>
+            <div>
+              <p>Taylor</p>
+              <span>#영어/#식당/#남성</span>
 
-            <span>date</span>
-          </div>
-        </article>
+              <span>date</span>
+            </div>
+          </article>
+          <article>
+            <ImgBox>
+              <img src="https://picsum.photos/200/300" alt="profile photo" />
+            </ImgBox>
+            <div>
+              <p>Taylor</p>
+              <span>#영어/#식당/#남성</span>
 
-      </div>
-    </Body>
-  </ChatContainer>);
-};
+              <span>date</span>
+            </div>
+          </article>
+          <article>
+            <ImgBox>
+              <img src="https://picsum.photos/200/300" alt="profile photo" />
+            </ImgBox>
+            <div>
+              <p>Taylor</p>
+              <span>#영어/#식당/#남성</span>
+
+              <span>date</span>
+            </div>
+          </article>
+
+        </div>
+      </Body>
+    </ChatContainer>);
+  }
+;
 export default Settings;
