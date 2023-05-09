@@ -35,6 +35,7 @@ const SettingArticle = styled.article`
     width: 9rem;
     height: 4rem;
     border-radius: 2rem;
+    color: white;
   }
 `;
 
@@ -50,7 +51,6 @@ const ImgBox = styled.div`
   }
 `;
 const Body = styled.section`
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -61,8 +61,7 @@ const Body = styled.section`
   /* box-shadow: 2px 2px 5px -2px inset;; */
   background-color: ${ (props) => props.theme.color.chatBackground };
   border-radius: 2rem 2rem 0 0;
-
-
+  
   & article {
     border-radius: 1.2rem;
     width: 100%;
@@ -80,10 +79,11 @@ const Body = styled.section`
 
   & h2 {
     position: sticky;
-    top: 1px;
+    top: 0;
+    left: 0;
+    padding: 3rem;
     color: white;
     font-size: 1.6rem;
-    padding: 3rem;
     background-color: ${ (props) => props.theme.color.chatBackground };
 
   }
@@ -108,11 +108,23 @@ const Result = styled.p`
   justify-content: center;
   font-size: 3.6rem;
 `;
+const ResultBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & button {
+    margin: 2rem;
+    width: 9rem;
+    height: 4rem;
+    color: black;
+    background-color: tan;
+  }
+`;
 //
 //
 //
 const Settings = () => {
-    const [ bgc, SetBgc ] = useState("#B7B7B7");
     const [ lang, setLang ] = useState("");
     const [ theme, setTheme ] = useState("");
     const [ partner, setPartner ] = useState("");
@@ -122,6 +134,10 @@ const Settings = () => {
       setState(value);
     };
 
+    // 언어목록은 서버에서 받아올 예정
+    const language = [ "영어", "일본어", "중국어", "한국어" ];
+    const situation = [ "비행기", "공원", "운동", "카페", "식당" ];
+    const voice = [ "여성", "남성", "노인", "외국인" ];
     return (<ChatContainer>
       {/*flex column*/ }
       {/*50vh*/ }
@@ -132,43 +148,58 @@ const Settings = () => {
         <div>
           <SettingArticle>
             <p>언어</p>
-            <button onClick={ (e) => changeSettings(setLang, "영어", e) }
-                    style={ { backgroundColor:lang === "영어" ? "#2BB0ED" : "#B7B7B7" } }>영어
-            </button>
-            <button onClick={ (e) => changeSettings(setLang, "일본어", e) }
-                    style={ { backgroundColor:lang === "일본어" ? "#2BB0ED" : "#B7B7B7" } }>일본어
-            </button>
-            <button onClick={ (e) => changeSettings(setLang, "중국어", e) }
-                    style={ { backgroundColor:lang === "중국어" ? "#2BB0ED" : "#B7B7B7" } }>중국어
-            </button>
-            <button onClick={ (e) => changeSettings(setLang, "한국어", e) }
-                    style={ { backgroundColor:lang === "한국어" ? "#2BB0ED" : "#B7B7B7" } }>한국어
-            </button>
+            { language.map((item, i) =>
+              (<button
+                key={ item + i }
+                onClick={ (e) => changeSettings(setLang, item, e) }
+                style={ { backgroundColor:lang === item ? "#2BB0ED" : "#B7B7B7" } }> { item }
+              </button>),
+            ) }
+
+            {/*<button onClick={ (e) => changeSettings(setLang, "영어", e) }*/ }
+            {/*        style={ { backgroundColor:lang === "영어" ? "#2BB0ED" : "#B7B7B7" } }>영어*/ }
+            {/*</button>*/ }
+            {/*<button onClick={ (e) => changeSettings(setLang, "일본어", e) }*/ }
+            {/*        style={ { backgroundColor:lang === "일본어" ? "#2BB0ED" : "#B7B7B7" } }>일본어*/ }
+            {/*</button>*/ }
+            {/*<button onClick={ (e) => changeSettings(setLang, "중국어", e) }*/ }
+            {/*        style={ { backgroundColor:lang === "중국어" ? "#2BB0ED" : "#B7B7B7" } }>중국어*/ }
+            {/*</button>*/ }
+            {/*<button onClick={ (e) => changeSettings(setLang, "한국어", e) }*/ }
+            {/*        style={ { backgroundColor:lang === "한국어" ? "#2BB0ED" : "#B7B7B7" } }>한국어*/ }
+            {/*</button>*/ }
+          </SettingArticle>
+
+          <SettingArticle>
+            <p>테마</p>
+            { situation.map((item, i) =>
+              (<button
+                key={ item + i }
+                onClick={ (e) => changeSettings(setTheme, item, e) }
+                style={ { backgroundColor:theme === item ? "#2BB0ED" : "#B7B7B7" } }> { item }
+              </button>),
+            ) }
           </SettingArticle>
           <SettingArticle>
-            <p>주제</p>
-            <button>테스트1</button>
-            <button>테스트2</button>
-            <button>테스트3</button>
-            <button>테스트4</button>
+            <p>억양</p>
+            { voice.map((item, i) =>
+              (<button
+                key={ item + i }
+                onClick={ (e) => changeSettings(setPartner, item, e) }
+                style={ { backgroundColor:partner === item ? "#2BB0ED" : "#B7B7B7" } }> { item }
+              </button>),
+            ) }
           </SettingArticle>
-          <SettingArticle>
-            <p>상대</p>
-            <button>테스트1</button>
-            <button>테스트2</button>
-            <button>테스트3</button>
-            <button>테스트4</button>
-          </SettingArticle>
-          <div>
+          <ResultBox>
             <Result>{ lang } / { theme } / { partner }</Result>
             { (lang && theme && partner) && <button>TEXT</button> }
-
-          </div>
-
+          </ResultBox>
         </div>
       </ChatCover>
-      {/*flex center*/ }
-      {/**/ }
+      {/*flex center*/
+      }
+      {/**/
+      }
       <Body>
         <div>
           <h2>Recent Chat</h2>
@@ -229,8 +260,9 @@ const Settings = () => {
           </article>
 
         </div>
-      </Body>
-    </ChatContainer>);
+      </Body>;
+    </ChatContainer>)
+      ;
   }
 ;
 export default Settings;
