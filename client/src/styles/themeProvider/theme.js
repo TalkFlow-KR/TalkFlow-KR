@@ -28,11 +28,13 @@ const layout = {
     top: "114.2rem",
     main: "92.4rem",
     mobileTop: "36rem",
+    mainArticle: "69rem",
   },
   height: {
     top: "10rem",
     recent: "7.5rem",
     nav: "34.4rem",
+    mainArticle: "57.3rem",
   },
   flexCenter: `
   display:flex;

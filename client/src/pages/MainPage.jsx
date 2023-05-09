@@ -24,7 +24,7 @@ const MainPage = () => {
       <Header />
       <MainLayout>
         <Aside />
-        {/* <Main /> */}
+        <Main />
         <ChatCover />
         <ChatComponent />
       </MainLayout>
