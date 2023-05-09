@@ -43,7 +43,9 @@ th` 변수를 찾고 더 블클릭 해준다.
 6. 이후, `환경 변수 편집` 창이 뜨면, `새로 만들기`를 클릭한 후, SOX가 다운로드된 경로를 `복사` 해서 `붙여넣기`해준다. 필자의 경우 경로는 C:\Program Files(x86)\sox-14-4-2 였다. 그리고 확인 버튼을 누른다.
 ![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/2d5941a8-8ff5-4463-8fa0-6b103e6a8aff)
 
-7. 동일한 방법으로 `시스템 변수(S)`의 `Path` 설정을 한다.
-![Uploading img1.daumcdn.png…]()
+7. 동일한 방법으로 `시스템 변수(S)`의 `Path` 설정을 한다.!
+![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/5cb56271-74fb-4621-a499-9b662fd54fdf)
+
+
 
 8. 이후에 mic 모듈을 사용할 시 `spwan ` 관련 에러 메세지를 발견한다면, 위의 설정경로가 제대로 되지 않은것이다. 
