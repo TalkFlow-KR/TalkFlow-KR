@@ -27,10 +27,6 @@
         console.log(">>> test1");
         const res = await fetch("/start");
 
-        if (resRec.ok) {
-          console.log("wow good!");
-        }
-
         if (res.ok) {
           console.log("녹음이 성공적으로 완료되었습니다.");
           document.getElementById("status").textContent =
