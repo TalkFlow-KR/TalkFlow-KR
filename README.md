@@ -1,4 +1,4 @@
-# TalkFlow-KR
+# TalkFlow-KR1
 
 ## Installation
 #1. Source
