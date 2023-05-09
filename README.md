@@ -37,7 +37,7 @@ C:\Program Files (x86)\sox-14-4-2
 ![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/390bf91f-0c8c-40c9-b09f-f7ff5f3ff113)
 
 
-5. 본인의 컴퓨터 이름에 사용자 변수(U)와 그냥 시스템 변수(S)가 있다. 우선 사용자 변수(S) 칸에서 `Path` 변수를 찾고 더 블클릭 해준다.
+5. 본인의 컴퓨터 이름에 사용자 변수(U)와 그냥 시스템 변수(S)가 있다. 우선 사용자 변수(U) 칸에서 `Path` 변수를 찾고 더 블클릭 해준다.
 
 ![img1 daumcdn](https://github.com/TalkFlow-KR/TalkFlow-KR/assets/93633207/36a63282-333d-403c-9f4c-c8e002a53a23)
 
