@@ -23,6 +23,10 @@ const ROOM = function(Sequelize,DataTypes){
             language:{
                 type : DataTypes.STRING(50),
                 allowNull:false
+            },
+            kakaoId:{
+                type : DataTypes.STRING(20),
+                allowNull : true
             }
         },{
             tableName: "ROOM", // 실제 db table명
