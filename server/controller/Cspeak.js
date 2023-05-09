@@ -1,7 +1,6 @@
 const models = require("../models");
 const crypto = require("crypto");
 
-
 // 솔트 생성
 const createSalt = () => {
   return new Promise((resolve, reject) => {
@@ -51,21 +50,11 @@ exports.signup = (req, res) => {
 
 exports.post_signup = async (req, res) => {
   let cryptoPassword = await createCryptoPassword(req.body.password);
-  //   {
-  //
-  //     "name": "hyun",
-  //     "email" : "test0@gmail.com",
-  //     "password": "jES+dWXgr1iEF5acH3zXrCxMiYzlRzTKjadKt154kAkk6d5VjTHPlnhXv6YAGkfrxARgIdsxBIY35H1fFDDyFg==",
-  //     "salt": "52Pi2AqFX9fC/+Dm55KYIJDCpPzWF/28x8QX3P6RzJk7pVEL3ZUQlF/TdWcwIvE2+US+vIlBrC14hGI5cRrzIA==",
-  //     "gender": "male",
-  //     "telephone": "01012345678"
-  // }
   const result = await models.USER.create({
     name: req.body.name,
     email: req.body.email,
     password: cryptoPassword.password,
     salt: cryptoPassword.salt,
-
     gender: req.body.gender,
     telephone: req.body.telephone,
   });
@@ -100,7 +89,7 @@ exports.post_login = async (req, res) => {
 
 //  3. /msg/:roomid 과거 대화 내용 조회
 exports.msg = async (req, res) => {
-  const roomId = req.params;
+  const roomId = req.params();
   const result = await models.MSG.findAll({
     where: {
       room_id: roomId,
@@ -111,13 +100,15 @@ exports.msg = async (req, res) => {
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
-  console.log(req.body);
+  const userId = req.params()
+  console.log(req.body)
   const result = await models.ROOM.create({
-    id: req.body.id, // user_id
-    situation: req.body.situation,
-    accent: req.body.accent,
-    language: req.body.language,
-  });
+    id : userId, // user_id
+    situation : req.body.situation,
+    accent : req.body.accent,
+    language : req.body.language
+  })
+  console.log(result)
 };
 
 // 5. /stt 음성을 텍스트로 출력.

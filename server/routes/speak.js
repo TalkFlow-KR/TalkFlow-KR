@@ -1,5 +1,6 @@
 const express = require("express");
 const controller = require("../controller/Cspeak");
+const controller_gpt = require('../controller/Cgpt')
 const router = express.Router();
 
 router.get("/", controller.main);
@@ -22,7 +23,12 @@ router.post("/room/:userid", controller.room);
 // 5. /stt 음성을 텍스트로 출력.
 router.get("/sst", controller.sst);
 
+
+// 6. gpt 대화
+router.post('/runGpt/:roomid',controller_gpt.runGPT35)
+
 // 6. /kakao
 router.get("/kakao", controller.kakao);
+
 
 module.exports = router;
