@@ -3,7 +3,7 @@
 ## Installation
 #1. Source
 ```c
-https://github.com/TalkFlow-KR/TalkFlow-KR.git
+git clone https://github.com/TalkFlow-KR/TalkFlow-KR.git
 ```
 #2. SOX 다운로드 하기.
 ```c 
