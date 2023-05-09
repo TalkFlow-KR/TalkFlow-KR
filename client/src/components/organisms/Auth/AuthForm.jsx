@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import RegisterForm from "./RegisterForm";
+import LoginForm from "./LoginForm";
 // import LoginForm from "./LoginForm";
 const Wrapper = styled.main`
   ${({ theme }) => theme.color.background};
@@ -10,10 +11,13 @@ const Wrapper = styled.main`
   height: 100vh;
 
   & > div {
-    width: 500px;
-    height: 500px;
+    margin: 2.4rem;
+    max-width: 50rem;
+    width: 36rem;
+    height: 50rem;
     background-color: tan;
     border-radius: 2.2rem;
+    flex: 1 1 0 ;
   }
 `;
 
@@ -39,10 +43,11 @@ const AuthForm = () => {
   return (
     <Wrapper>
       {/*  Loginform*/}
+      <LoginForm/>
       {/*{endpoint ==='login' && <LoginForm data={LOGIN_DATA}/>}*/}
       {/*  Registerform*/}
       {/*{endpoint ==='register' && <RegisterForm data={JOIN_DATA}/>}*/}
-      <RegisterForm />
+      {/*<RegisterForm />*/}
     </Wrapper>
   );
 };

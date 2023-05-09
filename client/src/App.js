@@ -8,6 +8,8 @@ import AuthForm from "./components/organisms/Auth/AuthForm";
 import { GlobalStyle } from "styles/GlobalStyle.styled";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
+import Settings from "./pages/Settings";
+import LoginForm from "./components/organisms/Auth/LoginForm";
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -29,23 +31,26 @@ import theme from "styles/themeProvider/theme";
 // Route
 
 
-function App() {
+function App () {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={ theme }>
         <GlobalStyle />
-        {/* <AuthForm /> */}
-        {/*TEST*/}
-        {/*<p>TEST</p>*/}
-        {/*<Mobile>*/}
-        {/*  <mobileTest>test</mobileTest>*/}
-        {/* <MainPage /> */}
-        {/*</Mobile>*/}
-        {/*<Pc>*/}
-        {/*  <MainPage />*/}
-        {/*</Pc>*/}
-        {/* <Register /> */}
-        <Chat />
+        {/* <AuthForm /> */ }
+        {/*TEST*/ }
+        {/*<p>TEST</p>*/ }
+        {/*<Mobile>*/ }
+        {/*  <mobileTest>test</mobileTest>*/ }
+        {/* <MainPage /> */ }
+        {/*</Mobile>*/ }
+        {/*<Pc>*/ }
+        {/*  <MainPage />*/ }
+        {/*</Pc>*/ }
+        {/* <Register /> */ }
+        {/*<Chat />*/ }
+        <Settings />
+        {/*회원가입/로그인 페이지*/ }
+        {/*<AuthForm />*/}
       </ThemeProvider>
     </>
   );
