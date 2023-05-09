@@ -43,11 +43,11 @@ const AuthForm = () => {
   return (
     <Wrapper>
       {/*  Loginform*/}
-      <LoginForm/>
+      {/*<LoginForm/>*/}
       {/*{endpoint ==='login' && <LoginForm data={LOGIN_DATA}/>}*/}
       {/*  Registerform*/}
       {/*{endpoint ==='register' && <RegisterForm data={JOIN_DATA}/>}*/}
-      {/*<RegisterForm />*/}
+      <RegisterForm />
     </Wrapper>
   );
 };
