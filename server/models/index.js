@@ -17,6 +17,7 @@ db.Sequelize = Sequelize;
 db.USER = require('./USER')(sequelize,Sequelize)
 db.ROOM = require('./ROOM')(sequelize,Sequelize)
 db.MSG = require('./MSG')(sequelize,Sequelize)
+db.KAKAO = require('./KAKAO')(sequelize,Sequelize)
 
 sequelize.sync({force:false})
 .then(()=>{
@@ -44,6 +45,16 @@ db.ROOM.hasMany(db.MSG,{
 db.MSG.belongsTo(db.ROOM,{
   foreignKey : 'room_id',
   sourceKey : 'room_id',
+})
+
+db.KAKAO.hasMany(db.ROOM,{
+  foreignKey: 'kakaoId',
+  sourceKey : 'kakaoId'
+})
+
+db.ROOM.hasMany(db.KAKAO,{
+  foreignKey: 'kakaoId',
+  sourceKey : 'kakaoId'
 })
 
 module.exports = db;
