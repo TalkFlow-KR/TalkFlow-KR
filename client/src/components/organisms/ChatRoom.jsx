@@ -64,11 +64,6 @@ const handleSendClick = () => {
 
     return (
       <ChatContainer>
-        <Header>
-            <BarIcon/>
-            <LogoIcon/>
-            <Button text={"가입"}/>
-        </Header>
         <ChatCover>
             <ChatComponent/>
         </ChatCover>
@@ -81,11 +76,11 @@ const handleSendClick = () => {
         </Body>
         <Footer>
           <InputContainer>
-            <Input 
-            type="text" 
-            value={inputValue} 
-            onChange={handleInputChange}  
-            onKeyDown={handleKeyDown} 
+            <Input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
             placeholder="메시지를 입력하세요." />
           </InputContainer>
           <SendButton onClick={handleSendClick}>

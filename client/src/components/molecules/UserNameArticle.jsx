@@ -12,6 +12,7 @@ const UserNameArticle = () => {
       <LogoIcon />
       <h2>{UserInfo.userName}</h2>
     </Wrapper>
+
   );
 };
 

@@ -8,6 +8,7 @@ import AuthForm from "./components/organisms/Auth/AuthForm";
 import { GlobalStyle } from "styles/GlobalStyle.styled";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
+import Settings from "./pages/Settings";
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -45,7 +46,8 @@ function App() {
         {/*  <MainPage />*/}
         {/*</Pc>*/}
         {/* <Register /> */}
-        <Chat />
+        {/*<Chat />*/}
+        <Settings/>
       </ThemeProvider>
     </>
   );

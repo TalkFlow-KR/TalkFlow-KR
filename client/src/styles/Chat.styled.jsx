@@ -15,7 +15,7 @@ export const ChatContainer = styled.div`
 `;
 
 export const ChatCover = styled.div`
-  width: 100hw;
+  width: 100vw;
   height: ${(props) => props.theme.layout.height.top};
   flex-direction: column;
   justify-content: flex-start;
