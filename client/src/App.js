@@ -10,6 +10,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
 import Settings from "./pages/Settings";
 import LoginForm from "./components/organisms/Auth/LoginForm";
+import Loading from "./components/atoms/Loading";
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -30,31 +31,32 @@ import LoginForm from "./components/organisms/Auth/LoginForm";
 
 // Route
 
-
-function App () {
+function App() {
   return (
     <>
-      <ThemeProvider theme={ theme }>
+      <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {/* <AuthForm /> */ }
-        {/*TEST*/ }
-        {/*<p>TEST</p>*/ }
-        {/*<Mobile>*/ }
-        {/*  <mobileTest>test</mobileTest>*/ }
-        {/* <MainPage /> */ }
-        {/*</Mobile>*/ }
-        {/*<Pc>*/ }
-        {/*  <MainPage />*/ }
-        {/*</Pc>*/ }
-        {/* <Register /> */ }
-        {/*<Chat />*/ }
-        <Settings />
-        {/*회원가입/로그인 페이지*/ }
+        {/* <AuthForm /> */}
+        {/*TEST*/}
+        {/*<p>TEST</p>*/}
+        {/*<Mobile>*/}
+        {/*  <mobileTest>test</mobileTest>*/}
+        {/* <MainPage /> */}
+        {/*</Mobile>*/}
+        {/*<Pc>*/}
+        {/*  <MainPage />*/}
+        {/*</Pc>*/}
+        {/* <Register /> */}
+        {/*<Chat />*/}
+        {/*<Settings />*/}
+        {/*회원가입/로그인 페이지*/}
         <AuthForm />
+
+        {/*로딩 컴포넌트*/}
+        {/*<Loading />*/}
       </ThemeProvider>
     </>
   );
 }
-
 
 export default App;
