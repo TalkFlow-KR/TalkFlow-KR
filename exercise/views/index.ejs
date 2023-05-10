@@ -14,6 +14,14 @@
       <p id="status"></p>
     </div>
 
+    <!-- ///클릭하면 public 오디오재생
+    <audio controls autoplay>
+      <source src="Voice.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
+    // 클릭하면 public 오디오 재생 함수 추가
+    <button onclick="addAudio()">Play Audio</button> -->
+
     <div>
       <h2>음성 변환 내역</h2>
       <p id="transcription"></p>
@@ -22,10 +30,19 @@
     <div id="div-container"></div>
 
     <script>
+      // 오디오 div 생성
+      function addAudio(mp3Filename) {
+        const audio = document.createElement("audio");
+        audio.autoplay = true;
+        audio.src = mp3Filename;
+        document.body.appendChild(audio);
+      }
+
       const startRecording = async () => {
         console.log("녹음 준비 중");
         console.log(">>> test1");
         const res = await fetch("/start");
+        const nameOfMp3 = await res.json();
 
         if (res.ok) {
           console.log("녹음이 성공적으로 완료되었습니다.");
@@ -49,15 +66,18 @@
 
           // 녹음된 언어 div로 출력.
           const divContainer = document.getElementById("div-container");
-          const gptSayDiv = document.createElement("div");
-          gptSayDiv.textContent = "------i say------";
-          divContainer.appendChild(gptSayDiv);
+          const iSayDiv = document.createElement("div");
+          iSayDiv.textContent = "------i say------";
+          divContainer.appendChild(iSayDiv);
 
           const newDiv = document.createElement("div");
           newDiv.textContent = data.transcription;
           divContainer.appendChild(newDiv);
 
-          chatAns();
+          console.log("Gpt음성 출력 시작...");
+          await chatAns();
+          console.log("Gpt음성 출력 종료...");
+          <!-- await fetch("/delete"); -->
         } else {
           document.getElementById("status").textContent =
             "녹음을 중지하는데 실패했습니다.";
@@ -75,6 +95,7 @@
           console.log("답변이 완료되었습니다..");
           document.getElementById("status").textContent =
             "chatgpt가 답변을 완료했습니다.";
+          console.log("file name is", data1.newFilename2);
 
           // 답변 div로 출력.
           const divContainer = document.getElementById("div-container");
@@ -84,7 +105,10 @@
           const newDiv = document.createElement("div");
           newDiv.textContent = data1.answer;
           divContainer.appendChild(newDiv);
-          console.log("답변 div 출력 완료.");
+          console.log("음성 봇 실행 중");
+          // 음성 출력
+          await addAudio(data1.newFilename2);
+          console.log("음성 출력 완료.");
         } else {
           document.getElementById("status").textContent =
             "Error stopping recording";
