@@ -25,6 +25,7 @@ const StyledFieldSet = styled.fieldset`
   word-break: keep-all;
 `;
 const RegisterForm = () => {
+  const [isValid, setIsValid] = useState(false);
   const [position, setPosition] = useState(1);
   // email state
   const [emailValue, setEmailValue] = useState("");

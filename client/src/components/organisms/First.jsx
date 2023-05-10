@@ -10,6 +10,8 @@ const Wrapper = styled.section`
   display: flex;
   justify-content: space-around;
   padding: ${(props) => theme.layout.margin.xl};
+  margin: 0 2.8rem;
+  margin-top: 6rem;
 `;
 const Button = styled.button`
   width: 51.2rem;

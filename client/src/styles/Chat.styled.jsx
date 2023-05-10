@@ -4,35 +4,34 @@ import ChatComponent from "components/molecules/ChatComponent";
 
 export const ChatContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* height: 80rem;
- */
   height: 100vh;
   background-color: #fff;
   border-radius: 2rem 2rem 0 0;
+  /* width: ${(props) => props.theme.layout.width.main}; */
 `;
 
 export const ChatCover = styled.div`
   width: 100vw;
-  height: ${ (props) => props.theme.layout.height.top };
+  /* width: ${(props) => props.theme.layout.width.main}; */
+  height: ${(props) => props.theme.layout.height.top};
   flex-direction: column;
   justify-content: flex-start;
   padding-left: 1.6rem;
   box-shadow: 0 -0.7rem 1rem rgba(0, 0, 0, 0.25);
-  background-color: ${ (props) => props.theme.color.boxBackground };
+  background-color: ${(props) => props.theme.color.boxBackground};
   color: #fff;
   border-radius: 2rem 2rem 0 0;
 `;
 
-export const Header = styled.div`
+export const CHeader = styled.div`
   height: 10rem;
   display: flex;
   padding: 0 1.6rem;
   justify-content: space-between;
   background-color: #fff;
-  color: ${ (props) => props.theme.color.boxBackground };
+  color: ${(props) => props.theme.color.boxBackground};
   align-items: center;
 `;
 
@@ -53,8 +52,10 @@ export const Body = styled.section`
   padding: 0 1.6rem 0 1.6rem;
   margin: 0;
   overflow-y: scroll;
+  /* overflow-y: hidden; */
+
   /* box-shadow: 2px 2px 5px -2px inset;; */
-  background-color: ${ (props) => props.theme.color.chatBackground };
+  background-color: ${(props) => props.theme.color.chatBackground};
 `;
 export const MessageList = styled.div`
   overflow-y: scroll;
@@ -68,14 +69,14 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${ (props) => props.theme.color.boxBackground };
+  background-color: ${(props) => props.theme.color.boxBackground};
   box-shadow: 0 -0.3rem 1rem rgba(0, 0, 0, 0.25);
 `;
 
 export const InputContainer = styled.div`
   display: flex;
   flex: 1 1 0;
-  background-color: ${ (props) => props.theme.color.boxBackground };
+  background-color: ${(props) => props.theme.color.boxBackground};
 `;
 
 export const Input = styled.input`
@@ -103,7 +104,7 @@ export const SendButton = styled(Btn)`
 
 export const ChatBubble = styled.div`
   /* background-color: tan; */
-  background-color: ${ (props) => props.theme.color.chatBoxBackground };
+  background-color: ${(props) => props.theme.color.chatBoxBackground};
   color: #fff;
   border-radius: 1.6rem;
   padding: 0.8rem 1.2rem;
@@ -124,7 +125,7 @@ export const UserChatBubble = styled(ChatBubble)`
 `;
 
 export const AiChatBubble = styled(ChatBubble)`
-  background-color: #e74c3c;
+  background-color: yellow;
   color: white;
   float: left;
 `;
@@ -135,4 +136,6 @@ export const MainChatComponent = styled.section`
   background-color: tomato;
   margin-top: 2.4rem;
   border-radius: 2rem;
+  display: flex;
+  box-sizing: border-box;
 `;

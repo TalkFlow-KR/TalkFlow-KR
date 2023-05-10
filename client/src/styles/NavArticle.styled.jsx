@@ -4,9 +4,10 @@ import { Box } from "./Article.styled";
 export const Wrapper = styled(Box)`
   width: ${(props) => props.theme.layout.width.left};
   height: ${(props) => props.theme.layout.height.nav};
-  border-radius: ${(props) => props.theme.layout.radius.l};
+  border-radius: ${(props) => props.theme.layout.radius.s};
   margin-left: 2.8rem;
   flex-direction: column;
+  display: flex;
   justify-content: flex-start;
 
   & button {

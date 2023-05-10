@@ -13,8 +13,7 @@ import styled from "styled-components";
 const ChatComponent = () => {
   return (
     <>
-    
-    {/* <Wrapper> */}
+      {/* <Wrapper> */}
       <div className="img-wrap">
         <img src="" alt="" />
         <div className="title-box">
@@ -31,7 +30,7 @@ const ChatComponent = () => {
         </span>
         <span>DATE : 2099.09.99</span>
       </div>
-    {/* </Wrapper> */}
+      {/* </Wrapper> */}
     </>
   );
 };
