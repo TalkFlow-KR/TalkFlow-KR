@@ -45,13 +45,13 @@ function App() {
         {/*<MainPage />*/}
         {/*</Mobile>*/}
         {/*<Pc>*/}
-        {/*<MainPage />*/}
+        <MainPage />
         {/*</Pc>*/}
         {/* <Register /> */}
         {/*<Chat />*/}
         {/*<Settings />*/}
         {/*회원가입/로그인 페이지*/}
-        <AuthForm />
+        {/*<AuthForm />*/}
         {/*로딩 컴포넌트*/}
         {/*<Loading />*/}
         {/*메인페이지 섹션 아티클*/}

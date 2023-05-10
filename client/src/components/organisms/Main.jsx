@@ -6,7 +6,8 @@ import ChatComponent from "../molecules/ChatComponent";
 import { MainChatComponent } from "styles/Chat.styled";
 
 const Container = styled.div`
-  //width: 114.2rem;
+  width: 114.2rem;
+  max-width: 10rem;
   height: 100%;
   //background-color: tan;
   display: flex;
