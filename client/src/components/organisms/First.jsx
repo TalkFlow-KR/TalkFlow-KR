@@ -1,11 +1,24 @@
 //First.jsx
 import React from "react";
-import MainArticle from "../molecules/MainArticle";
+import MainArticle from "../atoms/MainArticle";
 import styled from "styled-components";
+import Lottie from "lottie-react";
+import learning from "assets/learning.json";
+import theme from "../../styles/themeProvider/theme";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  padding: ${(props) => theme.layout.margin.xl};
+  margin: 0 2.8rem;
+  margin-top: 6rem;
+`;
+const Button = styled.button`
+  width: 51.2rem;
+  height: 6rem;
+  background-color: #dae2f9;
+  margin: 0 auto;
+  border-radius: 1rem;
 `;
 
 // { ...props} 로 보내서 Article 마다 스타일 차별화 주기
@@ -17,10 +30,28 @@ const Wrapper = styled.div`
 
 const First = () => {
   return (
-    <Wrapper>
-      <MainArticle />
-      <MainArticle />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <MainArticle bgColor={theme.color.boxBackground}>
+          <h1>CHAT FLOW-KR</h1>
+          <h2>Chatflow는 AI와 현실 대화로,흐름을 이해하는</h2>
+          <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
+          <Button>
+            GET STARTED <span>It's free !</span>
+          </Button>
+        </MainArticle>
+        <MainArticle bgColor="#dae2f9">
+          <Lottie
+            animationData={learning}
+            style={{
+              height: "auto",
+              width: "auto",
+            }}
+          />
+        </MainArticle>
+        {/*<MainArticle>Test</MainArticle>*/}
+      </Wrapper>
+    </>
   );
 };
 

@@ -10,7 +10,6 @@ export const Wrapper = styled(Box)`
   display: flex;
   justify-content: flex-start;
 
-
   & button {
     width: 20.6rem;
     height: 3.4rem;

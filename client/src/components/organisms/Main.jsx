@@ -15,11 +15,9 @@ const TopSection = styled.section`
 
 const Main = () => {
   return (
-    <>
     <TopSection>
       <RecentArticle />
     </TopSection>
-    </>
   );
 };
 
