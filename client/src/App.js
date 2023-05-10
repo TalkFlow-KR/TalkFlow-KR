@@ -10,6 +10,9 @@ import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
 import Settings from "./pages/Settings";
 import LoginForm from "./components/organisms/Auth/LoginForm";
+import Loading from "./components/atoms/Loading";
+import First from "./components/organisms/First";
+import { BrowserRouter, Route } from "react-router-dom";
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -30,31 +33,40 @@ import LoginForm from "./components/organisms/Auth/LoginForm";
 
 // Route
 
-
 function App () {
   return (
     <>
-      <ThemeProvider theme={ theme }>
-        <GlobalStyle />
-        {/* <AuthForm /> */ }
-        {/*TEST*/ }
-        {/*<p>TEST</p>*/ }
-        {/*<Mobile>*/ }
-        {/*  <mobileTest>test</mobileTest>*/ }
-        {/* <MainPage /> */ }
-        {/*</Mobile>*/ }
-        {/*<Pc>*/ }
-        {/*  <MainPage />*/ }
-        {/*</Pc>*/ }
-        {/* <Register /> */ }
-        {/*<Chat />*/ }
-        <Settings />
-        {/*회원가입/로그인 페이지*/ }
-        <AuthForm />
-      </ThemeProvider>
-    </>
-  );
+    <BrowserRouter>
+      <Route exact path="/" element={ <MainPage /> } />
+      <Route path="/register" element={ <AuthForm /> } />
+      <Route path="/login" element={ <AuthForm /> } />
+      {/*<Route path=""*/}
+    </BrowserRouter>
+  <ThemeProvider theme={ theme }>
+    <GlobalStyle />
+    {/* <AuthForm /> */ }
+    {/*TEST*/ }
+    {/*<p>TEST</p>*/ }
+    {/*<Mobile>*/ }
+    {/*  <mobileTest>test</mobileTest>*/ }
+    {/*<MainPage />*/ }
+    {/*</Mobile>*/ }
+    {/*<Pc>*/ }
+    <MainPage />
+    {/*</Pc>*/ }
+    {/* <Register /> */ }
+    {/*<Chat />*/ }
+    {/*<Settings />*/ }
+    {/*회원가입/로그인 페이지*/ }
+    {/*<AuthForm />*/ }
+    {/*로딩 컴포넌트*/ }
+    {/*<Loading />*/ }
+    {/*메인페이지 섹션 아티클*/ }
+    {/*<First />*/ }
+  </ThemeProvider>;
+</>
+)
+  ;
 }
-
 
 export default App;

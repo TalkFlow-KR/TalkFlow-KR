@@ -28,11 +28,13 @@ const layout = {
     top: "114.2rem",
     main: "92.4rem",
     mobileTop: "36rem",
+    mainArticle: "69rem",
   },
   height: {
     top: "10rem",
     recent: "7.5rem",
     nav: "34.4rem",
+    mainArticle: "57.3rem",
   },
   flexCenter: `
   display:flex;
@@ -46,11 +48,14 @@ const color = {
   `,
   boxBackground: Token.style.color.charcoal["charcoal-900"].value,
   boxTextColor: Token.style.color.charcoal["charcoal-100"].value,
+  textColor: Token.style.color.charcoal["charcoal-100"].value,
   selectedColor: Token.style.color.charcoal["charcoal-200"].value,
   highlightColor: Token.style.color.lightblue["lb-400"].value,
   blueColor: Token.style.color.primary["indigo-600"].value,
   chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
   chatBackground: Token.style.color.charcoal["charcoal-800"].value,
+  animationBackgroundColor: "#dae2f9",
+  inputShadow : "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
 };
 const fontSizes = {
   // layout

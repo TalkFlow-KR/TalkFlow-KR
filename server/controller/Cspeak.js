@@ -111,7 +111,9 @@ exports.room = async (req, res) => {
     id : userId, // user_id
     situation : req.body.situation,
     accent : req.body.accent,
-    language : req.body.language
+    language : req.body.language,
+    date: req.body.date,
+    time: req.body.time,
   })
   console.log(result)
 };

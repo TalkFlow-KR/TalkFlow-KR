@@ -27,7 +27,6 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 let flag = 0;
-let recFlag = 0;
 
 // Record Audio
 function recordAudio(filename) {
@@ -87,18 +86,62 @@ function deleteRecordedAudio(filename) {
     if (err) {
       console.error(err);
     } else {
-      console.log(`성공적으로 파일을 삭제했습니다. ${filename}`);
+      console.log(`성공적으로 음성 파일을 삭제했습니다. ${filename}`);
     }
   });
 }
 
 let main = require("./chatGPT.js"); // Gpt 불러옴
+let testToSpeech = require("./textToSpeech.js"); // text-to-speech 불러옴
+let listFiles = require("./listFiles.js");
+
+function clearPublicFolder() {
+  let i;
+  listFiles()
+    .then((files) => {
+      // 파일 목록을 사용하여 작업 수행
+      for (i = 0; i < files.length; i++) {
+        console.log(files[i], "이 삭제되었습니다.");
+        let deleteFile = files[i];
+        deleteRecordedAudio1(deleteFile);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+//새로 접근할때마다 파일 모두 삭제함.
+// clearPublicFolder();
+
+const path = require("path");
+const { clear } = require("console");
+
+function deleteRecordedAudio1(filename) {
+  const filePath = path.join(__dirname, "./public", filename);
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(`${filePath} 경로의 파일이 삭제되었습니다.`);
+  });
+}
+
+async function tts(gptMsg) {
+  const now = new Date();
+  newFilename2 = `recorded_audio_${now.getFullYear()}-${
+    now.getMonth() + 1
+  }-${now.getDate()}_${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}.mp3`;
+  await testToSpeech(gptMsg, newFilename2);
+  console.log(newFilename2);
+}
 
 messages = [
   {
     role: "system",
     content:
-      "You are a conversation practice bot. Take on any role you want and talk to me.",
+      "You are a conversation practice bot. Take on any role you want and talk to me. Answer concisely in one or two sentences if possible, and ask questions from time to time.",
   },
 ];
 
@@ -116,9 +159,7 @@ app.get("/start", (req, res) => {
   }-${now.getDate()}_${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}.wav`;
 
   recordAudio(newFilename).then(() => {
-    // res.sendStatus(200);
-
-    //녹음이 종료됐음을 알기 위한 플레그.
+    //녹음이 종료된 후, flag 초기화
     flag = 0;
     console.log("녹음 종료되었습니다.");
     res.json(flag);
@@ -129,7 +170,7 @@ app.get("/stop", async (req, res) => {
   console.log("-----번역을 시작합니다.------");
   const transcription = await transcribeAudio(newFilename);
   res.json({ transcription });
-  console.log(transcription);
+  console.log("텍스트 변환 완료", transcription, "falg = ", flag);
   //번역이 끝났음을 알기 위함.
   flag = 1;
   console.log(`2, ${transcription}`);
@@ -141,20 +182,16 @@ app.get("/chat", async (req, res) => {
   messages.push({ role: "assistant", content: answer });
   console.log("대답 >>> ", answer);
   console.log(messages);
-  res.json({ answer }); // 대답을 뿌려줌
+  await tts(answer);
+  console.log("녹음완료");
+  res.json({ answer, newFilename2 }); // 대답을 뿌려줌
 });
 
-// 클라이언트에서 접근할 수 있는 API endpoint를 생성합니다.
-app.get("/add-message", (req, res) => {
-  const { content } = req.query;
-  async function waitForFlag1() {
-    while (recFlag === 0) {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // while 루프 내에서 플래그 변수를 다시 확인하기 전에 1초의 지연을 도입하는 데 사용됩니다. 이렇게 하면 루프에서 과도한 CPU 사용을 방지하고 프로그램이 플래그가 변경되기를 기다리는 동안 다른 작업을 수행할 수 있습니다
-    }
-    resolve();
-  }
-  waitForFlag1();
-  res.json(content);
+app.get("/delete", async (req, res) => {
+  console.log("/delete 접근");
+  await deleteRecordedAudio1(newFilename2);
+  console.log("삭제 완료");
+  res.json(); // 보여주기용.
 });
 
 // Start the server
