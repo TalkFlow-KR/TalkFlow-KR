@@ -30,6 +30,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kakao_Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
   </head>
   <body>
     <ul>
@@ -43,6 +44,11 @@
           <span>카카오 로그아웃</span>
         </a>
       </li>
+      <li>
+        <form method="post" action="/kakao">
+          <button>ddd</button>
+        </form>
+      </li>
     </ul>
     <!-- 카카오 스크립트 -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -53,6 +59,7 @@
       console.log("sdk 초기화 여부 판단 >> ", Kakao.isInitialized());
       //카카오로그인
       function kakaoLogin() {
+        let nickname;
         Kakao.Auth.login({
           success: function (response) {
             Kakao.API.request({
@@ -60,7 +67,18 @@
               success: function (response) {
                 console.log(response);
                 nickname = response.properties.nickname;
-                console.log("Login_nickname > ", nickname);
+                console.log("Login_nickname > ", nickname);  
+                
+                axios({
+                  method:'post',
+                  url:'/kakao',
+                  data : {
+                    id : response.id,
+                    nickname : nickname
+                  }
+                }).then((res)=>{
+                  console.log(res)
+                })
               },
               fail: function (error) {
                 console.log(error);
@@ -80,7 +98,7 @@
             url: "/v1/user/unlink",
             success: function (response) {
               console.log("Logout_id:", response.id);
-              console.log("Logout_nickname > ", nickname);
+              
             },
             fail: function (error) {
               console.log(error);

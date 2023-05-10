@@ -2,22 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Speech-to-Text Transcription</title>
+    <title>음성을 텍스트로 변환</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <h1>Speech-to-Text Transcription</h1>
+    <h1>음성을 텍스트로 변환</h1>
 
     <div>
-      <button onclick="startRecording()">Start Recording</button>
-      <button id="add-div-button" onclick="stopRecording()">
-        Stop Recording
-      </button>
+      <button onclick="startRecording()">녹음 시작</button>
+      <button id="add-div-button" onclick="stopRecording()">녹음 종료</button>
       <p id="status"></p>
     </div>
 
     <div>
-      <h2>Transcription</h2>
+      <h2>음성 변환 내역</h2>
       <p id="transcription"></p>
     </div>
     <div>---------채팅 내역--------</div>
@@ -26,14 +24,16 @@
     <script>
       const startRecording = async () => {
         console.log("녹음 준비 중");
+        console.log(">>> test1");
         const res = await fetch("/start");
+
         if (res.ok) {
           console.log("녹음이 성공적으로 완료되었습니다.");
           document.getElementById("status").textContent =
             "녹음이 성공적으로 완료되었습니다.";
         } else {
           document.getElementById("status").textContent =
-            "Error starting recording";
+            "녹음을 하는데 실패했습니다.";
         }
       };
 
@@ -46,7 +46,6 @@
           document.getElementById("transcription").textContent =
             data.transcription;
           console.log("번역이 전달되었습니다.");
-
 
           // 녹음된 언어 div로 출력.
           const divContainer = document.getElementById("div-container");
@@ -61,7 +60,7 @@
           chatAns();
         } else {
           document.getElementById("status").textContent =
-            "Error stopping recording";
+            "녹음을 중지하는데 실패했습니다.";
         }
       };
 

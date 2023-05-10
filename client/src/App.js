@@ -50,7 +50,9 @@ function App () {
         {/* <Chat /> */}
         {/* <Settings /> */}
         {/*회원가입/로그인 페이지*/ }
+
         {/* <AuthForm /> */}
+
       </ThemeProvider>
     </>
   );

@@ -1,32 +1,35 @@
-//녹음을 하기 위함.
-require("dotenv").config(); // process.env.xxx
-const fs = require("fs");
-const ffmpeg = require("fluent-ffmpeg");
-const mic = require("mic");
-const { Readable } = require("stream");
-const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
+// API 키를 dot.env에 보관하기 위함.
+require("dotenv").config();
 
 // 서버를 유지하기 위함.
 const express = require("express");
 const app = express();
 const port = 3000;
-// 
-//chatgpt를 연결하기 위함.
+
+// chatgpt를 연결하기 위함.
 const { Configuration, OpenAIApi } = require("openai");
 const axios = require("axios");
 const configuration = new Configuration({
   apiKey: process.env.CHATGPT_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-let flag = 0;
 
+// 녹음을 하기 위함
+const fs = require("fs");
+const ffmpeg = require("fluent-ffmpeg");
+const mic = require("mic");
+const { Readable } = require("stream");
+const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 ffmpeg.setFfmpegPath(ffmpegPath);
 
 // Serve static files from the "public" directory
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
-// Record audio
+let flag = 0;
+let recFlag = 0;
+
+// Record Audio
 function recordAudio(filename) {
   return new Promise((resolve, reject) => {
     const micInstance = mic({
@@ -42,15 +45,19 @@ function recordAudio(filename) {
     writable.pipe(output);
     console.log("녹음을 시작합니다..");
     micInstance.start();
+
     // 녹음이 언제 종료되는지 알려준 뒤, 녹음을 종료함.
     async function waitForFlag() {
       while (flag === 0) {
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second
-        console.log("녹음 중 입니다. : flag = 0");
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // while 루프 내에서 플래그 변수를 다시 확인하기 전에 1초의 지연을 도입하는 데 사용됩니다. 이렇게 하면 루프에서 과도한 CPU 사용을 방지하고 프로그램이 플래그가 변경되기를 기다리는 동안 다른 작업을 수행할 수 있습니다
+        recFlag = 1;
+        console.log("녹음 중 입니다. : flag =", flag);
       }
 
-      console.log("녹음을 종료합니다.. : flag = 1");
+      console.log("녹음을 종료합니다. : flag =", flag);
+      recFlag = 0;
       micInstance.stop();
+
       deleteRecordedAudio(filename); // 녹음이 종료되면 생성된 파일을 삭제함
       resolve();
     }
@@ -62,7 +69,7 @@ function recordAudio(filename) {
   });
 }
 
-// Transcribe audio
+// Transcribe Audio
 async function transcribeAudio(filename) {
   const transcript = await openai.createTranscription(
     fs.createReadStream(filename), //번역할 파일
@@ -91,7 +98,7 @@ messages = [
   {
     role: "system",
     content:
-      "You are a conversation practice bot. Take on any role you want and talk to me.",
+      "You are a conversation practice bot. Take on any role you want and talk to me. Answer concisely in one or two sentences if possible, and ask questions from time to time.",
   },
 ];
 
@@ -109,11 +116,10 @@ app.get("/start", (req, res) => {
   }-${now.getDate()}_${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}.wav`;
 
   recordAudio(newFilename).then(() => {
-    // res.sendStatus(200);
-
-    //녹음이 종료됐음을 알기 위한 플레그.
+    //녹음이 종료된 후, flag 초기화
     flag = 0;
     console.log("녹음 종료되었습니다.");
+    res.json(flag);
   });
 });
 
@@ -134,6 +140,19 @@ app.get("/chat", async (req, res) => {
   console.log("대답 >>> ", answer);
   console.log(messages);
   res.json({ answer }); // 대답을 뿌려줌
+});
+
+// 클라이언트에서 접근할 수 있는 API endpoint를 생성합니다.
+app.get("/add-message", (req, res) => {
+  const { content } = req.query;
+  async function waitForFlag1() {
+    while (recFlag === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // while 루프 내에서 플래그 변수를 다시 확인하기 전에 1초의 지연을 도입하는 데 사용됩니다. 이렇게 하면 루프에서 과도한 CPU 사용을 방지하고 프로그램이 플래그가 변경되기를 기다리는 동안 다른 작업을 수행할 수 있습니다
+    }
+    resolve();
+  }
+  waitForFlag1();
+  res.json(content);
 });
 
 // Start the server

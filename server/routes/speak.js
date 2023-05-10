@@ -29,6 +29,7 @@ router.post('/runGpt/:roomid',controller_gpt.runGPT35)
 
 // 6. /kakao
 router.get("/kakao", controller.kakao);
+router.post("/kakao", controller.kakao2);
 
 
 module.exports = router;
