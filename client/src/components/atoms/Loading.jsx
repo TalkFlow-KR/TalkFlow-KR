@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import animationData from "assets/loading.json";
 import styled from "styled-components";
 import Lottie from "./LottieComponent";
@@ -26,26 +26,24 @@ const style = {
   backgroundColor: "red",
 };
 const Loading = () => {
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(0.5);
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
 
-  const renderLottie = useCallback(() => {
-    return (
-      <Lottie
-        style={style}
-        animationData={animationData}
-        isStopped={isStopped}
-      />
-    );
-  }, [isStopped]);
   return (
     <>
       <Overlay>
-        <Wrapper>{renderLottie()}</Wrapper>
-        <button onClick={() => setSpeed(speed + 2)}>double</button>
-        <button onClick={() => setIsPaused(!isPaused)}>pause/play</button>
-        <button onClick={() => setIsStopped(!isStopped)}>stop/play</button>
+        <Wrapper>
+          <Lottie
+            animationData={animationData}
+            speed={speed}
+            isPaused={isPaused}
+            isStopped={isStopped}
+          />
+          {/*<button onClick={() => setSpeed(speed)}>double</button>*/}
+          <button onClick={() => setIsPaused(!isPaused)}>pause/play</button>
+          <button onClick={() => setIsStopped(!isStopped)}>stop/play</button>
+        </Wrapper>
       </Overlay>
     </>
   );

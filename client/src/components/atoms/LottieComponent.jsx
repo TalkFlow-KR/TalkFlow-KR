@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Lottie from "lottie-web";
 
-const LottieAnimation = ({
+// Lottie 컴포넌트 정의
+const LottieComponent = ({
   animationData,
   loop,
   autoplay,
@@ -10,35 +11,56 @@ const LottieAnimation = ({
   isStopped,
   ...restProps
 }) => {
-  // Lottie 컴포넌트의 ref를 만듭니다.
-  const animationRef = useRef(null);
+  // Lottie 애니메이션 컨테이너에 대한 ref
+  const animationContainer = useRef(null);
+  const [animationInstance, setAnimationInstance] = useState(null);
 
-  // 기록 초기화 함수입니다.
-  const resetAnimation = () => {
-    // ref가 null이면 함수를 종료합니다.
-    if (animationRef.current === null) return;
+  // Lottie 애니메이션 로드 및 초기화
+  useEffect(() => {
+    // Lottie 애니메이션 옵션 설정
+    const animationOptions = {
+      container: animationContainer.current,
+      renderer: "svg",
+      loop: loop !== undefined ? loop : true,
+      autoplay: autoplay !== undefined ? autoplay : true,
+      animationData: animationData,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    };
 
-    // Lottie 애니메이션의 상태를 가져와서 멈춥니다.
-    const animationState = animationRef.current.getState();
-    animationState.isStopped = true;
-    animationState.currentFrame = 0;
+    // Lottie 애니메이션 로드
+    const animation = Lottie.loadAnimation(animationOptions);
+    // Lottie 애니메이션 상태 업데이트
+    setAnimationInstance(animation);
 
-    // Lottie 애니메이션의 상태를 다시 설정합니다.
-    animationRef.current.setState(animationState);
-  };
+    //  컴포넌트 unmount 시 애니메이션 제거
+    return () => {
+      animation.destroy();
+    };
+  }, [animationData, loop, autoplay]);
 
-  return (
-    <Lottie
-      ref={animationRef}
-      animationData={animationData}
-      loop={loop}
-      autoplay={autoplay}
-      speed={speed}
-      isPaused={isPaused}
-      isStopped={isStopped}
-      {...restProps}
-    />
-  );
+  // Lottie 인터랙션 관리
+  useEffect(() => {
+    if (animationInstance !== null) {
+      // isPaused 프롭스에따라 일시정지 / 실행
+      if (isPaused) {
+        animationInstance.pause();
+      } else {
+        animationInstance.play();
+      }
+
+      if (isStopped) {
+        animationInstance.stop();
+      }
+
+      if (speed !== undefined) {
+        animationInstance.setSpeed(speed);
+      }
+    }
+  }, [isPaused, isStopped, speed, animationInstance]);
+
+  return <div ref={animationContainer} {...restProps} />;
 };
 
-export default LottieAnimation;
+export default LottieComponent;
