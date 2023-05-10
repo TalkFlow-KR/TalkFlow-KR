@@ -9,6 +9,7 @@ import ChatComponent from "components/molecules/ChatComponent";
 import theme from "styles/themeProvider/theme";
 
 const TopSection = styled.section`
+
   display: flex;
   justify-content: center;
 `;

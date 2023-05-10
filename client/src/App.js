@@ -12,9 +12,11 @@ import Settings from "./pages/Settings";
 import LoginForm from "./components/organisms/Auth/LoginForm";
 import Loading from "./components/atoms/Loading";
 import First from "./components/organisms/First";
+
 import Index from "pages/Index";
 import ChatPage from "pages/ChatPage";
 import SettingsPage from "pages/SettingsPage"
+
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -35,9 +37,10 @@ import SettingsPage from "pages/SettingsPage"
 
 // Route
 
-function App() {
+function App () {
   return (
     <>
+
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         {/* <AuthForm /> */}
@@ -72,6 +75,7 @@ function App() {
       </ThemeProvider>
     </>
   );
+
 }
 
 export default App;
