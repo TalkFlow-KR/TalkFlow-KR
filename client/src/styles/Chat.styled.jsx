@@ -4,11 +4,8 @@ import ChatComponent from "components/molecules/ChatComponent";
 
 export const ChatContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* height: 80rem;
- */
   height: 100vh;
   background-color: #fff;
   border-radius: 2rem 2rem 0 0;
@@ -16,6 +13,7 @@ export const ChatContainer = styled.div`
 
 export const ChatCover = styled.div`
   width: 100vw;
+  /* width: ${(props) => props.theme.layout.width.main}; */
   height: ${ (props) => props.theme.layout.height.top };
   flex-direction: column;
   justify-content: flex-start;
@@ -53,6 +51,8 @@ export const Body = styled.section`
   padding: 0 1.6rem 0 1.6rem;
   margin: 0;
   overflow-y: scroll;
+  /* overflow-y: hidden; */
+
   /* box-shadow: 2px 2px 5px -2px inset;; */
   background-color: ${ (props) => props.theme.color.chatBackground };
 `;
@@ -124,7 +124,7 @@ export const UserChatBubble = styled(ChatBubble)`
 `;
 
 export const AiChatBubble = styled(ChatBubble)`
-  background-color: #e74c3c;
+  background-color: yellow;
   color: white;
   float: left;
 `;
@@ -135,4 +135,6 @@ export const MainChatComponent = styled.section`
   background-color: tomato;
   margin-top: 2.4rem;
   border-radius: 2rem;
+  display: flex;
+  box-sizing: border-box;
 `;

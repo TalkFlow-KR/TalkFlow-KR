@@ -72,7 +72,7 @@ const handleSendClick = () => {
           <ChatBubble key={message.id} isAiBubble={message.isAiBubble}>{message.text}</ChatBubble>
           ))}
           {/* <Time key={message.id}>{message.time}</Time> */}
-           <div ref={messagesEndRef} />
+          <div ref={messagesEndRef} />
         </Body>
         <Footer>
           <InputContainer>

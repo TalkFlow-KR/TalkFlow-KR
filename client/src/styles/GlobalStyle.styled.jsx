@@ -5,6 +5,11 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  *::before,
+*::after {
+  box-sizing: border-box;
+}
   html {
     font-size: 62.5%;
   }
@@ -19,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100vw;
      //letter-spacing: -2.5rem;
-
+     ${({ theme }) => theme.color.background}
   li {
     list-style: none;
   }

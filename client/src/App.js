@@ -41,16 +41,16 @@ function App () {
         {/*<p>TEST</p>*/ }
         {/*<Mobile>*/ }
         {/*  <mobileTest>test</mobileTest>*/ }
-        {/* <MainPage /> */ }
+        <MainPage />
         {/*</Mobile>*/ }
         {/*<Pc>*/ }
         {/*  <MainPage />*/ }
         {/*</Pc>*/ }
         {/* <Register /> */ }
-        {/*<Chat />*/ }
-        <Settings />
+        {/* <Chat /> */}
+        {/* <Settings /> */}
         {/*회원가입/로그인 페이지*/ }
-        {/*<AuthForm />*/}
+        {/* <AuthForm /> */}
       </ThemeProvider>
     </>
   );
