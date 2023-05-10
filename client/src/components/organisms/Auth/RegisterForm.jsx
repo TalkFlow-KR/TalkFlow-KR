@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
+import axios from "axios";
+import Loading from "../../atoms/Loading";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
@@ -25,6 +27,7 @@ const StyledFieldSet = styled.fieldset`
   word-break: keep-all;
 `;
 const RegisterForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [position, setPosition] = useState(1);
   // email state
@@ -106,7 +109,23 @@ const RegisterForm = () => {
     }
     setState(value);
   };
-  const onSubmit = () => {
+  const data = {
+    name: emailValue,
+    userName: userName,
+    pw: passwordValue,
+    gender: genderValue,
+    phoneNumber: phoneValue,
+  };
+  const onSubmit = async () => {
+    setIsLoading(true);
+    const res = await axios.post("/post-signup", data);
+    console.log(res.data);
+    if (res.data === "res.data가 가입성공일 경우") {
+      //   가입 성공에 대한 화면 출력 및 상태 변경
+    } else {
+      // 가입 실패일 경우 에러 출력
+    }
+    setIsLoading(false);
     console.log(
       emailValue,
       passwordValue,
@@ -114,7 +133,6 @@ const RegisterForm = () => {
       genderValue,
       userNameValue
     );
-    return;
   };
   const onShow = () => {
     setShowPassword(!showPassword);
@@ -122,6 +140,7 @@ const RegisterForm = () => {
   return (
     <>
       <Wrapper>
+        {isLoading ? <Loading /> : "isLoading가 false라면,이게 뜸"};
         <StyledForm
           action=""
           style={{ transform: `translateX(${position}rem)` }}>
@@ -213,7 +232,7 @@ const RegisterForm = () => {
               !(isValidEmail && isValidPhone && passwordValue.length < 9) &&
               true
             }>
-            register
+            가입할게요 !
           </button>
         </StyledForm>
       </Wrapper>

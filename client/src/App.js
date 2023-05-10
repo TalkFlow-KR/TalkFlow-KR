@@ -15,8 +15,8 @@ import First from "./components/organisms/First";
 
 import Index from "pages/Index";
 import ChatPage from "pages/ChatPage";
-import SettingsPage from "pages/SettingsPage"
-
+import SettingsPage from "pages/SettingsPage";
+import SuccessRegister from "./components/organisms/Auth/SuccessRegister";
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -37,10 +37,9 @@ import SettingsPage from "pages/SettingsPage"
 
 // Route
 
-function App () {
+function App() {
   return (
     <>
-
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         {/* <AuthForm /> */}
@@ -51,10 +50,9 @@ function App () {
         {/*  <mobileTest>test</mobileTest>*/}
 
         {/* index 페이지 */}
-        <MainPage />
+        {/*<MainPage />*/}
 
-        <ChatPage />
-
+        {/*<ChatPage />*/}
         {/*</Mobile>*/}
         {/*<Pc>*/}
         {/*<MainPage />*/}
@@ -64,18 +62,18 @@ function App () {
         {/*<Settings />*/}
 
         {/*회원가입/로그인 페이지*/}
-        {/* <AuthForm /> */}
+        <AuthForm />
 
         {/*로딩 컴포넌트*/}
         {/*<Loading />*/}
 
         {/*메인페이지 섹션 아티클*/}
         {/* <First /> */}
-        <SettingsPage />
+        {/*<SettingsPage />*/}
+        <SuccessRegister />
       </ThemeProvider>
     </>
   );
-
 }
 
 export default App;

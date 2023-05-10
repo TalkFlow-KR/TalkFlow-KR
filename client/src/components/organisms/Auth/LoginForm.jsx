@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
 import Button from "../../atoms/Button";
+import Loading from "../../atoms/Loading";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
@@ -20,19 +21,27 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const data = {
+    userEmail: email,
+    userPassword: password,
+  };
   const onChange = (setState, e) => {
     setState(e.target.value);
   };
   const onShow = () => {
     setShowPassword(!showPassword);
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
+    const res = await axios.post("/post-login", data);
     console.log(email, password);
   };
   return (
     <>
+      {isLoading ? <Loading /> : "loadingState가 false라면,이게 뜸"};
       <Wrapper>
         <section>
           <label htmlFor="userEmail">
