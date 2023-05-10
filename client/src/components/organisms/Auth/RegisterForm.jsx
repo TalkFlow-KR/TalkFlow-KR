@@ -109,13 +109,15 @@ const RegisterForm = () => {
     }
     setState(value);
   };
+
   const data = {
-    name: emailValue,
-    userName: userName,
+    email: emailValue,
+    userName: userNameValue,
     pw: passwordValue,
     gender: genderValue,
     phoneNumber: phoneValue,
   };
+
   const onSubmit = async () => {
     setIsLoading(true);
     const res = await axios.post("/post-signup", data);
@@ -123,7 +125,7 @@ const RegisterForm = () => {
     if (res.data === "res.data가 가입성공일 경우") {
       //   가입 성공에 대한 화면 출력 및 상태 변경
     } else {
-      // 가입 실패일 경우 에러 출력
+      // 가입 실패일 경우 에러 출력  2
     }
     setIsLoading(false);
     console.log(

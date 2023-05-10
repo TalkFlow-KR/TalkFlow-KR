@@ -3,6 +3,7 @@ import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
 import Button from "../../atoms/Button";
 import Loading from "../../atoms/Loading";
+import axios from "axios";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
   }
+
   & button {
   }
 `;
@@ -36,8 +38,13 @@ const LoginForm = () => {
   const onSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
-    const res = await axios.post("/post-login", data);
-    console.log(email, password);
+    const res = await axios.get("/post-login", data);
+    if (res.data === "로그인이 맞을시 ") {
+      //로그인 화면 출력
+      console.log(email, password);
+    } else {
+      // 에러코드 출력 = 로그인 실패
+    }
   };
   return (
     <>
