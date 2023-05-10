@@ -89,15 +89,15 @@
           newDiv.textContent = data.transcription;
           divContainer.appendChild(newDiv);
 
+          const User_time = document.createElement("div");
+          User_time.textContent = time;
+          divContainer.appendChild(User_time);
 
           console.log("Gpt음성 출력 시작...");
           await chatAns();
           console.log("Gpt음성 출력 종료...");
           <!-- await fetch("/delete"); -->
 
-          const User_time = document.createElement("div");
-          User_time.textContent = time;
-          divContainer.appendChild(User_time);
 
           chatAns();
 
