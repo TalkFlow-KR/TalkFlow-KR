@@ -21,9 +21,7 @@ const Main = () => {
   return (
     <Container>
       <RecentArticle />
-      <MainChatComponent>
-      <ChatComponent/>
-      </MainChatComponent>
+      <MainChatComponent>{/*<ChatComponent/>*/}</MainChatComponent>
     </Container>
   );
 };
