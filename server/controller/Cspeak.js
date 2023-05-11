@@ -104,9 +104,12 @@ exports.post_login = async (req, res) => {
   console.log("getCry: ", getCry.password);
   console.log(result.password);
   if (getCry.password === result.password) {
-    res.send({msg: 'success', userid : result.id}); // 성공메시지와 유저아디 반환
+    // 로그인에 성공한 경우, 세션을 생성하고 req.session 에 사용자 정보 저장
+    req.session.userId = result.id;
+    req.session.name = result.name;
+    res.send("success");
+    res.sendFile(__dirname + "/result.html");
   } else {
-    // 로그인 틀림
     res.send("wrong");
   }
 };
