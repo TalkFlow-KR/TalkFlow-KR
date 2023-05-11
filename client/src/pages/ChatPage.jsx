@@ -15,7 +15,6 @@ const Container = styled.section`
   margin-top: 2.8rem;
   overflow-y: scroll;
 `;
-
 const ChatPage = () => {
   return (
     <>
