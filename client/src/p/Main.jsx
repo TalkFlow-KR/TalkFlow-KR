@@ -1,3 +1,4 @@
+//Main.jsx
 import React from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";

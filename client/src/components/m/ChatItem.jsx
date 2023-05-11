@@ -4,7 +4,7 @@ import ChatIcon from "../a/ChatIcon";
 
 const Wrapper = styled.div`
   background-color: thistle;
-  width: 31.6rem;
+  width: 27.2rem;
   height: 9rem;
   border-radius: 0.8rem;
   display: flex;

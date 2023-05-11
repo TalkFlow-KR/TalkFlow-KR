@@ -15,6 +15,7 @@ const Wrapper = styled.div`
     align-items: center;
     flex-direction: column;
   }
+
   & button {
   }
 `;
@@ -24,21 +25,28 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const data = {
-    userEmail: email,
-    userPassword: password,
-  };
   const onChange = (setState, e) => {
     setState(e.target.value);
   };
   const onShow = () => {
     setShowPassword(!showPassword);
   };
+
+  const data = {
+    userEmail: email,
+    userPassword: password,
+  };
+  // 로그인 버튼
   const onSubmit = async (e) => {
+    // 로딩 ON
     setIsLoading(true);
     e.preventDefault();
+    // 로그인 요청
     const res = await axios.post("/post-login", data);
+    console.log(res);
     console.log(email, password);
+    // 로딩 OFf
+    setIsLoading(false);
   };
 
   return (

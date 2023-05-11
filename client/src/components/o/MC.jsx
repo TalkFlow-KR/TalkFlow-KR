@@ -1,3 +1,4 @@
+// MainContentsComponent.jsx
 import React from "react";
 import HC from "./HC";
 import styled from "styled-components";
