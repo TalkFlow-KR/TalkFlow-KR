@@ -62,13 +62,13 @@ function App() {
         {/*<Settings />*/}
 
         {/*회원가입/로그인 페이지*/}
-        <AuthForm />
+        {/*<AuthForm />*/}
 
         {/*로딩 컴포넌트*/}
-        {/*<Loading />*/}
+        <Loading />
 
         {/*메인페이지 섹션 아티클*/}
-        {/* <First /> */}
+        {/*<First />*/}
         {/*<SettingsPage />*/}
         <SuccessRegister />
       </ThemeProvider>

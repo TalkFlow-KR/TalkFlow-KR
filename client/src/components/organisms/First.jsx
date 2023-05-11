@@ -2,9 +2,9 @@
 import React from "react";
 import MainArticle from "../atoms/MainArticle";
 import styled from "styled-components";
-import Lottie from "lottie-react";
 import learning from "assets/learning.json";
 import theme from "../../styles/themeProvider/theme";
+import Lottie from "../atoms/LottieComponent";
 
 const Wrapper = styled.section`
   display: flex;
@@ -41,13 +41,7 @@ const First = () => {
           </Button>
         </MainArticle>
         <MainArticle bgColor="#dae2f9">
-          <Lottie
-            animationData={learning}
-            style={{
-              height: "auto",
-              width: "auto",
-            }}
-          />
+          <Lottie animationData={learning} />
         </MainArticle>
         {/*<MainArticle>Test</MainArticle>*/}
       </Wrapper>

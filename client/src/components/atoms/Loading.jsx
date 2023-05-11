@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Lottie from "lottie-react";
-// import Lottie from "react-lottie";
 import animationData from "assets/loading.json";
 import styled from "styled-components";
+import Lottie from "./LottieComponent";
 
 const Wrapper = styled.main`
   position: absolute;
@@ -22,28 +21,28 @@ const Overlay = styled.div`
   background-color: #0008;
 `;
 const style = {
-  height: 300,
-  width: 300,
+  height: "300px",
+  width: "300px",
+  backgroundColor: "red",
 };
-
-const options = {
-  loop: true,
-  autoplay: true,
-  animationData: { animationData },
-};
-
 const Loading = () => {
+  const [speed, setSpeed] = useState(0.5);
+  const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
+
   return (
     <>
       <Overlay>
         <Wrapper>
           <Lottie
-            options={options}
-            style={style}
             animationData={animationData}
+            speed={speed}
+            isPaused={isPaused}
             isStopped={isStopped}
           />
+          {/*<button onClick={() => setSpeed(speed)}>double</button>*/}
+          <button onClick={() => setIsPaused(!isPaused)}>pause/play</button>
+          <button onClick={() => setIsStopped(!isStopped)}>stop/play</button>
         </Wrapper>
       </Overlay>
     </>
