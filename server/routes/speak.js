@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get("/", controller.main);
 
-router.get('/test',controller.tmp)
 
 // 1. 회원가입
 router.get('/signup',controller.signup)
@@ -18,13 +17,13 @@ router.post('/post-login', controller.post_login);
 // 3. /msg 데이터 과거 대화 내용 조회
 router.get("/msg/:roomid", controller.msg);
 
-// 4. /room/:rommid 회화 채팅 방
+// 4. /room/:userid 로그인 한 유저의 방 내보내기 및 생성
+router.get("/room/:userid",controller.allRoom)
 router.post("/room/:userid", controller.room);
 
 // 5. /stt
-router.get('/voice',controller_gpt.sst)
-router.get("/voice-start", controller_gpt.start);
-router.get('/voice-stop',controller_gpt.stop);
+router.get('/voice',controller_gpt.stt)
+// router.get('/voice-stop',controller_gpt.stopRecording);
 router.post('/runGpt/:roomid',controller_gpt.runGPT35);
 
 // 6. /kakao

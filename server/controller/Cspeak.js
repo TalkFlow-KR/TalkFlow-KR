@@ -60,15 +60,34 @@ exports.post_signup = async (req, res) => {
       password: cryptoPassword.password,
       salt: cryptoPassword.salt,
       gender: req.body.gender,
-     telephone: req.body.telephone,
+      telephone: req.body.telephone,
     }
   });
-  // res.send('signup success')
-  res.sendFile(__dirname + "/result.html");
-};
-
-exports.tmp = (req, res) => {
-  res.sendFile(__dirname + "/test.html");
+  // findOrCreate 생성시 true, 실패시 fail
+  if(result === false){
+    // email 중복
+    const find_email = await models.USER.findOne({
+      where : {
+        email : req.body.email
+      }
+    })
+    if(find_email === true){
+      res.send('duplication email')
+    }
+    
+    // tel 중복
+    const find_tel = await models.USER.findOne({
+      where : {
+        telephone : req.body.telephone
+      }
+    })
+    if(find_tel === true){
+      res.send('duplication telephone')
+    }
+  }
+  else{
+    res.send('success')
+  }
 };
 
 // 2. 로그인
@@ -85,9 +104,9 @@ exports.post_login = async (req, res) => {
   console.log("getCry: ", getCry.password);
   console.log(result.password);
   if (getCry.password === result.password) {
-    // res.send("success");
-    res.sendFile(__dirname + "/result.html");
+    res.send({msg: 'success', userid : result.id}); // 성공메시지와 유저아디 반환
   } else {
+    // 로그인 틀림
     res.send("wrong");
   }
 };
@@ -102,6 +121,18 @@ exports.msg = async (req, res) => {
   });
   res.send(result);
 };
+
+// 해당 유저가 가진 모든 방 내보내기
+exports.allRoom = async(req,res)=>{
+  const userId = req.params()
+  const result = await models.ROOM.findAll({
+    where : {
+      id : userId
+    }
+  })
+  res.send(result.room_id)
+}
+
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
