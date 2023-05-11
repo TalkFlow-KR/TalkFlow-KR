@@ -10,7 +10,7 @@ const Btn = styled.button`
   //padding: 1.2rem;
 `;
 
-const SettingItem = ({ onClick, optionNumber }) => {
+const SettingItem = ({ onClick }) => {
   return (
     <div>
       <Btn onClick={onClick}>옵션1</Btn>
