@@ -5,7 +5,7 @@ const RecentArticle = () => {
   return (
     <>
       <Wrapper>
-        <h2>Recent</h2>
+        <h2>Recent1</h2>
       </Wrapper>
     </>
   );

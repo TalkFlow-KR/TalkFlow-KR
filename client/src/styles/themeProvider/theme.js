@@ -56,6 +56,7 @@ const color = {
   chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
   chatBackground: Token.style.color.charcoal["charcoal-800"].value,
   animationBackgroundColor: "#dae2f9",
+  inputShadow : "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
 };
 const fontSizes = {
   // layout

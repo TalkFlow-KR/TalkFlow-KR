@@ -21,7 +21,6 @@ import {
   Input,
   SendButton,
 } from "../../styles/Chat.styled";
-// import styled from 'styled-components';
 
 const ChatRoom = () => {
   const [inputValue, setInputValue] = useState("");
@@ -35,6 +34,7 @@ const ChatRoom = () => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   }, [messageList]);
 
+  // 엔터로 입력하기
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       // Send the message
@@ -94,7 +94,7 @@ const ChatRoom = () => {
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
+            onKeyPress={handleKeyDown}
             placeholder="메시지를 입력하세요."
           />
         </InputContainer>

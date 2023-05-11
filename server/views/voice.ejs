@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>음성을 텍스트로 변환</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>음성을 텍스트로 변환</h1>
+
+    <div>
+      <button onclick="startRecording()">녹음 시작</button>
+      <button id="add-div-button" onclick="stopRecording()">녹음 종료</button>
+      <p id="status"></p>
+    </div>
+
+    <div>
+      <h2>음성 변환 내역</h2>
+      <p id="transcription"></p>
+    </div>
+    <div>---------채팅 내역--------</div>
+    <div id="div-container"></div>
+
+    <script>
+      const startRecording = async () => {
+        console.log("녹음 준비 중");
+        console.log(">>> test1");
+        const res = await fetch("/voice-start");
+
+        if (resRec.ok) {
+          console.log("wow good!");
+        }
+
+        if (res.ok) {
+          console.log("녹음이 성공적으로 완료되었습니다.");
+          document.getElementById("status").textContent =
+            "녹음이 성공적으로 완료되었습니다.";
+        } else {
+          document.getElementById("status").textContent =
+            "녹음을 하는데 실패했습니다.";
+        }
+      };
+
+      const stopRecording = async () => {
+        console.log("녹음 종료를 누르셨습니다. 번역 중이니 잠시만 기다리세요.");
+        const res = await fetch("/voice-stop");
+        if (res.ok) {
+          document.getElementById("status").textContent = "번역중 입니다.";
+          const data = await res.json();
+          document.getElementById("transcription").textContent =
+            data.transcription;
+          console.log("번역이 전달되었습니다.");
+
+          // 녹음된 언어 div로 출력.
+          const divContainer = document.getElementById("div-container");
+          const gptSayDiv = document.createElement("div");
+          gptSayDiv.textContent = "------i say------";
+          divContainer.appendChild(gptSayDiv);
+
+          const newDiv = document.createElement("div");
+          newDiv.textContent = data.transcription;
+          divContainer.appendChild(newDiv);
+
+          chatAns();
+        } else {
+          document.getElementById("status").textContent =
+            "녹음을 중지하는데 실패했습니다.";
+        }
+      };
+
+      // 답변
+      const chatAns = async () => {
+        console.log("chatgpt가 답변중입니다..");
+        const res = await fetch("/chat");
+        if (res.ok) {
+          document.getElementById("status").textContent =
+            "chatgpt가 답변중입니다.";
+          const data1 = await res.json();
+
+          console.log("답변이 완료되었습니다..");
+          document.getElementById("status").textContent =
+            "chatgpt가 답변을 완료했습니다.";
+
+          // 답변 div로 출력.
+          const divContainer = document.getElementById("div-container");
+          const gptSayDiv = document.createElement("div");
+          gptSayDiv.textContent = "------gpt say------";
+          divContainer.appendChild(gptSayDiv);
+          const newDiv = document.createElement("div");
+          newDiv.textContent = data1.answer;
+          divContainer.appendChild(newDiv);
+          console.log("답변 div 출력 완료.");
+        } else {
+          document.getElementById("status").textContent =
+            "Error stopping recording";
+        }
+      };
+    </script>
+  </body>
+</html>

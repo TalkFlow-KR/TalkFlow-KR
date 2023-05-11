@@ -1,14 +1,21 @@
+import { Link, useNavigate } from "react-router-dom";
 import BarIcon from "components/atoms/BarIcon";
 import React, { useState } from "react";
 import { Wrapper } from "styles/TopArticle.styled";
 import Button from "../atoms/Button";
 import Aside from "components/organisms/Aside";
-
-const text = {
-  btnText: "Start a new chat",
-};
-
 const TopArticle = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(-1);
+  };
+
+  const text = {
+    // btnText: "Start a new chat",
+    btnText: "뒤로",
+  };
+
+  // Asid 토글 나중에 지우기
   const [showSidebar, setShowSidebar] = useState(false);
 
   function toggleSidebar() {
@@ -17,6 +24,7 @@ const TopArticle = () => {
 
   return (
     <>
+      {showSidebar && <Aside />}
       <Wrapper>
         <button
           style={{
@@ -31,10 +39,14 @@ const TopArticle = () => {
           onClick={toggleSidebar}>
           <BarIcon />
         </button>
-        <h2>Home</h2>
-        <Button text={text.btnText} />
+        <Link to="/">
+          {/* 홈 임시 버튼 역할 */}
+          <h2 style={{ textDecoration: "none", color: "white" }}>Home</h2>
+        </Link>
+        {/* <Button onClick={handleClick} text={text.btnText} /> */}
+        <Button onClick={() => navigate(-1)}>{text.btnText}</Button>
+        {/* <button onClick={() => navigate(-1)}>뒤로가기</button> */}
       </Wrapper>
-      {showSidebar && <Aside />}
     </>
   );
 };

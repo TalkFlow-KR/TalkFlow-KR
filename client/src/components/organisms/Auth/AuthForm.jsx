@@ -21,23 +21,6 @@ const Wrapper = styled.main`
   }
 `;
 
-const LOGIN_DATA = {
-  email: {
-    id: "email",
-    name: "email",
-    label: "enter your email",
-    type: "text",
-    placeholder: "admin@admin.com",
-  },
-  password: {
-    id: "password",
-    name: "password",
-    label: "enter your password",
-    type: "password",
-    placeholder: "password",
-  },
-};
-
 const AuthForm = () => {
   const { endpoint } = useParams();
   return (
@@ -47,7 +30,7 @@ const AuthForm = () => {
       {/*{endpoint ==='login' && <LoginForm data={LOGIN_DATA}/>}*/}
       {/*  Registerform*/}
       {/*{endpoint ==='register' && <RegisterForm data={JOIN_DATA}/>}*/}
-      <RegisterForm />
+      {/*<RegisterForm />*/}
     </Wrapper>
   );
 };
