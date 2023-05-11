@@ -14,19 +14,22 @@ export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
   }
-
   body {
     //background
-    background-color: ${(props) => props.theme.color.background};
+    background-color: ${({ theme }) => theme.color.bg300};
     // layout 
     line-height: ${(props) => props.theme.lineHeight};
     font-size: ${(props) => props.theme.fontSizes.body};
     letter-spacing: ${(props) => props.theme.layout.spacing};
     height: 100vh;
-    width: 100vw;
+    //width: 100vh;
     //letter-spacing: -2.5rem;
-    ${({ theme }) => theme.color.background}
-    //padding: 2.4rem;
+    padding: 2.4rem;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
     li {
       list-style: none;
     }

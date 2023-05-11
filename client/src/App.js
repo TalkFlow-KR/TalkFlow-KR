@@ -50,7 +50,7 @@ const Wrapper = styled.main`
 `;
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme.lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>

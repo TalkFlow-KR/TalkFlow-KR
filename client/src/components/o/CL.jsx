@@ -5,16 +5,13 @@ import ChatItem from "../m/ChatItem";
 import Search from "../m/Search";
 
 const Wrapper = styled.section`
-  width: 34.4rem;
-  height: 56.2rem;
-  margin: 1.4rem;
   background-color: #eee;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
   overflow-y: auto;
+  //margin-bottom: 11.2rem;
 `;
 const ChatList = styled.div``;
 // 서버에서 채팅방 조회를 하여 map 함수돌려서 ChatItem 늘려야함.
@@ -23,7 +20,6 @@ const Cl = () => {
   return (
     <Wrapper>
       <Search />
-
       <ChatList>
         <ChatItem
           title={"Title"}
@@ -55,6 +51,21 @@ const Cl = () => {
           lastMessage={"LastMessage3"}
           date="2099.09.26"
         />
+        <ChatItem
+          title={"Title3"}
+          lastMessage={"LastMessage3"}
+          date="2099.09.26"
+        />{" "}
+        <ChatItem
+          title={"Title3"}
+          lastMessage={"LastMessage3"}
+          date="2099.09.26"
+        />{" "}
+        <ChatItem
+          title={"Title3"}
+          lastMessage={"LastMessage3"}
+          date="2099.09.26"
+        />{" "}
         <ChatItem
           title={"Title3"}
           lastMessage={"LastMessage3"}
