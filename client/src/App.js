@@ -41,7 +41,7 @@ import Main from "./p/Main";
 // 404 페이지 필요
 // Route
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 const Wrapper = styled.main`
   display: flex;
   justify-content: center;
@@ -49,58 +49,58 @@ const Wrapper = styled.main`
   padding: 2.4rem;
 `;
 function App() {
-   return (
+  return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          {/*<Route path="/" element={<MainPage />} />*/}
+          <Route path="/" element={<Main />} />
           <Route path="/settingspage" element={<SettingsPage />} />
           <Route path="/chatpage" element={<ChatPage />} />
-          <Route path="/login" element={< LoginForm />} />
-          <Route path="/register" element={< RegisterForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
           {/* <Route path="/*" element={< 404 />} /> */}
         </Routes>
       </BrowserRouter>
-    </ThemeProvider >
-  
-//   return (
-//     <>
-//       <ThemeProvider theme={theme}>
-//         <GlobalStyle />
-//         {/**/}
-//         <Wrapper>
-//           <Main />
-//         </Wrapper>
-//         {/**/}
-//         {/* <AuthForm /> */}
-//         {/*TEST*/}
-//         {/*<p>TEST</p>*/}
-//         {/*<Mobile>*/}
-//         {/* <Index /> */}
-//         {/*  <mobileTest>test</mobileTest>*/}
-//         {/* index 페이지 */}
-//         {/*<MainPage />*/}
-//         {/*<ChatPage />*/}
-//         {/*</Mobile>*/}
-//         {/*<Pc>*/}
-//         {/*<MainPage />*/}
-//         {/*</Pc>*/}
-//         {/* <Register /> */}
-//         {/* <Chat /> */}
-//         {/*<Settings />*/}
-//         {/*회원가입/로그인 페이지*/}
-//         {/*<AuthForm />*/}
-//         {/*로딩 컴포넌트*/}
-//         {/*<Loading />*/}
-//         {/*메인페이지 섹션 아티클*/}
-//         {/*<First />*/}
-//         {/*<SettingsPage />*/}
-//         {/*<SuccessRegister />*/}
-//         {/*<LoginForm />*/}
-//       </ThemeProvider>
-//     </>
+    </ThemeProvider>
 
+    //   return (
+    //     <>
+    //       <ThemeProvider theme={theme}>
+    //         <GlobalStyle />
+    //         {/**/}
+    //         <Wrapper>
+    //           <Main />
+    //         </Wrapper>
+    //         {/**/}
+    //         {/* <AuthForm /> */}
+    //         {/*TEST*/}
+    //         {/*<p>TEST</p>*/}
+    //         {/*<Mobile>*/}
+    //         {/* <Index /> */}
+    //         {/*  <mobileTest>test</mobileTest>*/}
+    //         {/* index 페이지 */}
+    //         {/*<MainPage />*/}
+    //         {/*<ChatPage />*/}
+    //         {/*</Mobile>*/}
+    //         {/*<Pc>*/}
+    //         {/*<MainPage />*/}
+    //         {/*</Pc>*/}
+    //         {/* <Register /> */}
+    //         {/* <Chat /> */}
+    //         {/*<Settings />*/}
+    //         {/*회원가입/로그인 페이지*/}
+    //         {/*<AuthForm />*/}
+    //         {/*로딩 컴포넌트*/}
+    //         {/*<Loading />*/}
+    //         {/*메인페이지 섹션 아티클*/}
+    //         {/*<First />*/}
+    //         {/*<SettingsPage />*/}
+    //         {/*<SuccessRegister />*/}
+    //         {/*<LoginForm />*/}
+    //       </ThemeProvider>
+    //     </>
   );
 }
 

@@ -4,12 +4,13 @@ import ChatIcon from "../a/ChatIcon";
 
 const Wrapper = styled.div`
   background-color: thistle;
-  width: 27.2rem;
+  width: 25.4rem;
   height: 9rem;
   border-radius: 0.8rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  padding: 1.2rem;
   margin: 1.6rem;
 `;
 const TextBox = styled.div``;

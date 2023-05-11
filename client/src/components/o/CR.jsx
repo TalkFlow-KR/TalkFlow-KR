@@ -1,6 +1,7 @@
 //ChatRoomComponent.jsx
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import RoomTitle from "../m/RoomTitle";
 
 const Wrapper = styled.section`
   width: 44.4rem;
@@ -8,6 +9,7 @@ const Wrapper = styled.section`
   margin: 1.4rem;
   background-color: #ddd;
   border-radius: 2rem;
+  padding: 2rem;
 `;
 
 const Cr = ({ data }) => {
@@ -19,9 +21,8 @@ const Cr = ({ data }) => {
 
   return (
     <Wrapper>
-      {text.map((v, i) => {
-        <p>v</p>;
-      })}
+      <RoomTitle />
+      <article>test</article>
     </Wrapper>
   );
 };
