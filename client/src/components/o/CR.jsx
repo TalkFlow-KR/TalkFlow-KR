@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -8,8 +8,21 @@ const Wrapper = styled.section`
   background-color: #ddd;
   border-radius: 2rem;
 `;
-const Cr = ({ children }) => {
-  return <Wrapper>{children} </Wrapper>;
+
+const Cr = ({ data }) => {
+  const [text, setText] = useState([]);
+
+  useEffect(() => {
+    setText([...text, data.ai.answer]);
+  }, []);
+
+  return (
+    <Wrapper>
+      {text.map((v, i) => {
+        <p>v</p>;
+      })}
+    </Wrapper>
+  );
 };
 
 export default Cr;

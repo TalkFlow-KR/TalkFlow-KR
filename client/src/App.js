@@ -62,7 +62,7 @@ function App() {
         {/*  <mobileTest>test</mobileTest>*/}
         {/* index 페이지 */}
         <MainPage />
-        {/*<ChatPage />*/}
+        <ChatPage />
         {/*</Mobile>*/}
         {/*<Pc>*/}
         {/*<MainPage />*/}
