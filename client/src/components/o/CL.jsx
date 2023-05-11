@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ChatItem from "../m/ChatItem";
+import Search from "../m/Search";
 
 const Wrapper = styled.section`
   width: 34.4rem;
