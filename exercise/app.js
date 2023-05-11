@@ -99,8 +99,9 @@ function clearPublicFolder() {
   let i;
   listFiles()
     .then((files) => {
+      console.log("files >>", files);
       // 파일 목록을 사용하여 작업 수행
-      for (i = 0; i < files.length; i++) {
+      for (i = 0; i < files.length - 1; i++) {
         console.log(files[i], "이 삭제되었습니다.");
         let deleteFile = files[i];
         deleteRecordedAudio1(deleteFile);
@@ -111,21 +112,17 @@ function clearPublicFolder() {
     });
 }
 
-//새로 접근할때마다 파일 모두 삭제함.
-// clearPublicFolder();
-
 const path = require("path");
 const { clear } = require("console");
+const { CLIENT_RENEG_LIMIT } = require("tls");
 
 function deleteRecordedAudio1(filename) {
   const filePath = path.join(__dirname, "./public", filename);
-  fs.unlink(filePath, (err) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log(`${filePath} 경로의 파일이 삭제되었습니다.`);
-  });
+  try {
+    fs.unlinkSync(filePath);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function tts(gptMsg) {
@@ -172,6 +169,9 @@ app.get("/stop", async (req, res) => {
   res.json({ transcription });
   console.log("텍스트 변환 완료", transcription, "falg = ", flag);
   //번역이 끝났음을 알기 위함.
+  // TODO: 음성 파일 삭제하기
+  clearPublicFolder();
+
   flag = 1;
   console.log(`2, ${transcription}`);
   messages.push({ role: "user", content: transcription });

@@ -63,7 +63,7 @@ exports.post_signup = async (req, res) => {
      telephone: req.body.telephone,
     }
   });
-  // res.send('signup success')
+  res.send('signup success')
   res.sendFile(__dirname + "/result.html");
 };
 
@@ -85,7 +85,10 @@ exports.post_login = async (req, res) => {
   console.log("getCry: ", getCry.password);
   console.log(result.password);
   if (getCry.password === result.password) {
-    // res.send("success");
+    // 로그인에 성공한 경우, 세션을 생성하고 req.session 에 사용자 정보 저장
+    req.session.userId = result.id;
+    req.session.name = result.name;
+    res.send("success");
     res.sendFile(__dirname + "/result.html");
   } else {
     res.send("wrong");

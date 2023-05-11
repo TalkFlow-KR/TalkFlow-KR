@@ -24,11 +24,14 @@
 
     <div>
       <h2>음성 변환 내역</h2>
-      <p id="transcription"></p>
+      <input id="transcription" />
+      <button type="submit" onclick="edit()">대화하기</button>
     </div>
     <div>---------채팅 내역--------</div>
     <div class="Date"></div>
-    <div id="div-container"></div>
+    <div id="div-container">
+      <div input></div>
+    </div>
 
     <script>
       // 오디오 div 생성
@@ -56,57 +59,77 @@
       };
 
       const stopRecording = async () => {
-        let currentDate = new Date();
-        let year = currentDate.getFullYear();
-        let month = String(currentDate.getMonth() + 1).padStart(2, "0");
-        let day = String(currentDate.getDate()).padStart(2, "0");
-        document.getElementsByClassName(
-          "Date"
-        )[0].textContent = `${year}년 ${month}월 ${day}일`;
+          // let currentDate = new Date();
+          // let year = currentDate.getFullYear();
+          // let month = String(currentDate.getMonth() + 1).padStart(2, "0");
+          // let day = String(currentDate.getDate()).padStart(2, "0");
+          // document.getElementsByClassName(
+          //   "Date"
+          // )[0].textContent = `${year}년 ${month}월 ${day}일`;
 
-        // 전송 시간
-        let newHours = currentDate.getHours();
-        let newMinutes = currentDate.getMinutes();
-        let newSeconds = currentDate.getSeconds();
-        let time = `${newHours}:${newMinutes}:${newSeconds}`;
+          // // 전송 시간
+          // let newHours = currentDate.getHours();
+          // if (newHours > 12) {
+          //   newHours -= 12;
+          //  }
+          // let period = (newHours < 12) ? "AM" : "PM";
+          // let newMinutes = currentDate.getMinutes();
+          // let newSeconds = currentDate.getSeconds();
+          // let time = `${newHours}:${newMinutes}:${newSeconds} ${period}`;
 
-        console.log("녹음 종료를 누르셨습니다. 번역 중이니 잠시만 기다리세요.");
-        const res = await fetch("/stop");
-        if (res.ok) {
-          document.getElementById("status").textContent = "번역중 입니다.";
-          const data = await res.json();
-          document.getElementById("transcription").textContent =
-            data.transcription;
-          console.log("번역이 전달되었습니다.");
+          console.log("녹음 종료를 누르셨습니다. 번역 중이니 잠시만 기다리세요.");
+          const res = await fetch("/stop");
 
-          // 녹음된 언어 div로 출력.
-          const divContainer = document.getElementById("div-container");
-          const iSayDiv = document.createElement("div");
-          iSayDiv.textContent = "------i say------";
-          divContainer.appendChild(iSayDiv);
-
-          const newDiv = document.createElement("div");
-          newDiv.textContent = data.transcription;
-          divContainer.appendChild(newDiv);
-
-          const User_time = document.createElement("div");
-          User_time.textContent = time;
-          divContainer.appendChild(User_time);
-
-          console.log("Gpt음성 출력 시작...");
-          await chatAns();
-          console.log("Gpt음성 출력 종료...");
-          <!-- await fetch("/delete"); -->
-
-
-          chatAns();
-
-        } else {
-          document.getElementById("status").textContent =
-            "녹음을 중지하는데 실패했습니다.";
+          if (res.ok) {
+            document.getElementById("status").textContent = "번역중 입니다.";
+            const data = await res.json();
+            document.getElementById("transcription").textContent =
+              data.transcription;
+              transcription.value = data.transcription;
+            console.log("번역이 전달되었습니다.");
+            // stopRecording > 멈추고 > input 값에 넣어 > stop에서 버튼 누르면 그때 보내기.
+          }
         }
-      };
 
+         const edit = async ()=>{
+          let currentDate = new Date();
+          let year = currentDate.getFullYear();
+          let month = String(currentDate.getMonth() + 1).padStart(2, "0");
+          let day = String(currentDate.getDate()).padStart(2, "0");
+          document.getElementsByClassName(
+            "Date"
+          )[0].textContent = `${year}년 ${month}월 ${day}일`;
+           // 전송 시간
+           let newHours = currentDate.getHours();
+          if (newHours > 12) {
+            newHours -= 12;
+           }
+          let period = (newHours < 12) ? "AM" : "PM";
+          let newMinutes = currentDate.getMinutes();
+          let newSeconds = currentDate.getSeconds();
+          let time = `${newHours}:${newMinutes}:${newSeconds} ${period}`;
+
+          const res =  fetch("/stop");
+            const divContainer = document.getElementById("div-container");
+            const iSayDiv = document.createElement("div");
+            // iSayDiv.value = data.transcription;
+            iSayDiv.textContent = "------i say------";
+            divContainer.appendChild(iSayDiv);
+
+            const newDiv = document.createElement("div");
+            newDiv.textContent = data.transcription;
+            divContainer.appendChild(newDiv);
+
+            const User_time = document.createElement("div");
+            User_time.textContent = time;
+            divContainer.appendChild(User_time);
+
+            console.log("Gpt음성 출력 시작...");
+            await chatAns();
+            console.log("Gpt음성 출력 종료...");
+            <!-- await fetch("/delete"); -->
+            chatAns();
+          }
       const chatAns = async () => {
         let currentDate = new Date();
         let year = currentDate.getFullYear();
@@ -118,9 +141,13 @@
 
         // 전송 시간
         let newHours = currentDate.getHours();
+        if (newHours > 12) {
+          newHours -= 12;
+         }
+        let period = (newHours < 12) ? "AM" : "PM";
         let newMinutes = currentDate.getMinutes();
         let newSeconds = currentDate.getSeconds();
-        let time = `${newHours}:${newMinutes}:${newSeconds}`;
+        let time = `${newHours}:${newMinutes}:${newSeconds} ${period}`;
 
         console.log("chatgpt가 답변중입니다..");
         const res = await fetch("/chat");
