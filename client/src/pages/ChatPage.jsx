@@ -45,7 +45,6 @@ const Wrapper = styled.main`
   justify-content: center;
   /* width: ${(props) => props.theme.layout.width.top}; */
 `;
-
 const ChatPage = () => {
   return (
     <>

@@ -7,9 +7,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   *::before,
-*::after {
-  box-sizing: border-box;
-}
+  *::after {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 62.5%;
   }
@@ -23,23 +24,25 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: ${(props) => props.theme.layout.spacing};
     height: 100vh;
     width: 100vw;
-     //letter-spacing: -2.5rem;
-     ${({ theme }) => theme.color.background}
-  li {
-    list-style: none;
-  }
-       
-  a {
-    text-decoration: none;
-  }
+    //letter-spacing: -2.5rem;
+    ${({ theme }) => theme.color.background}
+    //padding: 2.4rem;
+    li {
+      list-style: none;
+    }
 
-  button {
-    cursor: pointer;
-    border: 0;
-    
-    
-  }
-  p {
-  }
+    a {
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+
+
+    }
+
+    p {
+    }
   }
 `;
