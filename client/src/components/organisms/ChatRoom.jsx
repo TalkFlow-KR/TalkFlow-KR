@@ -2,6 +2,9 @@ import BarIcon from "components/atoms/BarIcon";
 import Button from "components/atoms/Button";
 import LogoIcon from "components/atoms/LogoIcon";
 import ChatComponent from "components/molecules/ChatComponent";
+import Lottie from "lottie-react";
+import animationData from "assets/micIdle.json";
+
 import React, { useState, useRef, useEffect } from "react";
 import {
   ChatBubble,
@@ -96,7 +99,7 @@ const ChatRoom = () => {
           />
         </InputContainer>
         <SendButton onClick={handleSendClick}>
-          <LogoIcon />
+          <Lottie animationData={animationData} />
         </SendButton>
       </Footer>
     </ChatContainer>

@@ -15,11 +15,7 @@ const Container = styled.section`
   height: 92.4%;
   margin: 0 2.8rem;
   margin-top: 2.8rem;
-
-  /* overflow-y: scroll; */
-  /* width: ${(props) => props.theme.layout.width.main}; */
   width: ${(props) => props.theme.layout.width.top};
-
   border-radius: ${(props) => props.theme.layout.radius.l};
 
   & > div {
