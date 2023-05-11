@@ -1,5 +1,6 @@
 //First.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import MainArticle from "../atoms/MainArticle";
 import styled from "styled-components";
 import learning from "assets/learning.json";
@@ -36,10 +37,13 @@ const First = () => {
           <h1>CHAT FLOW-KR</h1>
           <h2>Chatflow는 AI와 현실 대화로,흐름을 이해하는</h2>
           <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
-          <Button>
-            GET STARTED <span>It's free !</span>
-          </Button>
+          <Link to="/settingspage">
+            <Button>
+              GET STARTED <span>It's free !</span>
+            </Button>
+          </Link>
         </MainArticle>
+
         <MainArticle bgColor="#dae2f9">
           <Lottie animationData={learning} />
         </MainArticle>

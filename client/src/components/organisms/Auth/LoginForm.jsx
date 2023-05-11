@@ -41,6 +41,7 @@ const LoginForm = () => {
     // 로딩 ON
     setIsLoading(true);
     e.preventDefault();
+
     // 로그인 요청
     const res = await axios.post("/post-login", data);
     console.log(res);
