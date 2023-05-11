@@ -163,7 +163,6 @@ const Settings = () => {
                 style={{
                   backgroundColor: lang === item ? "#2BB0ED" : "#B7B7B7",
                 }}>
-                {" "}
                 {item}
               </button>
             ))}

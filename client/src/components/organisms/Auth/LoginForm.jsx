@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
 import Button from "../../atoms/Button";
 import Loading from "../../atoms/Loading";
+import axios from "axios";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
@@ -39,6 +40,7 @@ const LoginForm = () => {
     const res = await axios.post("/post-login", data);
     console.log(email, password);
   };
+
   return (
     <>
       {isLoading ? <Loading /> : "loadingState가 false라면,이게 뜸"};

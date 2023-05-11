@@ -15,7 +15,7 @@ const Wrapper = styled.main`
     max-width: 50rem;
     width: 36rem;
     height: 50rem;
-    background-color: tan;
+    background-color: ${({ theme }) => theme.color.chatBackground};
     border-radius: 2.2rem;
     flex: 1 1 0;
   }

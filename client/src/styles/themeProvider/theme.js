@@ -1,4 +1,3 @@
-
 import Token from "assets/design-tokens.json";
 
 // 반응형 디자인을 위한 픽셀 REM 컨버팅
@@ -56,7 +55,12 @@ const color = {
   chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
   chatBackground: Token.style.color.charcoal["charcoal-800"].value,
   animationBackgroundColor: "#dae2f9",
-  inputShadow : "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
+  inputShadow: "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
+  a: "#F2F8FC",
+  b: "#3d3e3f",
+  c: "#fff",
+  d: "#6A7FD3",
+  e: "#95DB9B",
 };
 const fontSizes = {
   // layout
@@ -86,4 +90,3 @@ const theme = {
 
 export default theme;
 // theme  를 dark / light 로 나누어 다크모드
-
