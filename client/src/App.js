@@ -41,19 +41,33 @@ import Register from "./p/Register"
 // Route
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
+
+const Wrapper = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.4rem;
+`;
+
+
 function App() {
   return (
     <ThemeProvider theme={theme.lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
+
           <Route path="/" element={<Main />} />
           <Route path="/index" element={<Index />} />
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/history" element={<History />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/notification" element={<Notification />} />
+          <Route path="/notification" element={<Notification />} />      
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/oauth/kakao/callback" element={<LoginForm />} />
+          <Route path="/auth" element={<KakaoAuth />} />
+          <Route path="/register" element={<RegisterForm />} />
           {/* <Route path="/*" element={< 404 />} /> */}
         </Routes>
       </BrowserRouter>
@@ -93,7 +107,6 @@ function App() {
     //         {/*<First />*/}
     //         {/*<SettingsPage />*/}
     //         {/*<SuccessRegister />*/}
-    //         {/*<LoginForm />*/}
     //       </ThemeProvider>
     //     </>
   );
