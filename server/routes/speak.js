@@ -23,7 +23,6 @@ router.post("/room/:userid", controller.room);
 
 // 5. /stt
 router.get('/voice',controller_gpt.stt)
-// router.get('/voice-stop',controller_gpt.stopRecording);
 router.post('/runGpt/:roomid',controller_gpt.runGPT35);
 
 // 6. /kakao

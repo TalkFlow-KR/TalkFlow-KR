@@ -12,7 +12,7 @@ exports.stt = (req,res)=>{
 // 답변
 exports.runGPT35 = async (req,res) => {
   // ROOM 테이블에 저장된 정보 받아오기
-    const {roomid} = req.params;
+    const roomid = req.params.roomid;
     const result = await models.MSG.findOne({
         where:{
             room_id : roomid

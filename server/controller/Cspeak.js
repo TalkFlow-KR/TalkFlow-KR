@@ -113,7 +113,7 @@ exports.post_login = async (req, res) => {
 
 //  3. /msg/:roomid 과거 대화 내용 조회
 exports.msg = async (req, res) => {
-  const roomId = req.params();
+  const roomId = req.params.roomid;
   const result = await models.MSG.findAll({
     where: {
       room_id: roomId,
@@ -124,19 +124,21 @@ exports.msg = async (req, res) => {
 
 // 해당 유저가 가진 모든 방 내보내기
 exports.allRoom = async(req,res)=>{
-  const userId = req.params()
+  const userId = req.params.userid
+  console.log('userID: ',userId)
   const result = await models.ROOM.findAll({
     where : {
       id : userId
     }
   })
+  console.log(result)
   res.send(result.room_id)
 }
 
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
-  const userId = req.params()
+  const userId = req.params.userid;
   console.log(req.body)
   const result = await models.ROOM.create({
     id : userId, // user_id
