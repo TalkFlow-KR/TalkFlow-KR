@@ -1,4 +1,4 @@
-// MainContentsComponent.jsx
+// NewChatComponent.jsx
 import React from "react";
 import HC from "./HC";
 import styled from "styled-components";
@@ -14,7 +14,7 @@ const Wrapper = styled.section`
   //height: 70rem;
   //height: 100%;
   border-radius: 2rem;
-  /* background-color: tomato; */
+  //background-color: tomato;
   background-color: ${({ theme }) => theme.color.bg100};
   //justify-content: center;
   align-items: center;
@@ -34,15 +34,19 @@ const ContentsBox = styled.section`
     flex-direction: column;
   }
 `;
+
 const data = {
   ai: {
     answer: ["partners test", "1", "2", "3"],
   },
 };
-const MC = () => {
+const NewC = () => {
   return (
     <Wrapper>
-      <HC>HOME</HC>
+      {/* <HC>Contents Text</HC> */}
+      {/* <HC>Contents Title : CHAT / HOME / LOGIN / REGISTER </HC> */}
+      <HC>New Chat</HC>
+      {/*ChatRoom */}
       <ContentsBox>
         <CS />
         {/*<CL />*/}
@@ -52,4 +56,4 @@ const MC = () => {
   );
 };
 
-export default MC;
+export default NewC;

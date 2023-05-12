@@ -11,7 +11,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: calc(100vh - 12.8rem);
-  /* width: ${(props) => props.theme.layout.width.main}; */
 `;
 
 const Chat = () => {

@@ -39,12 +39,12 @@ const TopArticle = () => {
           onClick={toggleSidebar}>
           <BarIcon />
         </button>
-        <Link to="/">
-          {/* 홈 임시 버튼 역할 */}
-          <h2 style={{ textDecoration: "none", color: "white" }}>Home</h2>
-        </Link>
-        {/* <Button onClick={handleClick} text={text.btnText} /> */}
-        <Button onClick={() => navigate(-1)}>{text.btnText}</Button>
+        {/* <Link to="/"> */}
+        {/* 홈 임시 버튼 역할 */}
+        <h2 style={{ textDecoration: "none", color: "white" }}>Home</h2>
+        {/* </Link> */}
+        <Button onClick={handleClick} text={text.btnText} />
+        {/* <Button onClick={() => navigate(-1)}>{text.btnText}</Button> */}
         {/* <button onClick={() => navigate(-1)}>뒤로가기</button> */}
       </Wrapper>
     </>

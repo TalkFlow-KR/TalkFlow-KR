@@ -5,18 +5,18 @@ import styled from "styled-components";
 import Aside from "components/organisms/Aside";
 import ChatRoom from "components/organisms/ChatRoom";
 // import { Wrapper } from "styles/Aside.styled";
-import theme from "styles/themeProvider/theme";
+import theme from "../styles/themeProvider/theme";
 import Settings from "./Settings";
 
 const Container = styled.section`
-  background-color: ${(props) => theme.color.boxBackground};
+  background-color: ${({ theme }) => theme.color.bg100};
   display: flex;
   flex-direction: column;
   height: 92.4%;
   margin: 0 2.8rem;
   margin-top: 2.8rem;
-  width: ${(props) => props.theme.layout.width.top};
-  border-radius: ${(props) => props.theme.layout.radius.l};
+  width: ${({ theme }) => theme.layout.width.top};
+  border-radius: ${({ theme }) => theme.layout.radius.l};
 
   & > div {
     height: 100%;
@@ -31,21 +31,15 @@ const Wrapper = styled.main`
   display: flex;
 
   justify-content: center;
-  /* width: ${(props) => props.theme.layout.width.top}; */
 `;
 
 const SettingsPage = () => {
   return (
     <>
       <Header />
-      {/* <Wrapper>
-        <Aside />
-      </Wrapper> */}
       <Wrapper>
         <Container>
-          {/* <Main /> */}
           <Settings />
-          {/* <ChatRoom /> */}
         </Container>
       </Wrapper>
     </>

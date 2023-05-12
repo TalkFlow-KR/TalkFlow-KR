@@ -25,6 +25,8 @@ const layout = {
   },
   width: {
     left: "22.2rem",
+    lc: "26.4rem",
+    tabletLc: "10rem",
     top: "114.2rem",
     main: "92.4rem",
     mobileTop: "36rem",

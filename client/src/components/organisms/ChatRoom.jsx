@@ -26,7 +26,6 @@ const ChatRoom = () => {
   const [inputValue, setInputValue] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [message, setMessage] = useState("");
-  // const [isAiBubble, setIsAiBubble] = useState(false);
   const messagesEndRef = useRef(null);
 
   // scrollIntoView : 가장 최근 메세지에 포커스
@@ -43,7 +42,6 @@ const ChatRoom = () => {
         const newMessage = {
           id: Date.now(),
           text: inputValue,
-          // isAiBubble: false,
           time: new Date().toLocaleTimeString(),
         };
         setMessageList([...messageList, newMessage]);
@@ -66,7 +64,6 @@ const ChatRoom = () => {
       const newMessage = {
         id: Date.now(),
         text: inputValue,
-        // isAiBubble: false,
         time: new Date().toLocaleTimeString(),
       };
       setMessageList([...messageList, newMessage]);
