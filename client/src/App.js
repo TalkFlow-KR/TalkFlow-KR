@@ -42,23 +42,29 @@ import Main from "./p/Main";
 // Route
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
+
 const Wrapper = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2.4rem;
 `;
+
 function App() {
   return (
     <ThemeProvider theme={theme.lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          {/*<Route path="/" element={<MainPage />} />*/}
-          <Route path="/" element={<Main />} />
+          {/*<Route  exact path="/" element={<MainPage />} />*/}
+          <Route exact path="/" element={<Main />} />
           <Route path="/settingspage" element={<SettingsPage />} />
           <Route path="/chatpage" element={<ChatPage />} />
+          {/*<Route path="/login" element={<LoginForm />} />*/}
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/oauth/kakao/callback" element={<LoginForm />} />
+          <Route path="/auth" element={<KakaoAuth />} />
           <Route path="/register" element={<RegisterForm />} />
           {/* <Route path="/*" element={< 404 />} /> */}
         </Routes>
@@ -98,7 +104,6 @@ function App() {
     //         {/*<First />*/}
     //         {/*<SettingsPage />*/}
     //         {/*<SuccessRegister />*/}
-    //         {/*<LoginForm />*/}
     //       </ThemeProvider>
     //     </>
   );
