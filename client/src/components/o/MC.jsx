@@ -4,25 +4,30 @@ import HC from "./HC";
 import styled from "styled-components";
 import CL from "./CL";
 import CR from "./CR";
+import CS from "./CS";
 
 const Wrapper = styled.section`
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   //width: 107.2rem;
-  height: 70rem;
+  //height: 70rem;
+  //height: 100%;
   border-radius: 2rem;
-  background-color: tomato;
-  flex: 1 1 0;
+  //background-color: tomato;
+  background-color: ${({ theme }) => theme.color.bg100};
+  //justify-content: center;
+  align-items: center;
   gap: 2rem;
+  //margin: 2rem;
+  overflow: hidden;
 `;
-const ContentsBox = styled.article`
-  flex: 1 1 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+const ContentsBox = styled.section`
+  //width: 100%;
   height: 100%;
+  display: flex;
+  padding-bottom: 11.2rem;
 `;
-
 const data = {
   ai: {
     answer: ["partners test", "1", "2", "3"],
@@ -31,11 +36,13 @@ const data = {
 const Mc = () => {
   return (
     <Wrapper>
-      <HC>HC Contents Text</HC>
-      <HC>HC Contents Title : CHAT / HOME / LOGIN / REGISTER </HC>
+      {/*<HC>Contents Text</HC>*/}
+      <HC>Contents Title : CHAT / HOME / LOGIN / REGISTER </HC>
+      {/*ChatRoom */}
       <ContentsBox>
-        <CL></CL>
-        <CR data={data}></CR>
+        <CS />
+        {/*<CL />*/}
+        <CR data={data} />
       </ContentsBox>
     </Wrapper>
   );

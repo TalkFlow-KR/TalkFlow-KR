@@ -4,6 +4,7 @@ import InputWithLabels from "../../molecules/InputWithLabels";
 import Button from "../../atoms/Button";
 import Loading from "../../atoms/Loading";
 import axios from "axios";
+import KaKaoLogin from "../../m/KaKaoLogin";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
@@ -78,7 +79,8 @@ const LoginForm = () => {
             <button onClick={onShow}>openyoureyes</button>
           </label>
           <br />
-          <button onClick={onSubmit}>test</button>
+          <button onClick={onSubmit}>로그인하기</button>
+          <KaKaoLogin />
         </section>
       </Wrapper>
     </>
