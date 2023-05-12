@@ -43,6 +43,8 @@ import Main from "./p/Main";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
+import Test from "./components/a/Test";
+import MicButton from "./components/a/MicButton";
 
 const Wrapper = styled.main`
   display: flex;
@@ -63,9 +65,10 @@ function App() {
           <Route path="/chatpage" element={<ChatPage />} />
           {/*<Route path="/login" element={<LoginForm />} />*/}
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/oauth/kakao/callback" element={<LoginForm />} />
+          {/*<Route path="/oauth/kakao/callback" element={<KaKaoAuth />} />*/}
           <Route path="/auth" element={<KakaoAuth />} />
           <Route path="/register" element={<RegisterForm />} />
+          <Route path="/test" element={<MicButton />} />
           {/* <Route path="/*" element={< 404 />} /> */}
         </Routes>
       </BrowserRouter>
