@@ -31,44 +31,44 @@ const RegisterForm = () => {
   const [isValid, setIsValid] = useState(false);
   const [position, setPosition] = useState(1);
   // email state
-  const [emailValue, setEmailValue] = useState("");
+  const [emailValue, setEmailValue] = useState("smurf@kakao.com");
   // 이메일 유효성
   const [isValidEmail, setIsValidEmail] = useState(false);
   // password state
-  const [passwordValue, setPasswordValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("1234");
   const [showPassword, setShowPassword] = useState(false);
   // userName state
-  const [userNameValue, setUserNameValue] = useState("");
+  const [userNameValue, setUserNameValue] = useState("smurf");
   // gender state
   const [genderValue, setGenderValue] = useState("male");
   // phone state
-  const [phoneValue, setPhoneValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState("0100000000");
   // 폰 유효성
   const [isValidPhone, setIsValidPhone] = useState(false);
 
   const JOIN_DATA = {
-    email: {
+    emailText: {
       id: "email",
       name: "email",
       label: "what's your email?",
       type: "text",
       placeholder: "type your email.",
     },
-    password: {
+    passwordText: {
       id: "password",
       name: "password",
       label: "Enter the password to use.",
       type: !showPassword ? "password" : "text",
       placeholder: "******",
     },
-    userName: {
+    userNameText: {
       id: "name",
       name: "name",
       label: "What's your name tho ?",
       type: "text",
       placeholder: "James",
     },
-    gender: {
+    genderText: {
       label: "are you male? or female?",
       male: {
         id: "male",
@@ -85,7 +85,7 @@ const RegisterForm = () => {
         value: "female",
       },
     },
-    phone: {
+    phoneText: {
       id: "phone",
       name: "phone",
       label: "enter your phone number",
@@ -93,7 +93,8 @@ const RegisterForm = () => {
       placeholder: "010-1234-5678",
     },
   };
-  const { email, password, userName, gender, phone } = JOIN_DATA;
+  const { emailText, passwordText, userNameText, genderText, phoneText } =
+    JOIN_DATA;
   const onClick = (e) => {
     e.preventDefault();
     setPosition(position - 80);
@@ -109,23 +110,15 @@ const RegisterForm = () => {
     }
     setState(value);
   };
+
   const data = {
-    name: emailValue,
-    userName: userName,
-    pw: passwordValue,
+    email: emailValue,
+    name: userNameValue,
+    password: passwordValue,
     gender: genderValue,
-    phoneNumber: phoneValue,
+    telephone: phoneValue,
   };
   const onSubmit = async () => {
-    setIsLoading(true);
-    const res = await axios.post("/post-signup", data);
-    console.log(res.data);
-    if (res.data === "res.data가 가입성공일 경우") {
-      //   가입 성공에 대한 화면 출력 및 상태 변경
-    } else {
-      // 가입 실패일 경우 에러 출력
-    }
-    setIsLoading(false);
     console.log(
       emailValue,
       passwordValue,
@@ -133,6 +126,17 @@ const RegisterForm = () => {
       genderValue,
       userNameValue
     );
+    setIsLoading(true);
+    const res = await axios.post("http://localhost:8000/post-signup", data);
+
+    console.log(res.data);
+
+    if (res.data === "res.data가 가입성공일 경우") {
+      //   가입 성공에 대한 화면 출력 및 상태 변경
+    } else {
+      // 가입 실패일 경우 에러 출력
+    }
+    setIsLoading(false);
   };
   const onShow = () => {
     setShowPassword(!showPassword);
@@ -146,7 +150,7 @@ const RegisterForm = () => {
           style={{ transform: `translateX(${position}rem)` }}>
           <StyledFieldSet>
             <InputWithLabels
-              data={email}
+              data={emailText}
               onChange={(e) =>
                 onChange(e, setEmailValue, emailRageX, setIsValidEmail)
               }
@@ -167,7 +171,7 @@ const RegisterForm = () => {
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
-              data={password}
+              data={passwordText}
               onChange={(e) => onChange(e, setPasswordValue)}
               value={passwordValue}
               required={true}
@@ -189,7 +193,7 @@ const RegisterForm = () => {
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
-              data={userName}
+              data={userNameText}
               onChange={(e) => onChange(e, setUserNameValue)}
               value={userNameValue}
             />
@@ -199,7 +203,7 @@ const RegisterForm = () => {
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
-              data={gender}
+              data={genderText}
               onChange={(e) => onChange(e, setGenderValue)}
               value={genderValue}
             />
@@ -209,7 +213,7 @@ const RegisterForm = () => {
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
-              data={phone}
+              data={phoneText}
               onChange={(e) =>
                 onChange(e, setPhoneValue, phoneRageX, setIsValidPhone)
               }

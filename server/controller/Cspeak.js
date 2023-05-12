@@ -49,12 +49,14 @@ exports.signup = (req, res) => {
 };
 
 exports.post_signup = async (req, res) => {
+  console.log(req.body)
   let cryptoPassword = await createCryptoPassword(req.body.password);
+  console.log('cryp: ',cryptoPassword)
   const result = await models.USER.findOrCreate({
     where : {
       email: req.body.email,
     },
-    default : {
+    defaults : {
       name: req.body.name,
       email: req.body.email,
       password: cryptoPassword.password,
@@ -62,30 +64,13 @@ exports.post_signup = async (req, res) => {
       gender: req.body.gender,
       telephone: req.body.telephone,
     }
-  });
-  // findOrCreate 생성시 true, 실패시 fail
-  if(result === false){
-    // email 중복
-    const find_email = await models.USER.findOne({
-      where : {
-        email : req.body.email
-      }
-    })
-    if(find_email === true){
-      res.send('duplication email')
-    }
-    
-    // tel 중복
-    const find_tel = await models.USER.findOne({
-      where : {
-        telephone : req.body.telephone
-      }
-    })
-    if(find_tel === true){
-      res.send('duplication telephone')
-    }
+  })
+  if(result.at(-1) === false){
+    console.log('fail')
+    res.send('fail')
   }
   else{
+    console.log('suc')
     res.send('success')
   }
 };
@@ -96,6 +81,7 @@ exports.login = (req, res) => {
 };
 
 exports.post_login = async (req, res) => {
+  console.log(req.body)
   // 입력받은 아이디를 가진 사람을 찾아 salt와 입력한 비밀번호를 조합하며 저장된 비번과 같은지 확인
   const result = await models.USER.findOne({
     email: req.body.email,
@@ -110,13 +96,14 @@ exports.post_login = async (req, res) => {
     res.send("success");
     res.sendFile(__dirname + "/result.html");
   } else {
-    res.send("wrong");
+    res.send("fail");
   }
 };
 
 //  3. /msg/:roomid 과거 대화 내용 조회
 exports.msg = async (req, res) => {
-  const roomId = req.params();
+  const roomId = req.params.roomid;
+  console.log(roomId)
   const result = await models.MSG.findAll({
     where: {
       room_id: roomId,
@@ -127,7 +114,8 @@ exports.msg = async (req, res) => {
 
 // 해당 유저가 가진 모든 방 내보내기
 exports.allRoom = async(req,res)=>{
-  const userId = req.params()
+  const userId = req.params.userid
+  console.log(userId)
   const result = await models.ROOM.findAll({
     where : {
       id : userId
@@ -139,7 +127,8 @@ exports.allRoom = async(req,res)=>{
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
-  const userId = req.params()
+  const userId = req.params.userid
+  console.log(userId)
   console.log(req.body)
   const result = await models.ROOM.create({
     id : userId, // user_id
@@ -170,14 +159,19 @@ exports.kakao2 = async (req, res) => {
       where : {
         kakaoId : req.body.id.toString()
       },
-      default : {
+      defaults : {
         kakaoId : req.body.id.toString(),
         kakao_nickname : req.body.nickname
       }
     })
-    
-    console.log(result);
-
+    if(result.at(-1) === false){ // 중복되면 
+      console.log('fail')
+      res.send('fail')
+    }
+    else{ // 중복 안되면
+      console.log('suc')
+      res.send('success')
+    }
   } catch (error) {
     res.status(500).send("Error");
   }

@@ -8,6 +8,7 @@ const Container = styled.section`
   width: 26.4rem;
   height: 100%;
   background-color: #ddd;
+  background-color: ${({ theme }) => theme.color.bg100};
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -16,7 +17,8 @@ const Container = styled.section`
 const MenuList = styled.article`
   width: 22.4rem;
   height: 100%;
-  background-color: greenyellow;
+  //background-color: greenyellow;
+  background-color: ${({ theme }) => theme.color.bg300};
   border-radius: 2rem;
   display: flex;
   margin: 1.6rem 0;
