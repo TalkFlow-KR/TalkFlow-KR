@@ -35,11 +35,11 @@ const Container = styled.main`
 `;
 
 const Main = ({ isUserActive, userId }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function loading() {
-      setIsLoading(true);
+      setIsLoading(false);
       const data = 0;
       const res = await axios.post("https://localhost:8000/", data);
       console.log(res);

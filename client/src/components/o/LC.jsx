@@ -41,9 +41,9 @@ const MenuList = styled.article`
 const LC = () => {
   return (
     <Container>
-      <UserInfo>{/* <button> logout / edit</button> */}</UserInfo>
+      <UserInfo />
       <MenuList>
-        <Link to={"/"}>
+        <Link to={"/main"}>
           <MenuItem>HOME</MenuItem>
         </Link>
         <Link to={"/newchat"}>

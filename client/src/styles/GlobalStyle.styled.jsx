@@ -19,7 +19,6 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.color.bg300};
     // layout 
     line-height: ${(props) => props.theme.lineHeight};
-    font-size: ${(props) => props.theme.fontSizes.body};
     letter-spacing: ${(props) => props.theme.layout.spacing};
     height: 100vh;
     //width: 100vh;
@@ -29,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
       display: flex;
       justify-content: center;
       align-items: center;
+    font-size: 1.5rem;
       
     li {
       list-style: none;
