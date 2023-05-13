@@ -35,7 +35,7 @@ const RegisterForm = () => {
   // 이메일 유효성
   const [isValidEmail, setIsValidEmail] = useState(false);
   // password state
-  const [passwordValue, setPasswordValue] = useState("1234");
+  const [passwordValue, setPasswordValue] = useState("test");
   const [showPassword, setShowPassword] = useState(false);
   // userName state
   const [userNameValue, setUserNameValue] = useState("smurf");
