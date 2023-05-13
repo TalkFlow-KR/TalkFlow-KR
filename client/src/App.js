@@ -13,11 +13,11 @@ import RegisterForm from "./components/organisms/Auth/RegisterForm";
 
 import Main from "./p/Main";
 import Index from "./p/Index";
-import NewChat from "./p/NewChat"
-import History from "./p/History"
-import Notification from "./p/Notification"
-import Login from "./p/Login"
-import Register from "./p/Register"
+import NewChat from "./p/NewChat";
+import History from "./p/History";
+import Notification from "./p/Notification";
+import Login from "./p/Login";
+import Register from "./p/Register";
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -51,28 +51,26 @@ const Wrapper = styled.main`
   padding: 2.4rem;
 `;
 
-
 function App() {
   return (
     <ThemeProvider theme={theme.lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-
           <Route path="/" element={<Main />} />
+          {/*화면 첫페이지 */}
           <Route path="/index" element={<Index />} />
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/history" element={<History />} />
-          <Route path="/notification" element={<Notification />} />      
+          <Route path="/notification" element={<Notification />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/oauth/kakao/callback" element={<LoginForm />} />
+          {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<RegisterForm />} />
           {/* <Route path="/*" element={< 404 />} /> */}
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
-
 
     //   return (
     //     <>

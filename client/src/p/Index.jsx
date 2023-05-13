@@ -1,5 +1,5 @@
 //Main.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";
 import MC from "../components/o/MC";
@@ -8,6 +8,7 @@ import IC from "components/o/IC";
 import First from "components/organisms/First";
 import HC from "components/o/HC";
 import CT from "components/o/CT";
+import axios from "axios";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -37,7 +38,12 @@ const Container = styled.main`
     flex-direction: column;
   }
 `;
+
 const Main = () => {
+  useEffect(() => {
+    const res = axios.get("http://localhost:8000/");
+    console.log(res);
+  });
   return (
     <>
       <Container>
