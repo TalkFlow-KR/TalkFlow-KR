@@ -3,7 +3,7 @@
 // import Chat from "pages/Chat.jsx";
 // 회원가입 페이지
 import Register from "p/Register";
-
+import Settings from "p/Settings";
 // import AuthForm from "./components/organisms/Auth/AuthForm";
 // 404 페이지
 import Error from "pages/Error";
@@ -18,7 +18,7 @@ import RegisterForm from "./components/organisms/Auth/RegisterForm";
 import Main from "./p/Main";
 import Index from "./p/Index";
 
-import NewChat from "./p/NewChat";
+import NewChat2 from "./p/NewChat2";
 import History from "./p/History";
 import Notification from "./p/Notification";
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
@@ -38,6 +38,7 @@ function App() {
   const [isUserActive, setIsUserActive] = useState(false);
 
   useEffect(() => {
+    console.log("로그인상태", UserID);
     if (!UserID) {
       setIsUserActive(false);
     } else {
@@ -48,13 +49,15 @@ function App() {
   const onChange = (setState, e) => {
     setState(e.target.value);
   };
+
   // login submit 버튼
-  const onSubmit = async (e) => {
+  const onSubmit = async (emailfromLogin, passwordfromPassword, e) => {
+    console.log("App.js onSubmit Test", emailfromLogin, passwordfromPassword);
     setIsLoading(true);
     e.preventDefault();
     const data = {
-      email: email,
-      password: password,
+      email: emailfromLogin,
+      password: passwordfromPassword,
     };
     const res = await axios.post("http://localhost:8000/post-login", data);
     if (res.data === "wrong") {
@@ -66,6 +69,7 @@ function App() {
     }
     setIsLoading(false);
   };
+
   const loginProps = {
     email,
     setEmail,
@@ -89,8 +93,9 @@ function App() {
           <Route path="/index" element={<Index />} />
           {/* 채팅방 생성 페이지*/}
           <Route
-            path="/newchat"
-            element={<NewChat isUserActive={isUserActive} UserID={UserID} />}
+
+            path="/newChat"
+            element={<Settings isUserActive={isUserActive} />}
           />
           {/* 채팅 내역  페이지 */}
           <Route
@@ -101,6 +106,10 @@ function App() {
           <Route
             path="/notification"
             element={<Notification isUserActive={isUserActive} />}
+          />
+          <Route
+            path="/settings"
+            element={<Settings isUserActive={isUserActive} userId={UserID} />}
           />
 
           {/*로그인 페이지 경로 /login*/}

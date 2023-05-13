@@ -21,7 +21,7 @@ exports.msg = async (req, res) => {
       const {msg_id, room_id, user_id, ...others} = result[i]
       newMsg.push(others)
     }
-    console.log(newMsg)
+    res.send(newMsg)
 }
 
 

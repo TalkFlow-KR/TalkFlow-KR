@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Loading from "components/atoms/Loading";
-import axios from "axios";
 import KaKaoLogin from "components/m/KaKaoLogin";
 import { useNavigate } from "react-router-dom";
 
@@ -47,24 +46,15 @@ const Wrapper = styled.div`
     border-radius: 0.8rem;
   }
 `;
-const LoginForm = ({
-  email,
-  password,
-  setEmail,
-  setPassword,
-  onChange,
-  onSubmit,
-  isLoading,
-  loginData,
-}) => {
+const LoginForm = ({ onChange, onSubmit, isLoading, loginData }) => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loginData) {
       navigate("/index");
     }
   }, [loginData, navigate]);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
   // const [loginData, setLoginData] = useState(null);
@@ -75,6 +65,7 @@ const LoginForm = ({
   // };
 
   // password 보여주기
+  // test
   const onShow = () => {
     setShowPassword(!showPassword);
   };
@@ -104,6 +95,10 @@ const LoginForm = ({
   //   setIsLoading(false);
   // };
 
+  const onClick = () => {
+    console.log("Login 폼에서 버튼 테스트");
+    onSubmit(email, password);
+  };
   return (
     <Container>
       <Wrapper>
@@ -134,7 +129,7 @@ const LoginForm = ({
           {loginData === false && (
             <p>아이디 혹은 비밀번호가 일치하지 않아요.</p>
           )}
-          <button onClick={onSubmit}>로그인하기</button>
+          <button onClick={onClick}>로그인하기</button>
           <KaKaoLogin />
         </section>
       </Wrapper>
