@@ -5,12 +5,14 @@ import ChatItem from "../m/ChatItem";
 import Search from "../m/Search";
 
 const Wrapper = styled.section`
+  height: 50vh;
   background-color: #eee;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
+  margin-left: 2rem;
   //margin-bottom: 11.2rem;
 `;
 const ChatList = styled.div``;
@@ -77,3 +79,4 @@ const CL = () => {
 };
 
 export default CL;
+
