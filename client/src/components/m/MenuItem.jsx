@@ -15,7 +15,6 @@ const Wrapper = styled.button`
 
   &:hover {
     background-color: ${({ theme }) => theme.color.bg300};
-    box-shadow: ${({ theme }) => theme.shadow.shadow100};
     transition: all 0.2s ease-in-out;
     transform: scale(1.1);
   }

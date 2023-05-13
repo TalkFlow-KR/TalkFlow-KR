@@ -25,6 +25,10 @@ const Wrapper = styled.section`
   /* overflow: auto; */
 `;
 
+const InputForm = styled.form`
+  display: flex;
+`;
+
 const ChatBox = styled.article`
   position: relative;
   ////height: 1rem;
@@ -42,7 +46,7 @@ const InputComponent = styled.div`
   justify-content: space-between;
 `;
 
-const ChatImput = styled.input`
+const ChatInput = styled.input`
   width: 90%;
   height: 3rem;
   margin: 1rem;
@@ -118,19 +122,19 @@ const sendChatToServer = async (message) => {
 const CR = ({ data }) => {
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [messageList, setMessageList] = useState([
-    {
-      id: 1,
-      text: "test",
-    },
-    {
-      id: 2,
-      text: "2023",
-    },
-    { id: 3, text: "0513" },
-  ]);
   const [message, setMessage] = useState("");
   const messagesEndRef = useRef(null);
+  const [messageList, setMessageList] = useState([
+    // {
+    //   id: 1,
+    //   text: "test",
+    // },
+    // {
+    //   id: 2,
+    //   text: "2023",
+    // },
+    // { id: 3, text: "0513" },
+  ]);
 
   useEffect(() => {
     setText([...text, data.ai.answer]);
@@ -174,6 +178,27 @@ const CR = ({ data }) => {
     }
   };
 
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/room/make/${userid}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setMessageList(data));
+  // }, []);
+
+  // CR 채팅 보내기
+
+  const OnSubmitHandler = (e) => {
+    e.preventDefault();
+    // const value = e.tartget.text.value;
+
+    axios
+      .post(`http://localhost:5000/chat/${userid}/${roomid}`, {
+        msg: inputValue,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   return (
     <Wrapper>
       <RoomTitle />
@@ -190,14 +215,17 @@ const CR = ({ data }) => {
         ))}
         <div ref={messagesEndRef} />
         <InputComponent>
-          <ChatImput
-            type="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyDown}
-            placeholder="메시지를 입력하세요.">
-            {/* <button></button> */}
-          </ChatImput>
+          <InputForm onSubmit={OnSubmitHandler}>
+            <ChatInput
+              type="text"
+              name="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyPress={handleKeyDown}
+              placeholder="메시지를 입력하세요.">
+              {/* <button></button> */}
+            </ChatInput>
+          </InputForm>
           <button
             onClick={handleSendClick}
             style={{
