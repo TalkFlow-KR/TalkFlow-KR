@@ -108,7 +108,7 @@ function App() {
           />
 
           {/*로그인 페이지 경로 /login*/}
-          <Route path="/login" element={<LoginForm {...loginProps} />} />
+          <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<Register />} />
