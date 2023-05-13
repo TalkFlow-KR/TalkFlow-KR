@@ -2,6 +2,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import RoomTitle from "../m/RoomTitle";
+import Lottie from "lottie-react";
+import animationData from "assets/micIdle.json";
+import { MicButton } from "styles/Chat.styled";
+import LogoIcon from "../atoms/LogoIcon";
+
+// axios
+import axios from "axios";
 
 const Wrapper = styled.section`
   flex: 1 1 0;
@@ -10,22 +17,43 @@ const Wrapper = styled.section`
   //height: 56.2rem;
   //margin: 1.4rem;
   background-color: #ddd;
+  /* background-color: tomato; */
   border-radius: 2rem;
   //padding: 1.6rem;
   margin: 2rem;
   //overflow-y: hidden;
-  overflow: auto;
+  /* overflow: auto; */
 `;
 
 const ChatBox = styled.article`
   position: relative;
   ////height: 1rem;
-  ////height: 40rem;
+  /* ////height: 40rem; */
   background-color: ${({ theme }) => theme.color.bg300};
+  /* background-color: teal; */
+  height: 30vh;
   margin: 2rem;
   border-radius: 2rem;
-  //overflow: hidden;
+  overflow: scroll;
 `;
+
+const InputComponent = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ChatImput = styled.input`
+  width: 90%;
+  height: 3rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  border: 0;
+  justify-content: center;
+
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.25);
+`;
+
+// const micIdle = styled.button``;
 
 const AI = styled.p`
   display: inline-block;
@@ -54,6 +82,7 @@ const User = styled.p`
   & span {
     position: relative;
     display: inline-block;
+    float: right;
     right: 0;
     top: 0;
     background-color: lightcoral;
@@ -61,6 +90,30 @@ const User = styled.p`
     padding: 0.8rem;
   }
 `;
+
+const sendChatToServer = async (message) => {
+  try {
+    const res = await axios.post("/CR", {
+      message,
+    });
+    console.log("axios", res.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// const handleSendClick = () => {
+//   if (inputValue.trim()) {
+//     const newMessage = {
+//       id: Date.now(),
+//       text: inputValue,
+//     };
+//     setMessageList([...messageList, newMessage]);
+//     setInputValue("");
+//     setMessage("");
+//     sendChatToServer(inputValue); // Call the sendChatToServer function
+//   }
+// };
 
 const CR = ({ data }) => {
   const [text, setText] = useState([]);
@@ -70,8 +123,11 @@ const CR = ({ data }) => {
       id: 1,
       text: "test",
     },
-    {},
-    {},
+    {
+      id: 2,
+      text: "2023",
+    },
+    { id: 3, text: "0513" },
   ]);
   const [message, setMessage] = useState("");
   const messagesEndRef = useRef(null);
@@ -91,8 +147,8 @@ const CR = ({ data }) => {
         const newMessage = {
           id: Date.now(),
           text: inputValue,
-          time: new Date().toLocaleTimeString(),
         };
+        // time;
         setMessageList([...messageList, newMessage]);
         setInputValue("");
         setMessage("");
@@ -106,18 +162,15 @@ const CR = ({ data }) => {
   };
 
   const handleSendClick = () => {
-    // if(inputValue.trim() !== ''){
     if (inputValue.trim()) {
       const newMessage = {
         id: Date.now(),
         text: inputValue,
-        // isAiBubble: false,
-        time: new Date().toLocaleTimeString(),
       };
       setMessageList([...messageList, newMessage]);
       setInputValue("");
       setMessage("");
-      // setIsAiBubble(true);
+      sendChatToServer(inputValue); // Call the sendChatToServer function
     }
   };
 
@@ -129,8 +182,39 @@ const CR = ({ data }) => {
           <AI key={message.id}>
             <span>{message.text}</span>
           </AI>
+          // (
+          //   <User key={message.id}>
+          //     <span>{message.text}</span>
+          //   </User>
+          // )
         ))}
         <div ref={messagesEndRef} />
+        <InputComponent>
+          <ChatImput
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyDown}
+            placeholder="메시지를 입력하세요.">
+            {/* <button></button> */}
+          </ChatImput>
+          <button
+            onClick={handleSendClick}
+            style={{
+              width: "3rem",
+              height: "3rem",
+              borderRadius: "50%",
+              transform: "translate(-5rem, 1rem)",
+              backgroundColor: "#fff",
+              boxShadow: " 0 -0.7rem 1rem rgba(0, 0, 0, 0.25);",
+              // border: "1px solid black",
+            }}>
+            <LogoIcon />
+          </button>
+          <MicButton onClick={handleSendClick}>
+            <Lottie animationData={animationData} />
+          </MicButton>
+        </InputComponent>
       </ChatBox>
     </Wrapper>
   );
