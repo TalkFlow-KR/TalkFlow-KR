@@ -42,11 +42,12 @@ const Settings = ({ isUserActive, userId }) => {
   const [settings, setSettings] = useState({});
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!userId) {
-      navigate("/login");
-    }
-  }, [navigate, userId]);
+  // // 로그인 되어있는지 확인
+  // useEffect(() => {
+  //   if (!userId) {
+  //     navigate("/login");
+  //   }
+  // }, [navigate, userId]);
 
   const handleSubmit = async (payload) => {
     console.log(payload);
