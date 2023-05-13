@@ -2,10 +2,9 @@
 import React from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";
-import MC from "../components/o/MC";
-import Register from "./Register";
-import LoginForm from "components/organisms/Auth/LoginForm";
-import AuthForm from "components/organisms/Auth/AuthForm";
+// import MC from "../components/o/MC";
+// import LoginForm from "components/organisms/Auth/LoginForm";
+// import AuthForm from "components/organisms/Auth/AuthForm";
 import LGC from "components/o/LGC";
 
 const Container = styled.main`

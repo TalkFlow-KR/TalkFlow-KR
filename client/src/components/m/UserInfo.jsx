@@ -34,7 +34,7 @@ const UserInfo = ({ children }) => {
           <Link to={"/Login"}>
             <LogBtn>login / </LogBtn>
           </Link>
-          <Link to={"/Register"}>
+          <Link to={"/SignUp"}>
             <LogBtn> / register</LogBtn>
           </Link>
         </ul>

@@ -1,21 +1,32 @@
 import React from "react";
-import { log } from "yarn/lib/cli";
 
 const RegisterItem = ({ data }) => {
-  console.log(data);
+  const { id, title, type, label, options } = data;
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
-    <>
-      {data === "radio" ? (
-        <></>
+    <div>
+      <label htmlFor={id}>{title}</label>
+      {type === "text" || type === "password" ? (
+        <input type={type} id={id} name={id} onChange={handleChange} />
       ) : (
-        <>
-          {" "}
-          <h2>{}</h2>
-          <input type="text" />
-          <label htmlFor=""></label>
-        </>
+        options.map((option) => (
+          <div key={option.value}>
+            <input
+              type="radio"
+              id={option.value}
+              name={id}
+              value={option.value}
+              onChange={handleChange}
+            />
+            <label htmlFor={option.value}>{option.label}</label>
+          </div>
+        ))
       )}
-    </>
+    </div>
   );
 };
 
