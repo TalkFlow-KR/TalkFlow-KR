@@ -83,15 +83,28 @@ function App() {
           <Route path="/" element={<Main isUserActive={isUserActive} />} />
           {/*화면 첫페이지 */}
           <Route path="/index" element={<Index />} />
-          <Route path="/newchat" element={<NewChat />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/notification" element={<Notification />} />
+          {/* 채팅방 생성 페이지*/}
+          <Route
+            path="/newchat"
+            element={<NewChat isUserActive={isUserActive} />}
+          />
+          {/* 채팅 내역  페이지 */}
+          <Route
+            path="/history"
+            element={<History isUserActive={isUserActive} />}
+          />
+          {/* 공지사항 페이지*/}
+          <Route
+            path="/notification"
+            element={<Notification isUserActive={isUserActive} />}
+          />
+
           {/*로그인 페이지 경로 /login*/}
           <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/*" element={< Error />} />
+          <Route path="/*" element={<Error />} />
           {/* <Route path="/register" element={<RegisterForm />} /> */}
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}
