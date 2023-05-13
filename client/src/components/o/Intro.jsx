@@ -1,4 +1,4 @@
-// ChatSettingComponent.jsx
+// Home > HW > 소개
 import React, { useState } from "react";
 import styled from "styled-components";
 import SettingItem from "../m/SettingItem";
@@ -31,6 +31,7 @@ const OptBtn = styled.button`
   &:hover {
     color: #444;
   }
+ k
 `;
 
 const Btn = styled.button`
@@ -51,13 +52,14 @@ const CS = () => {
   // 1번 옵션(0)버튼의 하위 태그버튼들 클릭시 0번의 n번옵션이라고 알려준뒤 useState에 저장
   return (
     <Wrapper>
-      <OptBtn onClick={() => onClick(0)}>선택 1 | 언어</OptBtn>
-      {isOpen[0] && <SettingItem onClick={onClick} option={0} />}
-      <OptBtn onClick={() => onClick(1)}>선택 2 | 테마</OptBtn>
-      {isOpen[1] && <SettingItem onClick={onClick} option={1} />}
-      <OptBtn onClick={() => onClick(2)}>선택 3 | 어투</OptBtn>
-      {isOpen[2] && <SettingItem onClick={onClick} option={2} />}
-      <Btn>Start a chat</Btn>
+      <h2>TalkFlow</h2>
+      <h2>회화의 모든 것, TalkFlow에서 </h2>
+      <p>
+        TalkFlow는 회화의 한 획을 바꾸고 싶은 생각만 해도 가슴 뛰는 목표가 있는
+        조직입니다. 어렵고, 불편하고, 멀게 느껴지는 회화 공부가 아닌 누구에게나
+        쉽고 효율적인 회화를 만드는 것입니다.{" "}
+      </p>
+      <p>- 토스 소개 멘트 따왔어요.</p>
     </Wrapper>
   );
 };

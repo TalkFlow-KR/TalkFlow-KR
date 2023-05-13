@@ -3,6 +3,7 @@
 // import Chat from "pages/Chat.jsx";
 // 회원가입 페이지
 import Register from "p/Register";
+
 // import AuthForm from "./components/organisms/Auth/AuthForm";
 // 404 페이지
 import Error from "pages/Error";
