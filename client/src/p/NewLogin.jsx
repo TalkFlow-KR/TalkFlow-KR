@@ -1,15 +1,37 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Loading from "../../atoms/Loading";
+import Loading from "components/atoms/Loading";
 import axios from "axios";
-import KaKaoLogin from "../../m/KaKaoLogin";
+import KaKaoLogin from "components/m/KaKaoLogin";
 import { useNavigate } from "react-router-dom";
-import login from "../../../p/Login";
 
+const Container = styled.main`
+  flex: 1 1 0;
+  //width: 140rem;
+  //max-width: 144rem;
+  //min-width: 36rem;
+  //width: 100%;
+  //height: 100%;
+  //height: 70rem;
+  //width: 80vw;
+  height: 80vh;
+  //height: 100%;
+  //width: 100%;
+  border-radius: 2rem;
+  color: ${({ theme }) => theme.color.text100};
+  background-color: ${({ theme }) => theme.color.bg200};
+  margin: 2rem;
+  padding: 2rem;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  gap: 6rem;
+  align-items: stretch;
+`;
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
   align-items: center;
-  background-color: orange;
+  //background-color: orange;
 
   & section {
     display: flex;
@@ -71,7 +93,7 @@ const LoginForm = () => {
     }
   }, [loginData, navigate]);
   return (
-    <>
+    <Container>
       <Wrapper>
         <section>
           <label htmlFor="userEmail">
@@ -104,7 +126,7 @@ const LoginForm = () => {
           <KaKaoLogin />
         </section>
       </Wrapper>
-    </>
+    </Container>
   );
 };
 
