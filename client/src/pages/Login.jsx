@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import Loading from "components/atoms/Loading";
 import KaKaoLogin from "components/m/KaKaoLogin";
@@ -30,16 +30,21 @@ const Container = styled.main`
   align-items: stretch;
 `;
 const Wrapper = styled.div`
+  flex: 1 1 0;
+  max-width: 40rem;
   ${({ theme }) => theme.layout.flexCenter};
   align-items: center;
-  background-color: orange;
+  //background-color: orange;
 
   & section {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: tan;
+    //background-color: tan;
     padding: 8rem;
     border-radius: 2rem;
+    border: 1px solid #aaa;
+    background-color: #fff;
   }
 
   //버튼 디자인
@@ -62,6 +67,9 @@ const emailInput = styled.input`
   }
 `;
 const clearEmailValueBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 1.2rem;
   //background-color: transparent;
@@ -119,7 +127,7 @@ const pwBox = styled.div`
 const inputBox = styled.div`
   position: relative;
   height: 13.5rem;
-  background-color: #fff;
+  //background-color: tomato;
 `;
 const showPasswordBtn = styled.button`
   position: absolute;
@@ -128,6 +136,29 @@ const showPasswordBtn = styled.button`
   background-color: #eee;
   border: 0.1rem solid #ddd;
   border-radius: 50%;
+`;
+const Or = styled.h4`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  &:before {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 20%;
+    margin-top: 0.4rem;
+    margin-right: 0.5rem;
+  }
+  &:after {
+    display: inline-block;
+    content: "";
+    border-top: 1px solid black;
+    width: 20%;
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+  }
 `;
 const S = {
   emailInput,
@@ -140,10 +171,12 @@ const S = {
   showPasswordBtn,
   clearEmailValueBtn,
   emailBox,
+  Or,
 };
 
 const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   const navigate = useNavigate();
+  const passwordRef = useRef(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -176,14 +209,22 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
     if (e.key === "Enter") {
       // console.log(top);
       setShowPwInput(true);
+      if (passwordRef.current) {
+        passwordRef.current.focus();
+      }
       // setTop("30%");
       // console.log(top);
     }
   };
+  const onClear = () => {
+    setEmail("");
+  };
   useEffect(() => {
     if (showPwInput) {
-      setTop("7rem");
-      setIsAnimateOn(true);
+      setTop("5.4rem");
+      if (passwordRef.current) {
+        passwordRef.current.focus();
+      }
     }
   }, [showPwInput]);
 
@@ -192,57 +233,77 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
       <Wrapper>
         <S.loginBox>
           <S.title>Login</S.title>
-          <S.inputBox>
-            <S.emailBox>
-              <S.emailInput
-                autoFocus={true}
-                type="text"
-                name="userEmail"
-                id="userEmail"
-                placeholder="Email"
-                value={email}
-                onChange={handleOnChange}
-                onKeyDown={onKeyDown}
-              />
-              <S.clearEmailValueBtn>
-                <RiCloseFill />
-              </S.clearEmailValueBtn>
-            </S.emailBox>
-            {showPwInput ? (
-              <>
-                <S.pwBox style={{ top: top }}>
-                  <S.pwInput
-                    type={showPassword ? "text" : "password"}
-                    name="pw"
-                    id="pw"
-                    value={password}
-                    onChange={(e) => onChange(setPassword, e)}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <S.inputBox>
+                <S.emailBox>
+                  <S.emailInput
+                    autoFocus={true}
+                    type="text"
+                    name="userEmail"
+                    id="userEmail"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleOnChange}
+                    onKeyDown={onKeyDown}
                   />
-                  <S.showPasswordBtn onClick={onShow}>
-                    <Lottie
-                      onMouseEnter={() => setIsHover(true)}
-                      onMouseLeave={() => setIsHover(false)}
-                      animationData={animationData}
-                      isStopped={!isHover}
-                      style={{ width: "2rem", height: "2rem" }}
-                      speed={0.8}
-                    />
-                  </S.showPasswordBtn>
-                </S.pwBox>
-              </>
-            ) : null}
-          </S.inputBox>
-          <br />
-          {loginData === false && (
-            <S.register>아이디 혹은 비밀번호가 일치하지 않아요.</S.register>
+                  {email && (
+                    <>
+                      <S.clearEmailValueBtn onClick={onClear}>
+                        <RiCloseFill />
+                      </S.clearEmailValueBtn>
+                    </>
+                  )}
+                </S.emailBox>
+                {showPwInput ? (
+                  <>
+                    <S.pwBox style={{ top: top }}>
+                      <S.pwInput
+                        ref={passwordRef}
+                        type={showPassword ? "text" : "password"}
+                        name="pw"
+                        id="pw"
+                        value={password}
+                        placeholder="Password"
+                        onChange={(e) => onChange(setPassword, e)}
+                      />
+                      <S.showPasswordBtn onClick={onShow}>
+                        <Lottie
+                          onMouseEnter={() => setIsHover(true)}
+                          onMouseLeave={() => setIsHover(false)}
+                          animationData={animationData}
+                          isStopped={!isHover}
+                          style={{ width: "2rem", height: "2rem" }}
+                          speed={0.8}
+                        />
+                      </S.showPasswordBtn>
+                    </S.pwBox>
+                  </>
+                ) : null}
+              </S.inputBox>
+              <br />
+              {loginData === false && (
+                <S.register>아이디 혹은 비밀번호가 일치하지 않아요.</S.register>
+              )}
+              <div
+                style={{
+                  backgroundColor: "#eee",
+                  textAlign: "center",
+                  width: "100%",
+                  height: "3rem",
+                }}>
+                {password && <button onClick={onClick}>로그인하기</button>}
+              </div>
+
+              <Or>or</Or>
+              <p style={{ textAlign: "center" }}>
+                처음이신가요 ? <span>회원가입 하기</span>
+              </p>
+              <KaKaoLogin />
+            </>
           )}
-
-          <button onClick={onClick}>로그인하기</button>
-          <p>
-            처음이신가요 ? <span>여기를 클릭하여 회원가입하세요</span>
-          </p>
-
-          <KaKaoLogin />
         </S.loginBox>
       </Wrapper>
     </Container>

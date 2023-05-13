@@ -33,7 +33,8 @@ import AuthRedirect from "./pages/AuthRedirect";
 
 function App() {
   // 유저의 로그인 값
-  const [UserID, setUserID] = useState("test");
+  // const [UserID, setUserID] = useState("유저임시키값 test");
+  const [UserID, setUserID] = useState("");
   // 로그인 & 로그아웃
   const [isUserActive, setIsUserActive] = useState(false);
   //
