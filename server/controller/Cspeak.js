@@ -39,13 +39,25 @@ const getCryptoPassword = (plainPassword, salt) => {
   });
 };
 
-exports.main = async (req, res) => {
-  res.send("hi");
-};
-
 // 1. 회원가입
-exports.signup = (req, res) => {
-  res.send("signup");
+exports.checkEmail = async (req, res) => {
+  let inputEmail = req.body.email
+  try{
+    const result = await models.USER.findOne({
+      where : {
+        email : inputEmail
+      }
+    })
+    if(result !== null){ // 중복
+      res.send(false)
+    }
+    else{ // 중복x
+      res.send(true)
+    }
+  }
+  catch{
+    res.status(500).send("Error");
+  }
 };
 
 exports.post_signup = async (req, res) => {
@@ -80,63 +92,89 @@ exports.post_signup = async (req, res) => {
 
 // 2. 로그인
 exports.post_login = async (req, res) => {
-  console.log(req.body)
-  // 입력받은 아이디를 가진 사람을 찾아 salt와 입력한 비밀번호를 조합하며 저장된 비번과 같은지 확인
-  const result = await models.USER.findOne({
-    email: req.body.email,
-  });
-  const getCry = await getCryptoPassword(req.body.password, result.salt);
-  console.log("getCry: ", getCry.password);
-  console.log(result.password);
-  if (getCry.password === result.password) {
-    res.send({msg: 'success', userid : result.id}); // 성공메시지와 유저아디 반환
-  } else {
+  try{
+     // 입력받은 아이디를 가진 사람을 찾아 salt와 입력한 비밀번호를 조합하며 저장된 비번과 같은지 확인
+    const result = await models.USER.findOne({
+      email: req.body.email,
+    });
+    const getCry = await getCryptoPassword(req.body.password, result.salt);
+
+    if(getCry.password === result.password) {
+      res.send({msg: 'success', userid : result.id}); // 성공메시지와 유저아디 반환
+    }
+    else {
     // 로그인 틀림
-    res.send("fail");
+      res.send("fail");
+    }
+  }
+  catch{
+    res.status(500).send("Error");
   }
 };
 
-//  3. /msg/:roomid 과거 대화 내용 조회
+//  3. /msg/:userId/:roomid 과거 대화 내용 조회
 exports.msg = async (req, res) => {
   const userId = req.params.userid
   const roomId = req.params.roomid;
-  console.log(roomId)
-  const result = await models.MSG.findAll({
-    where: {
-      room_id: roomId,
-      user_id : userId
-    },
-  });
-  res.send(result);
+
+  try{
+    const result = await models.MSG.findAll({
+      where: {
+        raw : true,
+        room_id: roomId,
+        user_id : userId
+      },
+    });
+    console.log(result)
+    res.send(result);
+  }
+  catch{
+    res.status(500).send("Error");
+  }
 };
 
 // 해당 유저가 가진 모든 방 내보내기
 exports.allRoom = async(req,res)=>{
   const userId = req.params.userid
-  console.log(userId)
-  const result = await models.ROOM.findAll({
-    where : {
-      id : userId
+  try{
+    const result = await models.ROOM.findAll({
+      raw :true,
+      where : {
+        id : userId
+      }
+    })
+    let roomIds = []
+    for(let i=0; i<result.length; i++){
+      roomIds.push(result[i].room_id)
     }
-  })
-  res.send(result.room_id)
+    console.log(roomIds)
+    res.send(roomIds)
+  }
+  catch{
+    res.status(500).send("Error");
+  }
 }
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
   const userId = req.params.userid
-  console.log(userId)
-  console.log(req.body)
-  const result = await models.ROOM.create({
-    id : userId, // user_id
-    situation : req.body.situation,
-    accent : req.body.accent,
-    language : req.body.language,
-    date: req.body.date,
-    time: req.body.time,
-  })
-  console.log(result)
-  res.send('success')
+  try{
+    const result = await models.ROOM.create({
+      id : userId, // user_id
+      situation : req.body.situation,
+      accent : req.body.accent,
+      language : req.body.language,
+    })
+    if(result !== null){ // 성공
+      res.send('success')
+    }
+    else{
+      res.send('fail') // 실패
+    }
+  }
+  catch{
+    res.status(500).send("Error");
+  }
 };
 
 // 6. /kakao
