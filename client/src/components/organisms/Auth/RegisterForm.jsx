@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
 import axios from "axios";
@@ -45,6 +45,8 @@ const RegisterForm = () => {
   const [phoneValue, setPhoneValue] = useState("0100000000");
   // 폰 유효성
   const [isValidPhone, setIsValidPhone] = useState(false);
+  const [isDisable, setIsDisable] = useState(false);
+  const [registerText, setRegisterText] = useState("가입하기");
 
   const JOIN_DATA = {
     emailText: {
@@ -118,17 +120,28 @@ const RegisterForm = () => {
     gender: genderValue,
     telephone: phoneValue,
   };
+
+  // 유효성 검사후 가입 버튼 활성화
+  useEffect(() => {
+    if (!(isValidEmail && isValidPhone && passwordValue.length < 9)) {
+      setIsDisable(true);
+    } else {
+      setIsDisable(false);
+    }
+  }, [isValidEmail, isValidPhone, passwordValue]);
+
+  // 가입하기 버튼 누르기
   const onSubmit = async () => {
     console.log(
       emailValue,
       passwordValue,
       phoneValue,
       genderValue,
-      userNameValue
+      userNameValue,
+      data
     );
     setIsLoading(true);
     const res = await axios.post("http://localhost:8000/post-signup", data);
-
     console.log(res.data);
 
     if (res.data === "res.data가 가입성공일 경우") {
@@ -229,14 +242,8 @@ const RegisterForm = () => {
             </button>
           </StyledFieldSet>
           {/*submit 버튼*/}
-          <button
-            type="button"
-            onClick={onSubmit}
-            disabled={
-              !(isValidEmail && isValidPhone && passwordValue.length < 9) &&
-              true
-            }>
-            가입할게요 !
+          <button type="button" onClick={onSubmit} disabled={isDisable}>
+            {registerText}
           </button>
         </StyledForm>
       </Wrapper>
