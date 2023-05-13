@@ -1,19 +1,12 @@
 //Main.jsx
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import LC from "../components/o/LC";
-import MC from "../components/o/MC";
-import CL from "components/o/CL";
-import IC from "components/o/IC";
-import First from "components/organisms/First";
-import HC from "components/o/HC";
-import CT from "components/o/CT";
 import axios from "axios";
 import MainArticle from "../components/atoms/MainArticle";
 import theme from "../styles/themeProvider/theme";
-import { Link } from "react-router-dom";
 import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -66,21 +59,23 @@ const Main = ({ isUserActive, userId }) => {
     const res = axios.get("http://localhost:8000/");
     console.log(res);
   });
+  const navigate = useNavigate();
+  const onClick = () => {
+    const url = isUserActive ? "/main" : "/login";
+    navigate(url);
+  };
   return (
     <>
       <Container>
         {isUserActive ? `로그인 중 : UserID :^ ${userId} ^ ` : "비로그인"}
         <Wrapper>
-          {" "}
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW-KR</h1>
             <h2>Chatflow는 AI와 현실 대화로,흐름을 이해하는</h2>
             <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
-            <Link to="/">
-              <Button>
-                GET STARTED <span>It's free !</span>
-              </Button>
-            </Link>
+            <Button onClick={onClick}>
+              GET STARTED <span>It's free !</span>
+            </Button>
           </MainArticle>
           <MainArticle bgColor="#dae2f9">
             <Lottie animationData={learning} />
