@@ -64,7 +64,7 @@ function App() {
           {/*<Route path="/login" element={<LoginForm />} />*/}
           <Route path="/login" element={<LoginForm />} />
           <Route path="/oauth/kakao/callback" element={<LoginForm />} />
-          <Route path="/auth" element={<KakaoAuth />} />
+          <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<RegisterForm />} />
           {/* <Route path="/*" element={< 404 />} /> */}
         </Routes>
