@@ -164,8 +164,6 @@ exports.room = async (req, res) => {
       situation : req.body.situation,
       accent : req.body.accent,
       language : req.body.language,
-      date: req.body.date,
-      time: req.body.time,
     })
     if(result !== null){ // 성공
       res.send('success')
