@@ -5,6 +5,7 @@ import KaKaoLogin from "components/m/KaKaoLogin";
 import { useNavigate } from "react-router-dom";
 import Lottie from "components/atoms/LottieComponent";
 import animationData from "assets/1401-eye01.json";
+import { RiCloseFill } from "react-icons/ri";
 const Container = styled.main`
   flex: 1 1 0;
   //width: 140rem;
@@ -68,6 +69,8 @@ const clearEmailValueBtn = styled.button`
   border: 0.1rem solid #ddd;
   border-radius: 50%;
   z-index: 30;
+  width: 2rem;
+  height: 2rem;
 `;
 const pwInput = styled.input`
   width: 100%;
@@ -95,6 +98,14 @@ const title = styled.h2`
 const register = styled.p`
   color: brown;
 `;
+const emailBox = styled.div`
+  width: 100%;
+  position: absolute;
+  display: flex;
+  z-index: 20;
+  justify-content: space-between;
+  align-items: center;
+`;
 const pwBox = styled.div`
   width: 100%;
   transition: 0.3s all ease-in-out;
@@ -107,7 +118,7 @@ const pwBox = styled.div`
 
 const inputBox = styled.div`
   position: relative;
-  height: 16rem;
+  height: 13.5rem;
   background-color: #fff;
 `;
 const showPasswordBtn = styled.button`
@@ -128,15 +139,12 @@ const S = {
   inputBox,
   showPasswordBtn,
   clearEmailValueBtn,
+  emailBox,
 };
 
-const LoginForm = ({ onChange, onSubmit, isLoading, loginData }) => {
+const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (loginData) {
-      navigate("/index");
-    }
-  }, [loginData, navigate]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -144,6 +152,15 @@ const LoginForm = ({ onChange, onSubmit, isLoading, loginData }) => {
   const [isAnimateOn, setIsAnimateOn] = useState(false);
   const [top, setTop] = useState("2.4rem");
   const [isHover, setIsHover] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(true);
+    if (isUserActive) {
+      navigate("/authredirect");
+    } else {
+      setIsLoading(false);
+    }
+  }, [isUserActive, navigate]);
   const onShow = () => {
     setShowPassword(!showPassword);
   };
@@ -176,17 +193,21 @@ const LoginForm = ({ onChange, onSubmit, isLoading, loginData }) => {
         <S.loginBox>
           <S.title>Login</S.title>
           <S.inputBox>
-            <S.emailInput
-              autoFocus={true}
-              type="text"
-              name="userEmail"
-              id="userEmail"
-              placeholder="Email"
-              value={email}
-              onChange={handleOnChange}
-              onKeyDown={onKeyDown}
-            />
-            <S.clearEmailValueBtn>test</S.clearEmailValueBtn>
+            <S.emailBox>
+              <S.emailInput
+                autoFocus={true}
+                type="text"
+                name="userEmail"
+                id="userEmail"
+                placeholder="Email"
+                value={email}
+                onChange={handleOnChange}
+                onKeyDown={onKeyDown}
+              />
+              <S.clearEmailValueBtn>
+                <RiCloseFill />
+              </S.clearEmailValueBtn>
+            </S.emailBox>
             {showPwInput ? (
               <>
                 <S.pwBox style={{ top: top }}>
@@ -203,7 +224,7 @@ const LoginForm = ({ onChange, onSubmit, isLoading, loginData }) => {
                       onMouseLeave={() => setIsHover(false)}
                       animationData={animationData}
                       isStopped={!isHover}
-                      style={{ width: "20px", height: "20px" }}
+                      style={{ width: "2rem", height: "2rem" }}
                       speed={0.8}
                     />
                   </S.showPasswordBtn>

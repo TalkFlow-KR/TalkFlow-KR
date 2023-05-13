@@ -29,6 +29,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Skeleton from "./components/molecules/Skeleton";
+import AuthRedirect from "./pages/AuthRedirect";
 
 function App() {
   // 유저의 로그인 값
@@ -82,7 +83,6 @@ function App() {
     setPassword,
     onChange,
     onSubmit,
-    isLoading,
     setIsLoading,
     loginData,
     setLoginData,
@@ -127,9 +127,13 @@ function App() {
           />
 
           {/*로그인 페이지 경로 /login*/}
-          <Route path="/login" element={<Login {...loginProps} />} />
+          <Route
+            path="/login"
+            element={<Login {...loginProps} isUserActive={isUserActive} />}
+          />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
+          <Route path="/authRedirect" element={<AuthRedirect />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/sk" element={<Skeleton />} />
           <Route path="/*" element={<Error />} />
