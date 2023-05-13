@@ -33,7 +33,7 @@ const Container = styled.main`
     flex-direction: column;
   }
 `;
-const NewChat = () => {
+const NewChat2 = () => {
   return (
     <>
       <Container>
@@ -44,4 +44,4 @@ const NewChat = () => {
   );
 };
 
-export default NewChat;
+export default NewChat2;
