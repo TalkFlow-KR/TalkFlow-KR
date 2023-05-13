@@ -10,7 +10,7 @@ const ROOM = function (Sequelize, DataTypes) {
       },
       id: {
         type: DataTypes.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
       situation: {
         type: DataTypes.STRING(50),

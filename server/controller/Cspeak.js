@@ -1,5 +1,6 @@
 const models = require("../models");
 const crypto = require("crypto");
+const {Op} = require('sequelize')
 
 // 솔트 생성
 const createSalt = () => {
@@ -119,8 +120,8 @@ exports.msg = async (req, res) => {
 
   try{
     const result = await models.MSG.findAll({
+      raw : true,
       where: {
-        raw : true,
         room_id: roomId,
         user_id : userId
       },
@@ -140,7 +141,7 @@ exports.allRoom = async(req,res)=>{
     const result = await models.ROOM.findAll({
       raw :true,
       where : {
-        id : userId
+        [Op.or] : [{id : userId},{kakaoId : userId}]
       }
     })
     let roomIds = []
@@ -157,22 +158,30 @@ exports.allRoom = async(req,res)=>{
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
-  const userId = req.params.userid
+  const userId = req.params.userid // 가입한 사람 id나 kakaoId
   try{
-    const result = await models.ROOM.create({
-      id : userId, // user_id
-      situation : req.body.situation,
-      accent : req.body.accent,
-      language : req.body.language,
-      date: req.body.date,
-      time: req.body.time,
+    const result = await models.USER.findOne({ // params랑 user의 id가 같은 사람 찾기
+      where : {
+        id : userId
+      }
     })
-    if(result !== null){ // 성공
-      res.send('success')
+    if(result !== null){ // params랑 user의 id가 같은 사람 발견
+      await models.ROOM.create({
+        id : userId,
+        situation : req.body.situation,
+        accent : req.body.accent,
+        language : req.body.language,
+      })
     }
-    else{
-      res.send('fail') // 실패
+    else{ // 다르면 카카오
+      await models.ROOM.create({
+        kakaoId : userId,
+        situation : req.body.situation,
+        accent : req.body.accent,
+        language : req.body.language,
+      })
     }
+    res.send('success')
   }
   catch{
     res.status(500).send("Error");

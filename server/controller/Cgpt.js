@@ -1,7 +1,7 @@
 const models = require('../models')
 const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
-  apiKey: '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', // openai api key
+  apiKey: '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', // openai api key
 });
 const openai = new OpenAIApi(configuration);
 
@@ -21,7 +21,7 @@ exports.msg = async (req, res) => {
       const {msg_id, room_id, user_id, ...others} = result[i]
       newMsg.push(others)
     }
-    console.log(newMsg)
+    res.send(newMsg)
 }
 
 
