@@ -1,8 +1,9 @@
 // RegisterComponent.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HC from "./HC";
 import styled from "styled-components";
 import RegisterForm from "components/organisms/Auth/RegisterForm";
+import SuccessRegister from "../organisms/Auth/SuccessRegister";
 
 const Wrapper = styled.section`
   flex: 1 1 0;
@@ -21,18 +22,26 @@ const Wrapper = styled.section`
   overflow: hidden;
 `;
 const ContentsBox = styled.section`
-  //width: 100%;
+  width: 100%;
   height: 100%;
   display: flex;
-  padding-bottom: 11.2rem;
+  justify-content: center;
+  align-items: center;
   background-color: tan;
+  position: relative;
 `;
 const RGC = () => {
+  const [isFinish, setIsFinish] = useState(false);
+
+  const registerProps = {
+    isFinish,
+    setIsFinish,
+  };
   return (
     <Wrapper>
-      <HC>Login</HC>
+      <HC>회원 가입 </HC>
       <ContentsBox>
-        <RegisterForm></RegisterForm>
+        {isFinish ? <SuccessRegister /> : <RegisterForm {...registerProps} />}
       </ContentsBox>
     </Wrapper>
   );
