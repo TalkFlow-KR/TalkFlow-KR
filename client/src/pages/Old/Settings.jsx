@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { ChatContainer, ChatCover } from "../../styles/Chat.styled";
 import styled from "styled-components";
+import axios from "axios";
 
 const Title = styled.div`
   padding: 2rem;
@@ -135,7 +136,9 @@ const Settings = () => {
   const [lang, setLang] = useState("");
   const [theme, setTheme] = useState("");
   const [partner, setPartner] = useState("");
-
+  useEffect(() => {
+    const res = axios.post("");
+  }, []);
   const changeSettings = (setState, value, e) => {
     e.preventDefault();
     setState(value);
