@@ -115,6 +115,9 @@ const lightTheme = {
     bg200: "#ededed",
     bg300: "#c4c4c4",
   },
+  gradient: {
+    gradient100: 'background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);'
+  },
 };
 const theme = {
   lightTheme,

@@ -8,7 +8,8 @@ const Container = styled.section`
   //max-width: 32rem;
   height: 5.6rem;
   /* height: 100%; */
-  background-color: ${({ theme }) => theme.color.bg200};
+  /* background-color: ${({ theme }) => theme.color.bg200}; */
+  background-color: transparent;
 
   border-radius: 1.2rem;
   padding: 1.2rem;
@@ -25,4 +26,3 @@ const HC = ({ children }) => {
 };
 
 export default HC;
-

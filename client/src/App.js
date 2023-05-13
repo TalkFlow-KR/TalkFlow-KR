@@ -93,13 +93,14 @@ function App() {
           <Route path="/index" element={<Index />} />
           {/* 채팅방 생성 페이지*/}
           <Route
+
             path="/newChat"
             element={<Settings isUserActive={isUserActive} />}
           />
           {/* 채팅 내역  페이지 */}
           <Route
             path="/history"
-            element={<History isUserActive={isUserActive} />}
+            element={<History isUserActive={isUserActive} UserID={UserID} />}
           />
           {/* 공지사항 페이지*/}
           <Route
