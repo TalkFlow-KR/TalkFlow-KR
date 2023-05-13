@@ -49,37 +49,36 @@ exports.signup = (req, res) => {
 };
 
 exports.post_signup = async (req, res) => {
-  console.log(req.body)
   let cryptoPassword = await createCryptoPassword(req.body.password);
-  console.log('cryp: ',cryptoPassword)
-  const result = await models.USER.findOrCreate({
-    where : {
-      email: req.body.email,
-    },
-    defaults : {
-      name: req.body.name,
-      email: req.body.email,
-      password: cryptoPassword.password,
-      salt: cryptoPassword.salt,
-      gender: req.body.gender,
-      telephone: req.body.telephone,
+  try{
+    const result = await models.USER.findOrCreate({
+      where : {
+        email: req.body.email,
+      },
+      defaults : {
+        name: req.body.name,
+        email: req.body.email,
+        password: cryptoPassword.password,
+        salt: cryptoPassword.salt,
+        gender: req.body.gender,
+        telephone: req.body.telephone,
+      }
+    })
+    if(result.at(-1) === false){
+      console.log('fail')
+      res.send('fail')
     }
-  })
-  if(result.at(-1) === false){
-    console.log('fail')
-    res.send('fail')
+    else{
+      console.log('suc')
+      res.send('success')
+    }
   }
-  else{
-    console.log('suc')
-    res.send('success')
+  catch(error){
+    res.status(500).send("Error");
   }
 };
 
 // 2. 로그인
-exports.login = (req, res) => {
-  res.send("login");
-};
-
 exports.post_login = async (req, res) => {
   console.log(req.body)
   // 입력받은 아이디를 가진 사람을 찾아 salt와 입력한 비밀번호를 조합하며 저장된 비번과 같은지 확인
@@ -99,11 +98,13 @@ exports.post_login = async (req, res) => {
 
 //  3. /msg/:roomid 과거 대화 내용 조회
 exports.msg = async (req, res) => {
+  const userId = req.params.userid
   const roomId = req.params.roomid;
   console.log(roomId)
   const result = await models.MSG.findAll({
     where: {
       room_id: roomId,
+      user_id : userId
     },
   });
   res.send(result);
@@ -121,7 +122,6 @@ exports.allRoom = async(req,res)=>{
   res.send(result.room_id)
 }
 
-
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
   const userId = req.params.userid
@@ -136,19 +136,10 @@ exports.room = async (req, res) => {
     time: req.body.time,
   })
   console.log(result)
-};
-
-// 5. /stt 음성을 텍스트로 출력.
-exports.sst = (req, res) => {
-  res.render("index");
+  res.send('success')
 };
 
 // 6. /kakao
-//프론트 분리 전까지 기능 확인하고 싶으면 아래 render 주석 풀기
-exports.kakao = (req, res) => {
-  res.render("kakao");
-};
-
 exports.kakao2 = async (req, res) => {
   try {
     console.log(req.body)

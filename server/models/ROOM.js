@@ -9,7 +9,7 @@ const ROOM = function (Sequelize, DataTypes) {
         autoIncrement: true,
       },
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(255),
         allowNull: false,
       },
       situation: {
