@@ -20,14 +20,10 @@ const MSG = function (Sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      date: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-      },
-      time: {
-        type: DataTypes.STRING(10),
-        allowNull: false,
-      },
+      user_id:{
+        type : DataTypes.STRING(255),
+        allowNull: false
+      }
     },
     {
       tableName: "MSG", // 실제 db table명

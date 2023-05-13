@@ -89,6 +89,18 @@ export const Input = styled.input`
   background-color: #fff;
 `;
 
+export const MicButton = styled(Btn)`
+  width: 4rem;
+  height: 4rem;
+  margin-left: 1.6 erm;
+  border-radius: 5rem;
+  font-size: 1.2rem;
+  background-color: #5f5aa2;
+  margin-right: 1.6rem;
+  color: #ffffff;
+  cursor: pointer;
+  align-items: center;
+`;
 export const SendButton = styled(Btn)`
   width: 4rem;
   height: 4rem;

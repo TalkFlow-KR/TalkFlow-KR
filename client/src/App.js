@@ -13,12 +13,14 @@ import RegisterForm from "./components/organisms/Auth/RegisterForm";
 
 import Main from "./p/Main";
 import Index from "./p/Index";
+
 import NewChat from "./p/NewChat";
 import History from "./p/History";
 import Notification from "./p/Notification";
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
 // 로그인 페이지
 import Login from "pages/Login";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -88,8 +90,12 @@ function App() {
           <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
-          <Route path="/register" element={<RegisterForm />} />
-          {/* <Route path="/*" element={< 404 />} /> */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/*" element={< Error />} />
+          {/* <Route path="/register" element={<RegisterForm />} /> */}
+
+          {/* 사라지는 login -> loginForm으로 바로 연결 */}
+          {/* <Route path="/login" element={<Login />} /> */}
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

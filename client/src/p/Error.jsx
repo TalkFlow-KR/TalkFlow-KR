@@ -1,8 +1,9 @@
-//History.jsx
+//Error.jsx
 import React from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";
 import MC from "components/o/MC";
+import EC from "components/o/EC";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -23,15 +24,15 @@ const Container = styled.main`
     flex-direction: column;
   }
 `;
-const Main = () => {
+const Error = () => {
   return (
     <>
       <Container>
-        <LC></LC>
-        <MC></MC>
+        {/* <LC></LC> */}
+        <EC></EC>
       </Container>
     </>
   );
 };
 
-export default Main;
+export default Error;
