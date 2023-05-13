@@ -8,17 +8,16 @@ import AuthForm from "./components/organisms/Auth/AuthForm";
 import { GlobalStyle } from "styles/GlobalStyle.styled";
 import styled, { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
-import Settings from "./pages/Settings";
 import LoginForm from "./components/organisms/Auth/LoginForm";
 import RegisterForm from "./components/organisms/Auth/RegisterForm";
-import Loading from "./components/atoms/Loading";
-import First from "./components/organisms/First";
 
-import Index from "pages/Index";
-import ChatPage from "pages/ChatPage";
-import SettingsPage from "pages/SettingsPage";
-import SuccessRegister from "./components/organisms/Auth/SuccessRegister";
 import Main from "./p/Main";
+import Index from "./p/Index";
+import NewChat from "./p/NewChat"
+import History from "./p/History"
+import Notification from "./p/Notification"
+import Login from "./p/Login"
+import Register from "./p/Register"
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -42,6 +41,7 @@ import Main from "./p/Main";
 // Route
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
 
 const Wrapper = styled.main`
@@ -51,17 +51,19 @@ const Wrapper = styled.main`
   padding: 2.4rem;
 `;
 
+
 function App() {
   return (
     <ThemeProvider theme={theme.lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          {/*<Route  exact path="/" element={<MainPage />} />*/}
-          <Route exact path="/" element={<Main />} />
-          <Route path="/settingspage" element={<SettingsPage />} />
-          <Route path="/chatpage" element={<ChatPage />} />
-          {/*<Route path="/login" element={<LoginForm />} />*/}
+
+          <Route path="/" element={<Main />} />
+          <Route path="/index" element={<Index />} />
+          <Route path="/newchat" element={<NewChat />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/notification" element={<Notification />} />      
           <Route path="/login" element={<LoginForm />} />
           <Route path="/oauth/kakao/callback" element={<LoginForm />} />
           <Route path="/oauth" element={<KakaoAuth />} />
@@ -70,6 +72,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
+
 
     //   return (
     //     <>

@@ -1,8 +1,14 @@
 // IndexComponent.jsx
 import React from "react";
+import HC from "./HC";
+import First from "components/organisms/First";
 
-const Ic = () => {
-  return <div></div>;
+const IC = () => {
+  return (
+    <div>
+      <First></First>
+    </div>
+  );
 };
 
-export default Ic;
+export default IC;

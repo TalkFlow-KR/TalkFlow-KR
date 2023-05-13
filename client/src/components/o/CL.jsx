@@ -16,7 +16,7 @@ const Wrapper = styled.section`
 const ChatList = styled.div``;
 // 서버에서 채팅방 조회를 하여 map 함수돌려서 ChatItem 늘려야함.
 // ㅊ
-const Cl = () => {
+const CL = () => {
   return (
     <Wrapper>
       <Search />
@@ -76,4 +76,4 @@ const Cl = () => {
   );
 };
 
-export default Cl;
+export default CL;

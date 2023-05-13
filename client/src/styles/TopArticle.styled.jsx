@@ -1,10 +1,11 @@
 import { Box } from "./Article.styled";
 import styled from "styled-components";
+import theme from "./themeProvider/theme";
 
 export const Wrapper = styled(Box)`
-  width: ${(props) => props.theme.layout.width.top};
-  height: ${(props) => props.theme.layout.height.top};
-  border-radius: ${(props) => props.theme.layout.radius.l};
+  width: ${({ theme }) => theme.lightTheme.layout.width.top};
+  height: ${(props) => props.theme.lightTheme.layout.height.top};
+  border-radius: ${(props) => props.theme.lightTheme.layout.radius.l};
   display: flex;
   justify-content: space-between;
   padding: 0 2.4rem;
@@ -24,9 +25,4 @@ export const Wrapper = styled(Box)`
   &article {
     flex: 1 1 0;
   }
-
-  /* @media (max-width: ${(props) => props.theme.layout.width.mobileTop}) {
-    width: ${(props) => props.theme.layout.width.mobileTop};
-    background-color: white;
-  } */
 `;

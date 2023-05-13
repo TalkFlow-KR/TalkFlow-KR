@@ -1,10 +1,8 @@
-// MainContentsComponent.jsx
+// RegisterComponent.jsx
 import React from "react";
 import HC from "./HC";
 import styled from "styled-components";
-import CL from "./CL";
-import CR from "./CR";
-import CS from "./CS";
+import RegisterForm from "components/organisms/Auth/RegisterForm";
 
 const Wrapper = styled.section`
   flex: 1 1 0;
@@ -14,7 +12,7 @@ const Wrapper = styled.section`
   //height: 70rem;
   //height: 100%;
   border-radius: 2rem;
-  /* background-color: tomato; */
+  //background-color: tomato;
   background-color: ${({ theme }) => theme.color.bg100};
   //justify-content: center;
   align-items: center;
@@ -23,33 +21,21 @@ const Wrapper = styled.section`
   overflow: hidden;
 `;
 const ContentsBox = styled.section`
-  width: 100%;
+  //width: 100%;
   height: 100%;
   display: flex;
   padding-bottom: 11.2rem;
-
-  @media (max-width: 720px) {
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-  }
+  background-color: tan;
 `;
-const data = {
-  ai: {
-    answer: ["partners test", "1", "2", "3"],
-  },
-};
-const MC = () => {
+const RGC = () => {
   return (
     <Wrapper>
-      <HC>HOME</HC>
+      <HC>Login</HC>
       <ContentsBox>
-        <CS />
-        {/*<CL />*/}
-        <CR data={data} />
+        <RegisterForm></RegisterForm>
       </ContentsBox>
     </Wrapper>
   );
 };
 
-export default MC;
+export default RGC;

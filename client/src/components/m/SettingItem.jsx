@@ -13,10 +13,10 @@ const Btn = styled.button`
 const SettingItem = ({ onClick }) => {
   return (
     <div>
-      <Btn onClick={onClick}>옵션1</Btn>
-      <Btn onClick={onClick}>옵션2</Btn>
-      <Btn onClick={onClick}>옵션3</Btn>
-      <Btn onClick={onClick}>옵션4</Btn>
+      <Btn onClick={onClick}>영어</Btn>
+      <Btn onClick={onClick}>중국어</Btn>
+      <Btn onClick={onClick}>일본어</Btn>
+      <Btn onClick={onClick}>한국어</Btn>
     </div>
   );
 };

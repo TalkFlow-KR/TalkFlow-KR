@@ -1,9 +1,10 @@
 import React from "react";
 import RoomIcon from "components/a/RoomIcon";
 import styled from "styled-components";
+import theme from "styles/themeProvider/theme";
 
 const Wrapper = styled.article`
-  background-color: orange;
+  background-color: ${({ theme }) => theme.color.bg300};
   border-radius: 2rem;
   margin: 2rem;
   padding: 0.8rem;
