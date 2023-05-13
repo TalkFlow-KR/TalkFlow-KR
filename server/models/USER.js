@@ -1,12 +1,14 @@
+const { UUIDV4 } = require("sequelize");
+
 const USER = function (Sequelize, DataTypes) {
   const model = Sequelize.define(
     "USER",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(255),
         allowNull: false,
+        defaultValue : UUIDV4,
         primaryKey: true,
-        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING(20),
