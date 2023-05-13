@@ -13,11 +13,13 @@ import RegisterForm from "./components/organisms/Auth/RegisterForm";
 
 import Main from "./p/Main";
 import Index from "./p/Index";
+
 import NewChat from "./p/NewChat";
 import History from "./p/History";
 import Notification from "./p/Notification";
 import Login from "./p/Login";
 import Register from "./p/Register";
+
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -44,12 +46,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
 
-const Wrapper = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2.4rem;
-`;
 
 function App() {
   return (
@@ -63,11 +59,14 @@ function App() {
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/history" element={<History />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/login" element={<LoginForm />} />
-          {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
+
           <Route path="/oauth" element={<KakaoAuth />} />
-          <Route path="/register" element={<RegisterForm />} />
-          {/* <Route path="/*" element={< 404 />} /> */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/*" element={< Error />} />
+          {/* <Route path="/register" element={<RegisterForm />} /> */}
+
+          {/* 사라지는 login -> loginForm으로 바로 연결 */}
+          {/* <Route path="/login" element={<Login />} /> */}
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
