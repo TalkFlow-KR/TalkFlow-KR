@@ -13,12 +13,13 @@ import RegisterForm from "./components/organisms/Auth/RegisterForm";
 
 import Main from "./p/Main";
 import Index from "./p/Index";
-import NewChat from "./p/NewChat"
-import History from "./p/History"
-import Notification from "./p/Notification"
-import Login from "./p/Login"
-import Register from "./p/Register"
-import Error from "p/Error";
+
+import NewChat from "./p/NewChat";
+import History from "./p/History";
+import Notification from "./p/Notification";
+import Login from "./p/Login";
+import Register from "./p/Register";
+
 
 // responsive
 // import { useMediaQuery } from "react-responsive";
@@ -53,11 +54,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
+          {/*화면 첫페이지 */}
           <Route path="/index" element={<Index />} />
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/history" element={<History />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/oauth/kakao/callback" element={<LoginForm />} />
+
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<Register />} />
           <Route path="/*" element={< Error />} />
@@ -68,7 +70,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
-
 
     //   return (
     //     <>

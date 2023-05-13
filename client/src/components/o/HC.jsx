@@ -12,7 +12,7 @@ const Container = styled.section`
 
   border-radius: 1.2rem;
   padding: 1.2rem;
-  margin-left: 2rem;
+  margin: 2rem;
   font-size: 3.2rem;
   align-self: flex-start;
   //flex: 0 1 0;
@@ -25,3 +25,4 @@ const HC = ({ children }) => {
 };
 
 export default HC;
+

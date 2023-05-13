@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import InputWithLabels from "../../molecules/InputWithLabels";
-import Button from "../../atoms/Button";
 import Loading from "../../atoms/Loading";
 import axios from "axios";
 import KaKaoLogin from "../../m/KaKaoLogin";
+import { useNavigate } from "react-router-dom";
+import login from "../../../p/Login";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
   align-items: center;
+  background-color: orange;
 
   & section {
     display: flex;
@@ -25,6 +26,9 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loginData, setLoginData] = useState(null);
+
+  const navigate = useNavigate();
 
   const onChange = (setState, e) => {
     setState(e.target.value);
@@ -34,26 +38,37 @@ const LoginForm = () => {
   };
 
   const data = {
-    userEmail: email,
-    userPassword: password,
+    email: email,
+    password: password,
   };
+
   // 로그인 버튼
   const onSubmit = async (e) => {
     // 로딩 ON
     setIsLoading(true);
     e.preventDefault();
-
     // 로그인 요청
-    const res = await axios.post("/post-login", data);
+    const res = await axios.post("http://localhost:8000/post-login", data);
     console.log(res);
+    console.log(res.data);
     console.log(email, password);
-    // 로딩 OFf
+    if (res.data === "wrong") {
+      setLoginData(false);
+    }
+    if (res.data === "success") {
+      setLoginData(true);
+    }
+    // 로딩 off
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    if (loginData) {
+      navigate("/index");
+    }
+  }, [loginData, navigate]);
   return (
     <>
-      {isLoading ? <Loading /> : "loadingState가 false라면,이게 뜸"};
       <Wrapper>
         <section>
           <label htmlFor="userEmail">
@@ -76,9 +91,12 @@ const LoginForm = () => {
               value={password}
               onChange={(e) => onChange(setPassword, e)}
             />
-            <button onClick={onShow}>openyoureyes</button>
+            <button onClick={onShow}>눈 아이콘 </button>
           </label>
           <br />
+          {loginData === false && (
+            <p>아이디 혹은 비밀번호가 일치하지 않아요.</p>
+          )}
           <button onClick={onSubmit}>로그인하기</button>
           <KaKaoLogin />
         </section>
