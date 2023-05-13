@@ -1,9 +1,12 @@
 //components
 // import MainPage from "pages/MainPage.jsx";
 // import Chat from "pages/Chat.jsx";
+// 회원가입 페이지
 import Register from "p/Register";
-import Error from "p/Error";
+
 // import AuthForm from "./components/organisms/Auth/AuthForm";
+// 404 페이지
+import Error from "pages/Error";
 
 //style
 import { GlobalStyle } from "styles/GlobalStyle.styled";

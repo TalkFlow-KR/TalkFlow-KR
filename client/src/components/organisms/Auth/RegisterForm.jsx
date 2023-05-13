@@ -6,27 +6,34 @@ import Loading from "../../atoms/Loading";
 
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
-  align-items: center;
+  overflow: hidden;
+  position: absolute;
 `;
 const StyledForm = styled.form`
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   transition: all 0.4s;
-
+  justify-content: center;
+  align-items: center;
+  background-color: red;
   & fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     //margin: 0 20rem;
+    background-color: tomato;
+    border-radius: 2rem;
+    //margin: 0 50%;
+
     //transform: translateX(770%);
   }
 `;
-
 const StyledFieldSet = styled.fieldset`
   border: 0;
   margin: 0;
   padding: 0;
   word-break: keep-all;
 `;
-const RegisterForm = () => {
+const RegisterForm = ({ isFinish, setIsFinish }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(-1);
   const [position, setPosition] = useState(1);
@@ -150,6 +157,7 @@ const RegisterForm = () => {
     if (res.data === "Success") {
       setIsSuccess(true);
       // 가입 성공에 대한 화면 출력 및 상태 변경
+      setIsFinish(true);
     } else {
       setIsSuccess(false);
       // 가입 실패일 경우 에러 출력
