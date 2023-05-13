@@ -9,30 +9,25 @@ const Wrapper = styled.button`
   /* height: 100%; */
   margin: 1rem;
   border-radius: 2rem;
-  /* background-color: #fff; */
+  background-color: #fff;
   /* background-color: tomato; */
   /* background-color: ${({ theme }) => theme.color.bg300}; */
 
+  &:hover {
+    background-color: ${({ theme }) => theme.color.bg300};
+    box-shadow: ${({ theme }) => theme.shadow.shadow100};
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.1);
+  }
   @media (max-width: 900px) {
     width: ${({ theme }) => theme.layout.width.tabletLc};
   }
 `;
 
 const MenuItem = ({ children }) => {
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <>
-      <Wrapper
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        style={{
-          backgroundColor: isHovered ? "orange" : "#fff",
-          boxShadow: isHovered ? "none;" : "0 5px 20px -5px rgba(0,0,0,.7);",
-          transition: "all 0.2s ease-in-out",
-          transform: isHovered ? "scale(1.1)" : "scale(1)",
-        }}>
-        {children}
-      </Wrapper>
+      <Wrapper>{children}</Wrapper>
     </>
   );
 };
