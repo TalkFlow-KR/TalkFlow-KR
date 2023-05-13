@@ -1,7 +1,8 @@
 //components
 // import MainPage from "pages/MainPage.jsx";
 // import Chat from "pages/Chat.jsx";
-// import Register from "pages/Register"
+import Register from "p/Register";
+import Error from "p/Error";
 // import AuthForm from "./components/organisms/Auth/AuthForm";
 
 //style

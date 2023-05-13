@@ -1,13 +1,13 @@
-//CW
-// New Chat center flex 요소 Wrapper
+// Home(MC) center flex 요소 Wrapper
 import React, { useState } from "react";
 import styled from "styled-components";
-import CR from "./CR";
 import CS from "./CS";
+import Intro from "./Intro";
 
 const Wrapper = styled.section`
   width: 100%;
   display: flex;
+  justify-content: space-around;
   align-items: center;
 
   @media (max-width: 720px) {
@@ -24,7 +24,7 @@ const data = {
   },
 };
 
-const CW = () => {
+const MW = () => {
   const [isOpen, setIsOpen] = useState([false, false, false]);
   const [option0, setOption0] = useState("");
   const [option1, setOption1] = useState("");
@@ -36,12 +36,10 @@ const CW = () => {
 
   return (
     <Wrapper>
-      <CS />
-      <CR data={data} />
+      <CS></CS>
+      <Intro></Intro>
     </Wrapper>
   );
 };
 
-export default CW;
-
-
+export default MW;
