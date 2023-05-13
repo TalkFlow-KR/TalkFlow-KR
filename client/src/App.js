@@ -102,7 +102,11 @@ function App() {
             path="/notification"
             element={<Notification isUserActive={isUserActive} />}
           />
-          <Route path="/settings" element={<Settings />} />
+          <Route
+            path="/settings"
+            element={<Settings isUserActive={isUserActive} userId={UserID} />}
+          />
+
           {/*로그인 페이지 경로 /login*/}
           <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}

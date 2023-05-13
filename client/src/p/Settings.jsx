@@ -1,10 +1,11 @@
 //Main.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";
 // import MC from "../components/o/MC";
-import NewC from "components/o/NewS";
 import NewS from "components/o/NewS";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -34,15 +35,42 @@ const Container = styled.main`
     flex-direction: column;
   }
 `;
-const NewChat = () => {
+// axios 가져오기
+// login 유무 확인하기
+const Settings = ({ isUserActive, userId }) => {
+  const [data, setData] = useState("");
+  const [settings, setSettings] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userId) {
+      navigate("/login");
+    }
+  }, [navigate, userId]);
+
+  const handleSubmit = async (payload) => {
+    console.log(payload);
+    const res = await axios.post(
+      `http://localhost:8000/room/make/${userId}`,
+      settings
+    );
+    console.log(res);
+    setData(res.data);
+  };
+  // userId,data,onSubmit,setSettings
   return (
     <>
       <Container>
         <LC />
-        <NewS />
+        <NewS
+          userId={userId}
+          data={data}
+          onSubmit={handleSubmit}
+          setSettings={setSettings}
+        />
       </Container>
     </>
   );
 };
 
-export default NewChat;
+export default Settings;

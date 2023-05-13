@@ -24,15 +24,9 @@ const data = {
   },
 };
 
-const CW = () => {
-  const [isOpen, setIsOpen] = useState([false, false, false]);
-  const [option0, setOption0] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-  const onClick = (number, option) => {
-    const newIsOpen = isOpen.map((v, i) => (i === number ? !v : false));
-    setIsOpen(newIsOpen);
-  };
+const CW = ({ userId, data, onSubmit, setSettings }) => {
+  console.log("CW onSubmit", onSubmit);
+
   const TextBox = styled.div`
     width: 100%;
     text-align: center;
@@ -40,7 +34,12 @@ const CW = () => {
   `;
   return (
     <Wrapper>
-      <CS />
+      <CS
+        userId={userId}
+        data={data}
+        onSubmit={onSubmit}
+        setSettings={setSettings}
+      />
       <TextBox>
         <h1>대화하기전, 회화 테마를 선택 해주세요.</h1>
       </TextBox>

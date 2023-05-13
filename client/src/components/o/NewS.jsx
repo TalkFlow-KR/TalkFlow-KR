@@ -20,15 +20,21 @@ const ContentsBox = styled.section`
   padding-bottom: 11.2rem;
 `;
 
-const NewC = () => {
+const NewS = ({ userId, data, onSubmit, setSettings }) => {
+  console.log("NewC onSubmit", onSubmit);
   return (
     <Wrapper>
       <ContentsBox>
         <HC>New Chat</HC>
-        <CW />
+        <CW
+          userId={userId}
+          data={data}
+          onSubmit={onSubmit}
+          setSettings={setSettings}
+        />
       </ContentsBox>
     </Wrapper>
   );
 };
 
-export default NewC;
+export default NewS;
