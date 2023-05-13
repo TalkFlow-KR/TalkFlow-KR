@@ -1,13 +1,12 @@
 //Main.jsx
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import LC from "../components/o/LC";
-import MC from "../components/o/MC";
-import RegisterForm from "components/organisms/Auth/RegisterForm";
-import IC from "components/o/IC";
-import RGC from "components/o/RGC";
+// import RegisterForm from "components/organisms/Auth/RegisterForm";
+import SuccessRegister from "../components/organisms/Auth/SuccessRegister";
+import Register from "../components/organisms/Auth/Register";
 
 const Container = styled.main`
+  position: relative;
   flex: 1 1 0;
   //width: 140rem;
   //max-width: 144rem;
@@ -30,14 +29,18 @@ const Container = styled.main`
   gap: 6rem;
   align-items: stretch;
 `;
+const SignUp = () => {
+  const [isFinish, setIsFinish] = useState(false);
 
-const Register = () => {
+  const registerProps = {
+    isFinish,
+    setIsFinish,
+  };
   return (
     <Container>
-      <LC></LC>
-      <RGC></RGC>
+      {isFinish ? <SuccessRegister /> : <Register {...registerProps} />}
     </Container>
   );
 };
 
-export default Register;
+export default SignUp;

@@ -4,7 +4,7 @@ import InputWithLabels from "../../molecules/InputWithLabels";
 import axios from "axios";
 import Loading from "../../atoms/Loading";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   ${({ theme }) => theme.layout.flexCenter};
   overflow: hidden;
   position: absolute;
@@ -33,6 +33,7 @@ const StyledFieldSet = styled.fieldset`
   padding: 0;
   word-break: keep-all;
 `;
+
 const RegisterForm = ({ isFinish, setIsFinish }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(-1);

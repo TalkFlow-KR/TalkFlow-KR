@@ -2,7 +2,7 @@
 // import MainPage from "pages/MainPage.jsx";
 // import Chat from "pages/Chat.jsx";
 // 회원가입 페이지
-import Register from "p/Register";
+import SignUp from "pages/SignUp";
 import Settings from "p/Settings";
 // import AuthForm from "./components/organisms/Auth/AuthForm";
 // 404 페이지
@@ -37,6 +37,7 @@ function App() {
   const [UserID, setUserID] = useState("");
   const [isUserActive, setIsUserActive] = useState(false);
 
+  //로그인 됐는지 안됐는지
   useEffect(() => {
     console.log("로그인상태", UserID);
     if (!UserID) {
@@ -51,19 +52,18 @@ function App() {
   };
 
   // login submit 버튼
-  const onSubmit = async (emailfromLogin, passwordfromPassword, e) => {
-    console.log("App.js onSubmit Test", emailfromLogin, passwordfromPassword);
+  const onSubmit = async (emailfromLogin, pwfromLogin) => {
+    console.log("App.js onSubmit Test", emailfromLogin, pwfromLogin);
     setIsLoading(true);
-    e.preventDefault();
     const data = {
       email: emailfromLogin,
-      password: passwordfromPassword,
+      password: pwfromLogin,
     };
     const res = await axios.post("http://localhost:8000/post-login", data);
-    if (res.data === "wrong") {
+    if (res.data.msg === "wrong") {
       setLoginData(false);
     }
-    if (res.data === "success") {
+    if (res.data.msg === "success") {
       setLoginData(true);
       setUserID(res.data.userid);
     }
@@ -97,6 +97,10 @@ function App() {
             path="/newChat"
             element={<Settings isUserActive={isUserActive} />}
           />
+          <Route
+            path="/settings"
+            element={<Settings isUserActive={isUserActive} userId={UserID} />}
+          />
           {/* 채팅 내역  페이지 */}
           <Route
             path="/history"
@@ -107,16 +111,12 @@ function App() {
             path="/notification"
             element={<Notification isUserActive={isUserActive} />}
           />
-          <Route
-            path="/settings"
-            element={<Settings isUserActive={isUserActive} userId={UserID} />}
-          />
 
           {/*로그인 페이지 경로 /login*/}
           <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<SignUp />} />
           <Route path="/*" element={<Error />} />
           {/* <Route path="/register" element={<RegisterForm />} /> */}
 
