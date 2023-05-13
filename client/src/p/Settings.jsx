@@ -62,6 +62,8 @@ const Settings = ({ isUserActive, userId }) => {
   return (
     <>
       <Container>
+        {isUserActive ? `로그인 중 : UserID :^ ${userId} ^ ` : "비로그인"}
+
         <LC />
         <NewS
           userId={userId}
