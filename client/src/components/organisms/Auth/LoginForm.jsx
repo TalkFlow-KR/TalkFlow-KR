@@ -9,6 +9,7 @@ import login from "../../../p/Login";
 const Wrapper = styled.div`
   ${({ theme }) => theme.layout.flexCenter};
   align-items: center;
+  background-color: orange;
 
   & section {
     display: flex;
@@ -68,7 +69,6 @@ const LoginForm = () => {
   }, [loginData, navigate]);
   return (
     <>
-      {isLoading ? <Loading /> : "loadingState가 false라면,이게 뜸"};
       <Wrapper>
         <section>
           <label htmlFor="userEmail">
@@ -91,7 +91,7 @@ const LoginForm = () => {
               value={password}
               onChange={(e) => onChange(setPassword, e)}
             />
-            <button onClick={onShow}>openyoureyes</button>
+            <button onClick={onShow}>눈 아이콘 </button>
           </label>
           <br />
           {loginData === false && (
