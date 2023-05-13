@@ -3,7 +3,7 @@
 // import Chat from "pages/Chat.jsx";
 // 회원가입 페이지
 import Register from "p/Register";
-
+import Settings from "p/Settings";
 // import AuthForm from "./components/organisms/Auth/AuthForm";
 // 404 페이지
 import Error from "pages/Error";
@@ -102,7 +102,7 @@ function App() {
             path="/notification"
             element={<Notification isUserActive={isUserActive} />}
           />
-
+          <Route path="/settings" element={<Settings />} />
           {/*로그인 페이지 경로 /login*/}
           <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}

@@ -33,15 +33,19 @@ const CW = () => {
     const newIsOpen = isOpen.map((v, i) => (i === number ? !v : false));
     setIsOpen(newIsOpen);
   };
-
+  const TextBox = styled.div`
+    width: 100%;
+    text-align: center;
+    font-size: 4.2rem;
+  `;
   return (
     <Wrapper>
       <CS />
-      <CR data={data} />
+      <TextBox>
+        <h1>대화하기전, 회화 테마를 선택 해주세요.</h1>
+      </TextBox>
     </Wrapper>
   );
 };
 
 export default CW;
-
-
