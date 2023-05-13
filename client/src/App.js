@@ -1,8 +1,8 @@
 //components
-import MainPage from "pages/MainPage.jsx";
-import Chat from "pages/Chat.jsx";
+// import MainPage from "pages/MainPage.jsx";
+// import Chat from "pages/Chat.jsx";
 // import Register from "pages/Register"
-import AuthForm from "./components/organisms/Auth/AuthForm";
+// import AuthForm from "./components/organisms/Auth/AuthForm";
 
 //style
 import { GlobalStyle } from "styles/GlobalStyle.styled";
@@ -16,54 +16,76 @@ import Index from "./p/Index";
 import NewChat from "./p/NewChat";
 import History from "./p/History";
 import Notification from "./p/Notification";
-import Login from "./p/Login";
-import Register from "./p/Register";
-
-// responsive
-// import { useMediaQuery } from "react-responsive";
-
-// export const Mobile = ({ children }) => {
-//   const isMobile = useMediaQuery({
-//     query: "(max-width:360px)"
-//   });
-//   return <>{isMobile && children}</>
-// }
-
-// export const Pc = ({ children }) => {
-//   const isPc = useMediaQuery({
-//     query: "(min-width:360px)"
-//   });
-//   return <>{isPc && children}</>
-// }
-
-// 컴포넌트 구성에 따라 이름 변경 해야함
-// 404 페이지 필요
-// Route
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
-
-const Wrapper = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2.4rem;
-`;
+// 로그인 페이지
+import Login from "pages/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [loginData, setLoginData] = useState(null);
+  const [UserID, setUserID] = useState("");
+  const [isUserActive, setIsUserActive] = useState(false);
+
+  useEffect(() => {
+    if (!UserID) {
+      setIsUserActive(false);
+    } else {
+      setIsUserActive(true);
+    }
+  }, [UserID]);
+  // login input value 변화
+  const onChange = (setState, e) => {
+    setState(e.target.value);
+  };
+  // login submit 버튼
+  const onSubmit = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+    const data = {
+      email: email,
+      password: password,
+    };
+    const res = await axios.post("http://localhost:8000/post-login", data);
+    if (res.data === "wrong") {
+      setLoginData(false);
+    }
+    if (res.data === "success") {
+      setLoginData(true);
+      setUserID(res.data.userid);
+    }
+    setIsLoading(false);
+  };
+  const loginProps = {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    onChange,
+    onSubmit,
+    isLoading,
+    setIsLoading,
+    loginData,
+    setLoginData,
+  };
+
   return (
     <ThemeProvider theme={theme.lightTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main isUserActive={isUserActive} />} />
           {/*화면 첫페이지 */}
           <Route path="/index" element={<Index />} />
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/history" element={<History />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/login" element={<LoginForm />} />
+          {/*로그인 페이지 경로 /login*/}
+          <Route path="/login" element={<Login {...loginProps} />} />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<RegisterForm />} />
@@ -71,42 +93,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
-
-    //   return (
-    //     <>
-    //       <ThemeProvider theme={theme}>
-    //         <GlobalStyle />
-    //         {/**/}
-    //         <Wrapper>
-    //           <Main />
-    //         </Wrapper>
-    //         {/**/}
-    //         {/* <AuthForm /> */}
-    //         {/*TEST*/}
-    //         {/*<p>TEST</p>*/}
-    //         {/*<Mobile>*/}
-    //         {/* <Index /> */}
-    //         {/*  <mobileTest>test</mobileTest>*/}
-    //         {/* index 페이지 */}
-    //         {/*<MainPage />*/}
-    //         {/*<ChatPage />*/}
-    //         {/*</Mobile>*/}
-    //         {/*<Pc>*/}
-    //         {/*<MainPage />*/}
-    //         {/*</Pc>*/}
-    //         {/* <Register /> */}
-    //         {/* <Chat /> */}
-    //         {/*<Settings />*/}
-    //         {/*회원가입/로그인 페이지*/}
-    //         {/*<AuthForm />*/}
-    //         {/*로딩 컴포넌트*/}
-    //         {/*<Loading />*/}
-    //         {/*메인페이지 섹션 아티클*/}
-    //         {/*<First />*/}
-    //         {/*<SettingsPage />*/}
-    //         {/*<SuccessRegister />*/}
-    //       </ThemeProvider>
-    //     </>
   );
 }
 

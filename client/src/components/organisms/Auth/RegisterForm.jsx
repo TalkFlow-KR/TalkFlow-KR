@@ -28,7 +28,7 @@ const StyledFieldSet = styled.fieldset`
 `;
 const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(-1);
   const [position, setPosition] = useState(1);
   // email state
   const [emailValue, setEmailValue] = useState("smurf@kakao.com");
@@ -47,6 +47,9 @@ const RegisterForm = () => {
   const [isValidPhone, setIsValidPhone] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
   const [registerText, setRegisterText] = useState("가입하기");
+
+  // 회원가입 성공/실패
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const JOIN_DATA = {
     emailText: {
@@ -144,9 +147,11 @@ const RegisterForm = () => {
     const res = await axios.post("http://localhost:8000/post-signup", data);
     console.log(res.data);
 
-    if (res.data === "res.data가 가입성공일 경우") {
-      //   가입 성공에 대한 화면 출력 및 상태 변경
+    if (res.data === "Success") {
+      setIsSuccess(true);
+      // 가입 성공에 대한 화면 출력 및 상태 변경
     } else {
+      setIsSuccess(false);
       // 가입 실패일 경우 에러 출력
     }
     setIsLoading(false);
@@ -154,10 +159,18 @@ const RegisterForm = () => {
   const onShow = () => {
     setShowPassword(!showPassword);
   };
+  const onAuthEmail = async () => {
+    const res = await axios.post("http://localhost:8000/", emailText);
+    console.log(res.data);
+    // 중복이 아닐경우
+    if (res.data) {
+      setIsValid(1);
+    } else setIsValid(0);
+  };
   return (
     <>
       <Wrapper>
-        {isLoading ? <Loading /> : "isLoading가 false라면,이게 뜸"};
+        {/*{isLoading ? <Loading /> : "isLoading가 false라면,이게 뜸"};*/}
         <StyledForm
           action=""
           style={{ transform: `translateX(${position}rem)` }}>
@@ -178,6 +191,10 @@ const RegisterForm = () => {
             ) : (
               <p>please enter a valid email. Bad</p>
             )}
+            {!isValid ? <p>중복된 이메일 입니다. </p> : null}
+            <button type="button" onClick={onAuthEmail}>
+              중 복 확 인 버 튼
+            </button>
             <button type="button" onClick={onClick} disabled={!isValidEmail}>
               NEXT
             </button>
