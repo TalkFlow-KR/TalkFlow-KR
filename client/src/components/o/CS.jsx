@@ -46,7 +46,9 @@ const CS = ({ userId, data, onSubmit, setSettings }) => {
   const [isOpen, setIsOpen] = useState([false, false, false]);
   const [language, setLanguage] = useState("English");
   const [accent, setAccent] = useState("Health Trainer");
-  const [situation, setSituation] = useState("at the gym");
+
+  const [situation, setSituation] = useState("at the Gym");
+
   const [payload, setPayload] = useState({
     language,
     accent,

@@ -9,7 +9,7 @@ const Title = styled.div`
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: g100vh;
   background-color: ${(props) => props.theme.color.boxBackground};
   border-radius: 2rem 2rem 0 0;
 `;
