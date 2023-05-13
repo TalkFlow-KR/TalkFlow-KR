@@ -28,6 +28,7 @@ import Login from "pages/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Skeleton from "./components/molecules/Skeleton";
 
 function App() {
   // 유저의 로그인 값
@@ -130,6 +131,7 @@ function App() {
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/register" element={<SignUp />} />
+          <Route path="/sk" element={<Skeleton />} />
           <Route path="/*" element={<Error />} />
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}
