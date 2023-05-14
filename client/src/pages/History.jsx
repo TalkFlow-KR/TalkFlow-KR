@@ -35,7 +35,14 @@ const Container = styled.main`
   }
 `;
 
-const History = ({ userEmail }) => {
+const History = ({
+  isUserActive,
+  userId,
+  userEmail,
+  mode,
+  ChangeTheme,
+  setUserID,
+}) => {
   const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
   const [roomNumber, setRoomNumber] = useState();
 
@@ -56,7 +63,13 @@ const History = ({ userEmail }) => {
   return (
     <>
       <Container>
-        <LC userEmail={userEmail} />
+        <LC
+          mode={mode}
+          ChangeTheme={ChangeTheme}
+          userEmail={userEmail}
+          userId={userId}
+          setUserID={setUserID}
+        />
 
         <HrC roomNumber={roomNumber}></HrC>
       </Container>

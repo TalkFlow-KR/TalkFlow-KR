@@ -4,12 +4,11 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Container = styled.main`
+  position: absolute;
   flex: 1 1 0;
   height: 80vh;
-  //height: 100%;
-  //width: 100%;
+  width: Calc(100vw - 8rem);
   border-radius: 2rem;
-  color: ${({ theme }) => theme.color.text100};
   background-color: ${({ theme }) => theme.color.bg200};
 
   margin: 2rem;
@@ -18,6 +17,7 @@ const Container = styled.main`
   justify-content: space-around;
   gap: 6rem;
   align-items: stretch;
+  z-index: 100;
   & > div {
     display: flex;
   }
@@ -72,7 +72,7 @@ const MenuItem = styled.div`
   /* height: 100%; */
   margin: 1rem;
   border-radius: 2rem;
-  background-color: ${({ theme }) => theme.color.accent100};
+  background-color: ${({ theme }) => theme.color.bg300};
   animation: ${({ theme }) => theme.animation.shimmer.keyframes}
     ${({ theme }) => theme.animation.shimmer.duration}
     ${({ theme }) => theme.animation.shimmer.timingFunction}
@@ -105,7 +105,8 @@ const ProfileIcon = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.color.accent100};
+    background-color: ${({ theme }) => theme.color.bg300};
+
     animation: ${({ theme }) => theme.animation.shimmer.keyframes}
       ${({ theme }) => theme.animation.shimmer.duration}
       ${({ theme }) => theme.animation.shimmer.timingFunction}
@@ -121,15 +122,18 @@ const Container4 = styled.div`
   border-radius: 2rem;
   background-color: ${({ theme }) => theme.color.bg300};
 
-  align-items: center;
+  //align-items: center;
   gap: 2rem;
   overflow: hidden;
 `;
 
 const ContentsBox = styled.div`
-  width: 100%;
-  height: 100%;
-  padding-bottom: 11.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: row-reverse;
+  padding: 0 20rem;
+  gap: 6rem;
 `;
 const HC = styled.section`
   flex: 1 1 0;
@@ -144,9 +148,10 @@ const HC = styled.section`
   background: ${({ theme }) => theme.background};
 `;
 const Container5 = styled.div`
-  width: 25.7rem;
-  height: 50vh;
-  background-color: ${({ theme }) => theme.color.accent100};
+  width: 70rem;
+  height: 65vh;
+  background-color: ${({ theme }) => theme.color.bg200};
+
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -188,11 +193,10 @@ const Btn = styled(OptBtn)`
   bottom: 0;
 `;
 const Container6 = styled.section`
-  width: 50%;
-  height: 50vh;
-  background-color: ${({ theme }) => theme.color.accent100};
+  width: 20rem;
+  background-color: ${({ theme }) => theme.color.bg200};
+
   border-radius: 2rem;
-  display: flex;
   flex-direction: column;
   padding: 2rem;
   margin: 2rem;
@@ -233,17 +237,9 @@ const Container6 = styled.section`
   }
 `;
 const Container7 = styled.section`
-  width: 100%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-
-  @media (max-width: 720px) {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+  overflow: hidden;
 `;
 
 const Div = styled(MenuItem)``;
@@ -290,7 +286,12 @@ const Skeleton = ({ isUserActive, userId }) => {
       </Sk.Container2>
       <Sk.Container4>
         <Sk.ContentsBox>
-          <Sk.HC></Sk.HC>
+          <Sk.Container6>
+            <h2> </h2>
+            <h3> </h3>
+            <h4> </h4>
+            <h5> </h5>
+          </Sk.Container6>
           <Sk.Container7>
             <Sk.Container5>
               <OptBtn></OptBtn>
@@ -298,12 +299,6 @@ const Skeleton = ({ isUserActive, userId }) => {
               <OptBtn></OptBtn>
               <Btn></Btn>
             </Sk.Container5>
-            <Sk.Container6>
-              <h2> </h2>
-              <h3> </h3>
-              <h4> </h4>
-              <h5> </h5>
-            </Sk.Container6>
           </Sk.Container7>
         </Sk.ContentsBox>
       </Sk.Container4>

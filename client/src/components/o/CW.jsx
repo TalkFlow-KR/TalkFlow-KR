@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CR from "./CR";
 import CS from "./CS";
+import HrC from "./HrC";
 
 const Wrapper = styled.section`
+  padding: 2rem;
   width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
 
@@ -18,19 +21,21 @@ const Wrapper = styled.section`
   }
 `;
 
-const data = {
-  ai: {
-    answer: ["partners test", "1", "2", "3"],
-  },
-};
-
 const CW = ({ userId, data, onSubmit, setSettings }) => {
+  const [isCreated, setIsCreated] = useState(true);
   console.log("CW onSubmit", onSubmit);
 
-  const TextBox = styled.div`
+  const Box = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 100%;
     text-align: center;
     font-size: 4.2rem;
+    background-color: ${({ theme }) => theme.color.bg100}
+      ${({ theme }) => theme.shadow};
+    border-radius: 2rem;
   `;
   return (
     <Wrapper>
@@ -39,10 +44,12 @@ const CW = ({ userId, data, onSubmit, setSettings }) => {
         data={data}
         onSubmit={onSubmit}
         setSettings={setSettings}
+        isCreated={isCreated}
       />
-      <TextBox>
-        <h1>대화하기전, 회화 테마를 선택 해주세요.</h1>
-      </TextBox>
+
+      <Box>
+        {!isCreated ? <h1>대화하기전, 회화 테마를 선택 해주세요.</h1> : <HrC />}
+      </Box>
     </Wrapper>
   );
 };

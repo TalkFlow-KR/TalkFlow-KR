@@ -1,6 +1,6 @@
 //HrC
 // New Chat center flex 요소 Wrapper
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import HC from "./HC";
 import HW from "./HW";

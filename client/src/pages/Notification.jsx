@@ -32,11 +32,24 @@ const Container = styled.main`
   }
 `;
 
-const Notification = () => {
+const Notification = ({
+  isUserActive,
+  userId,
+  userEmail,
+  mode,
+  ChangeTheme,
+  setUserID,
+}) => {
   return (
     <>
       <Container>
-        <LC></LC>
+        <LC
+          mode={mode}
+          ChangeTheme={ChangeTheme}
+          userEmail={userEmail}
+          userId={userId}
+          setUserID={setUserID}
+        />
         <NC></NC>
       </Container>
     </>
