@@ -73,10 +73,14 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
     if (isToast) {
       if (isUserActive) {
         notify("메인화면으로이동합니다");
-        navigate("/main");
+        setTimeout(() => {
+          navigate("/main");
+        }, 850);
       } else {
         notify("진행하시려면 로그인 하셔야합니다 !");
-        navigate("/login");
+        setTimeout(() => {
+          navigate("/login");
+        }, 850);
       }
     }
   }, [isToast, navigate, notify]);

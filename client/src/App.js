@@ -24,9 +24,9 @@ function App() {
   // 유저의 로그인 값
   // const [UserID, setUserID] = useState("유저임시키값 test");
   // test 위해서는 UserID 채워주시고 , isUseeActive true 해주셔야해요
-  const [UserID, setUserID] = useState("test");
+  const [UserID, setUserID] = useState("");
   // 로그인 & 로그아웃
-  const [isUserActive, setIsUserActive] = useState(true);
+  const [isUserActive, setIsUserActive] = useState(false);
   //
   //
   const [email, setEmail] = useState("");
@@ -86,6 +86,7 @@ function App() {
     [setLoginData, setUserID]
   );
 
+  const toastId = "중복방지코드";
   const notify = useCallback((text) => {
     toast(text);
   }, []);
@@ -123,6 +124,7 @@ function App() {
         closeOnClick={true}
         draggable={true}
         theme={mode === "light" ? "light" : "dark"}
+        toastId={toastId}
       />
       <GlobalStyle />
       <BrowserRouter>
