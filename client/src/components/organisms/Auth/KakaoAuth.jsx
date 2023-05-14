@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Rest_api_key = "00dc2bc4743842e52f97986b0d1c037e"; //REST API KEY
@@ -40,7 +40,7 @@ const KakaoAuth = () => {
         }
       });
   };
-
+  const navigate = useNavigate();
   const getProfile = async (token) => {
     console.log(token);
     const kakaoUser = await axios
@@ -54,11 +54,13 @@ const KakaoAuth = () => {
         console.log("data name: ", res.data.properties.nickname);
         setId(res.data.id);
         setName(res.data.properties.nickname);
+        navigate("/main");
       });
-      axios.post('http://localhost:8000/kakao',{id:id, nickname: name})
-        .then((res)=>{
-          console.log('successs')
-        })
+    axios
+      .post("http://localhost:8000/kakao", { id: id, nickname: name })
+      .then((res) => {
+        console.log("successs");
+      });
   };
 
   return (

@@ -35,6 +35,7 @@ function App() {
   // 로그인 & 로그아웃
   const [isUserActive, setIsUserActive] = useState(false);
   //
+  const [test, test2] = useState("1");
   //
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,6 +70,10 @@ function App() {
       setMode(currentTheme);
     }
   }, [mode]);
+  const toastId = "중복방지코드";
+  const notify = useCallback((text) => {
+    toast(text);
+  }, []);
 
   // login submit 버튼
   const onSubmit = useCallback(
@@ -81,24 +86,22 @@ function App() {
       };
       // {msg: 'success', userid : result.id, email : result.email});
       const res = await axios.post("http://localhost:8000/post-login", data);
-      if (res.data.msg === "wrong") {
+      console.log(res);
+      if (res.data === "fail") {
         setLoginData(false);
+        notify("비밀번호 혹은 아이디가 맞지 않습니다.");
       }
       if (res.data.msg === "success") {
         setLoginData(true);
         setIsUserActive(true);
         setUserID(res.data.userid);
         setUserEmail(res.data.email);
+        notify("로그인 성공 !");
       }
       setIsLoading(false);
     },
-    [setLoginData, setUserID]
+    [notify]
   );
-
-  const toastId = "중복방지코드";
-  const notify = useCallback((text) => {
-    toast(text);
-  }, []);
 
   // dark mode 기능 함수
   const ChangeTheme = useCallback(() => {
@@ -148,6 +151,7 @@ function App() {
                 userId={UserID}
                 ChangeTheme={ChangeTheme}
                 mode={mode}
+                setUserID={setUserID}
               />
             }
           />

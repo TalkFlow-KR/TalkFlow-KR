@@ -220,7 +220,7 @@ const LoginForm = ({
   useEffect(() => {
     setIsLoading(true);
     if (isUserActive) {
-      navigate("/authredirect");
+      navigate("/main");
     } else {
       setIsLoading(false);
     }
@@ -233,6 +233,7 @@ const LoginForm = ({
   };
   const onClick = () => {
     console.log("Login 폼에서 버튼 테스트");
+    console.log("email", email, "password", password);
     onSubmit(email, password);
   };
   const handleOnChange = (e) => {
