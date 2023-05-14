@@ -3,22 +3,7 @@ import { keyframes, css } from "styled-components";
 // 반응형 디자인을 위한 픽셀 REM 컨버팅
 // design token 은 컨버팅 해야함
 const px2Rem = (px) => `${px / 16}rem`;
-const pulse = keyframes`
-  0% {
-    transform: scale(0.9);
-    opacity: 1;
-  }
 
-  50% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-
-  100% {
-    transform: scale(0.9);
-    opacity: 1;
-  }
-`;
 const shimmer = keyframes`
         0% {
           background-position: -400px 0;
@@ -72,26 +57,26 @@ const layout = {
   align-items:center;
   `,
 };
-const color = {
-  background: `
-    background: linear-gradient(120deg, #121316 -5%, #36383E 90%) center/cover no-repeat;
-  `,
-  boxBackground: Token.style.color.charcoal["charcoal-900"].value,
-  boxTextColor: Token.style.color.charcoal["charcoal-100"].value,
-  textColor: Token.style.color.charcoal["charcoal-100"].value,
-  selectedColor: Token.style.color.charcoal["charcoal-200"].value,
-  highlightColor: Token.style.color.lightblue["lb-400"].value,
-  blueColor: Token.style.color.primary["indigo-600"].value,
-  chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
-  chatBackground: Token.style.color.charcoal["charcoal-800"].value,
-  animationBackgroundColor: "#dae2f9",
-  inputShadow: "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
-  a: "#F2F8FC",
-  b: "#3d3e3f",
-  c: "#fff",
-  d: "#6A7FD3",
-  e: "#95DB9B",
-};
+// const color = {
+//   background: `
+//     background: linear-gradient(120deg, #121316 -5%, #36383E 90%) center/cover no-repeat;
+//   `,
+//   boxBackground: Token.style.color.charcoal["charcoal-900"].value,
+//   boxTextColor: Token.style.color.charcoal["charcoal-100"].value,
+//   textColor: Token.style.color.charcoal["charcoal-100"].value,
+//   selectedColor: Token.style.color.charcoal["charcoal-200"].value,
+//   highlightColor: Token.style.color.lightblue["lb-400"].value,
+//   blueColor: Token.style.color.primary["indigo-600"].value,
+//   chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
+//   chatBackground: Token.style.color.charcoal["charcoal-800"].value,
+//   animationBackgroundColor: "#dae2f9",
+//   inputShadow: "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
+//   a: "#F2F8FC",
+//   b: "#3d3e3f",
+//   c: "#fff",
+//   d: "#6A7FD3",
+//   e: "#95DB9B",
+// };
 const fontSizes = {
   // layout
   boxTitle: px2Rem(Token.style.typography["font-700-18"].size.value),
@@ -109,6 +94,12 @@ const fontSizes = {
   navMenu: px2Rem(Token.style.typography["font-500-24"].size.value),
 };
 const lineHeight = 1.5;
+
+const common = {
+  layout,
+  fontSizes,
+  lineHeight,
+};
 
 const darkTheme = {
   layout,

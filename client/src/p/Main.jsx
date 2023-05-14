@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";
 import MC from "../components/o/MC";
-import HC from "components/o/HC";
 import axios from "axios";
 import Skeleton from "../components/molecules/Skeleton";
 
@@ -50,7 +49,13 @@ const Main = ({ isUserActive, userId }) => {
     <Skeleton />
   ) : (
     <Container>
-      {isUserActive ? `로그인 중 : UserID :^ ${userId} ^ ` : "비로그인"}
+      {isUserActive ? (
+        `로그인 중 : UserID :^ ${userId} ^ `
+      ) : (
+        <>
+          <button>비로그인 중 다크테마 테스트중 </button>
+        </>
+      )}
       <LC></LC>
       <MC></MC>
     </Container>

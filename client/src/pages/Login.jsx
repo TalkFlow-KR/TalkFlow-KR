@@ -207,6 +207,9 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   };
   const onKeyDown = (e) => {
     if (e.key === "Enter") {
+      if (email.length === 0) {
+        return;
+      }
       // console.log(top);
       setShowPwInput(true);
       if (passwordRef.current) {
@@ -218,6 +221,7 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   };
   const onClear = () => {
     setEmail("");
+    setShowPwInput(false);
   };
   useEffect(() => {
     if (showPwInput) {
