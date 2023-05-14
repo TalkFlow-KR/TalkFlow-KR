@@ -81,10 +81,15 @@ function App() {
       };
       // {msg: 'success', userid : result.id, email : result.email});
       const res = await axios.post("http://localhost:8000/post-login", data);
-      if (res.data.msg === "wrong") {
+      console.log(res);
+      console.log("1", res.data);
+      if (res.data === "fail") {
+        console.log("fail");
         setLoginData(false);
       }
       if (res.data.msg === "success") {
+        console.log("2", "success");
+
         setLoginData(true);
         setIsUserActive(true);
         setUserID(res.data.userid);

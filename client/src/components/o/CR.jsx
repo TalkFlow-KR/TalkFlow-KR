@@ -170,7 +170,7 @@ const CR = ({ data, userId, roomId }) => {
     setLang(event.target.value);
   };
 
-  const { speak } = useSpeechSynthesis();
+  const { speak, voices } = useSpeechSynthesis();
   const { listen, listening, stop } = useSpeechRecognition({
     onResult,
     onEnd,
@@ -182,7 +182,7 @@ const CR = ({ data, userId, roomId }) => {
   //------------------------------업---------------------------------//
   //------------------------------시---------------------------------//
   //------------------------------작---------------------------------//
-
+  const voice = voices[2];
   useEffect(() => {
     setText([...text, data.ai.answer]);
   }, []);
@@ -202,6 +202,7 @@ const CR = ({ data, userId, roomId }) => {
         };
         // time;
         setMessageList([...messageList, newMessage]);
+
         setInputValue("");
         setMessage("");
       }
@@ -253,6 +254,10 @@ const CR = ({ data, userId, roomId }) => {
         };
         console.log("gpt : ", res.data);
         setMessageList([...messageList, newMessage]);
+        speak({
+          text: res.data,
+          voice,
+        });
         console.log(messageList);
       })
       .catch((err) => {

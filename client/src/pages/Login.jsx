@@ -232,7 +232,7 @@ const LoginForm = ({
     navigate("/register");
   };
   const onClick = () => {
-    console.log("Login 폼에서 버튼 테스트");
+    console.log("Login 폼에서 버튼 테스트", email, password);
     onSubmit(email, password);
   };
   const handleOnChange = (e) => {
