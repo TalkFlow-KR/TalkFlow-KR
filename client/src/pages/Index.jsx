@@ -7,6 +7,7 @@ import theme from "../styles/themeProvider/theme";
 import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
+import DarkModeBtn from "../components/atoms/DarkModeBtn";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -54,8 +55,8 @@ const Button = styled.button`
   border-radius: 1rem;
 `;
 
-const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
-  console.log("why isUSerActive", isUserActive);
+const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
+  const [isHover, setIsHover] = useState(false);
   const [isToast, setIsToast] = useState(false);
   const navigate = useNavigate();
 
@@ -67,6 +68,9 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
 
   const onClick = () => {
     setIsToast(true);
+  };
+  const handleChangeTheme = () => {
+    ChangeTheme();
   };
 
   useEffect(() => {
@@ -88,26 +92,27 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
   return (
     <>
       <Container>
-        {isUserActive ? (
-          `로그인 중 : UserID :^ ${userId} ^ `
-        ) : (
-          <>
-            <button onClick={() => ChangeTheme()}>
-              비로그인 중 다크테마 테스트중{" "}
-            </button>
-          </>
-        )}
+        <div onClick={handleChangeTheme}>
+          <DarkModeBtn mode={mode} />
+        </div>
+
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW-KR</h1>
-            <h2>Chatflow는 AI와 현실 대화로,흐름을 이해하는</h2>
+            <h2>Chatflow는 AI와 현실 대화로,흐름 을 이해하는</h2>
             <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
             <Button onClick={onClick}>
               GET STARTED <span>It's free !</span>
             </Button>
           </MainArticle>
           <MainArticle bgColor="#dae2f9">
-            <Lottie animationData={learning} />
+            <Lottie
+              animationData={learning}
+              speed={0.7}
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
+              isPaused={isHover}
+            />
           </MainArticle>
           {/*<MainArticle>Test</MainArticle>*/}
         </Wrapper>

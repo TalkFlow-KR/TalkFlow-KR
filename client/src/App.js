@@ -19,12 +19,15 @@ import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import DarkModeBtn from "./components/atoms/DarkModeBtn";
 
 function App() {
   // 유저의 로그인 값
   // const [UserID, setUserID] = useState("유저임시키값 test");
-  // test 위해서는 UserID 채워주시고 , isUseeActive true 해주셔야해요
+  // test 위해서는 UserID 채워주시고 , isUserActive true 해주셔야해요
   const [UserID, setUserID] = useState("");
+  // 유저 이메일 / 닉네임
+  const [userEmail, setUserEmail] = useState("");
   // 로그인 & 로그아웃
   const [isUserActive, setIsUserActive] = useState(false);
   //
@@ -72,6 +75,7 @@ function App() {
         email: emailfromLogin,
         password: pwfromLogin,
       };
+      // {msg: 'success', userid : result.id, email : result.email});
       const res = await axios.post("http://localhost:8000/post-login", data);
       if (res.data.msg === "wrong") {
         setLoginData(false);
@@ -80,6 +84,7 @@ function App() {
         setLoginData(true);
         setIsUserActive(true);
         setUserID(res.data.userid);
+        setUserEmail(res.data.email);
       }
       setIsLoading(false);
     },
@@ -90,6 +95,7 @@ function App() {
   const notify = useCallback((text) => {
     toast(text);
   }, []);
+
   // dark mode 기능 함수
   const ChangeTheme = useCallback(() => {
     if (mode === "light") {
@@ -136,6 +142,7 @@ function App() {
                 isUserActive={isUserActive}
                 userId={UserID}
                 ChangeTheme={ChangeTheme}
+                mode={mode}
               />
             }
           />
@@ -149,6 +156,7 @@ function App() {
                 userId={UserID}
                 ChangeTheme={ChangeTheme}
                 notify={notify}
+                mode={mode}
               />
             }
           />
@@ -156,22 +164,44 @@ function App() {
           {/* 채팅방 생성 페이지*/}
           <Route
             path="/newChat"
-            element={<Settings isUserActive={isUserActive} userId={UserID} />}
+            element={
+              <Settings
+                isUserActive={isUserActive}
+                userId={UserID}
+                mode={mode}
+              />
+            }
           />
           <Route
             path="/settings"
-            element={<Settings isUserActive={isUserActive} userId={UserID} />}
+            element={
+              <Settings
+                isUserActive={isUserActive}
+                userId={UserID}
+                mode={mode}
+              />
+            }
           />
           {/* 채팅 내역  페이지 */}
           <Route
             path="/history"
-            element={<History isUserActive={isUserActive} userId={UserID} />}
+            element={
+              <History
+                isUserActive={isUserActive}
+                userId={UserID}
+                mode={mode}
+              />
+            }
           />
           {/* 공지사항 페이지*/}
           <Route
             path="/notification"
             element={
-              <Notification isUserActive={isUserActive} userId={UserID} />
+              <Notification
+                isUserActive={isUserActive}
+                userId={UserID}
+                mode={mode}
+              />
             }
           />
 
@@ -183,6 +213,7 @@ function App() {
                 {...loginProps}
                 isUserActive={isUserActive}
                 notify={notify}
+                mode={mode}
               />
             }
           />
@@ -194,6 +225,7 @@ function App() {
             element={<SignUp isUserActive={isUserActive} />}
           />
           <Route path="/sk" element={<Skeleton />} />
+          <Route path="/test" element={<DarkModeBtn />} />
           <Route path="/*" element={<Error />} />
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}
