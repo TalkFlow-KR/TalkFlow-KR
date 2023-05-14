@@ -154,7 +154,7 @@ const KaKaoBox = styled.div`
   margin: 0 auto;
   & button {
     padding: 1.2rem;
-    border-radius: 2rem;
+    border-radius: 50%;
     background-color: #f7e111;
   }
 `;
