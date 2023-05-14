@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import RegisterItem from "../../m/RegisterItem";
 import styled from "styled-components";
+import axios from "axios";
 
 const registerData = {
   email: {
@@ -64,6 +65,18 @@ const ItemBox = styled.article`
     display: block;
   }
 `;
+// const [getEmail, setEmail] = useState() // 받아온 이메일
+const checkEmail = async ()=>{
+  console.log('email: ',registerData.email)
+  // await axios.post('http://localhost:8000/signup/checkemail',{email: getEmail})
+  // .then((res)=>{
+  //   console.log(res)
+  // })
+  // .catch((err)=>{
+  //   console.log(err)
+  // })
+}
+
 const Register = () => {
   return (
     <>
@@ -71,7 +84,7 @@ const Register = () => {
       <Wrapper>
         <ItemBox>
           <RegisterItem data={email} />
-          <button>아이디 중복 버튼 확인</button>
+          <button onClick={checkEmail}>아이디 중복 버튼 확인</button>
           <button>다음으로</button>
           <aritcle>
             <button>test</button>
