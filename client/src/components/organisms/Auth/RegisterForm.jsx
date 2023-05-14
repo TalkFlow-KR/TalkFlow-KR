@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
 import axios from "axios";
+import Lottie from "components/atoms/LottieComponent";
+import animationData from "assets/1401-eye01.json";
 import Loading from "../../atoms/Loading";
+import { AiFillHome } from "react-icons/ai";
+
 import {
   AiOutlineCheck,
   AiOutlineQuestion,
   AiOutlineClose,
 } from "react-icons/ai";
 
-import Lottie from "../../atoms/LottieComponent";
-import animationData from "../../../assets/1401-eye01.json";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.section`
@@ -20,23 +22,31 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
 `;
+
 const StyledForm = styled.div`
   text-align: center;
   transition: all 0.4s;
-  background-color: ${({ theme }) => theme.color.bg200};
+  background-color: ${({ theme }) => theme.color.bg100};
   border-radius: 0.8rem;
   padding: 1.6rem 4rem;
   border: 0.1rem solid white;
+  ${({ theme }) => theme.shadow};
+
   & fieldset {
+    flex: 1 1 0;
+    display: flex;
+    //justify-content: space-between;
     //margin: 0 20rem;
     padding: 0.8rem;
   }
 `;
 const StyledFieldSet = styled.fieldset`
+  width: 100%;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   border: 0;
   margin: 0;
   padding: 0;
@@ -52,19 +62,33 @@ const NextBtn = styled.button`
 const RegisterBtn = styled(NextBtn)`
   background-color: ${({ isDisable, theme }) =>
     !isDisable === true ? theme.color.primary100 : theme.color.bg200};
+  margin: 2rem 0;
 `;
 const SmallBtn = styled.button`
-  padding: 0.4rem;
-  border-radius: 0.8rem;
+  height: 100%;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+  margin: 1.2rem 0;
+  border-radius: 1.2rem;
+  background-color: #fff;
+  ${({ theme }) => theme.shadow};
 `;
+
 const GoBack = styled.button`
-  text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.4rem;
   border-radius: 0.4rem;
   background-color: ${({ theme }) => theme.color.bg300};
   color: ${({ theme }) => theme.color.text200};
 `;
 const RegisterForm = ({ isFinish, setIsFinish }) => {
+  const [checkEmoji, setCheckEmoji] = useState(<AiOutlineQuestion />);
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(-1);
   const [position, setPosition] = useState(1);
@@ -85,6 +109,7 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
   const [isValidPhone, setIsValidPhone] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
   const [registerText, setRegisterText] = useState("가입하기");
+  const [isHover, setIsHover] = useState(false);
 
   // 회원가입 성공/실패
   const [isSuccess, setIsSuccess] = useState(false);
@@ -104,7 +129,7 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
       name: "password",
       label: "사용하실 비밀번호를 입력해주세요.",
       type: !showPassword ? "password" : "text",
-      placeholder: "******",
+      placeholder: "password",
     },
     userNameText: {
       id: "name",
@@ -201,7 +226,11 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     // 중복이 아닐경우
     if (res.data) {
       setIsValid(1);
-    } else setIsValid(0);
+      setCheckEmoji(<AiOutlineCheck style={{ color: "#2ea043" }} />);
+    } else {
+      setIsValid(0);
+      setCheckEmoji(<AiOutlineClose style={{ color: "#e23e32" }} />);
+    }
   };
 
   const goIndex = () => {
@@ -227,7 +256,7 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
             />
             {!isValid ? <p>중복된 이메일 입니다. </p> : null}
             <SmallBtn type="NextBtn" onClick={onAuthEmail}>
-              중 복 확 인 버 튼
+              {checkEmoji}
             </SmallBtn>
           </StyledFieldSet>
           <StyledFieldSet>
@@ -240,15 +269,18 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
                 if (e.key === " ") e.preventDefault();
               }}
             />
-            {!(passwordValue.length >= 8 || passwordValue.length === 0) ? (
-              <p>Good</p>
-            ) : (
-              <p>Bad (8글자까지)</p>
-            )}
             <SmallBtn type="NextBtn" onClick={onShow}>
-              show Password
+              <Lottie
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
+                animationData={animationData}
+                isPaused={!isHover}
+                style={{ width: "2rem", height: "2rem" }}
+                speed={0.8}
+              />
             </SmallBtn>
           </StyledFieldSet>
+
           <StyledFieldSet>
             <InputWithLabels
               data={userNameText}
@@ -271,21 +303,17 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
               }
               value={phoneValue}
             />
-            {isValidPhone ? (
-              <p>Good.</p>
-            ) : (
-              <p>please enter a valid number. Bad</p>
-            )}
-
-            <RegisterBtn
-              type="NextBtn"
-              onClick={onSubmit}
-              isDisable={isDisable}
-              disabled={isDisable}>
-              {registerText}
-            </RegisterBtn>
           </StyledFieldSet>
-          <GoBack onClick={goIndex}>돌아가기 </GoBack>
+          <RegisterBtn
+            type="NextBtn"
+            onClick={onSubmit}
+            isDisable={isDisable}
+            disabled={isDisable}>
+            {registerText}
+          </RegisterBtn>
+          <GoBack onClick={goIndex}>
+            <AiFillHome />
+          </GoBack>
         </StyledForm>
       </Wrapper>
     </>
