@@ -9,23 +9,13 @@ import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   flex: 1 1 0;
-  //width: 140rem;
-  //max-width: 144rem;
-  //min-width: 36rem;
-  //width: 100%;
-  //height: 100%;
-  //height: 70rem;
-  //width: 80vw;
   height: 80vh;
-  //height: 100%;
-  //width: 100%;
   border-radius: 2rem;
   color: ${({ theme }) => theme.color.text100};
   background-color: ${({ theme }) => theme.color.bg200};
   margin: 2rem;
   padding: 2rem;
   display: flex;
-  /* flex-direction: column; */
   justify-content: space-around;
   gap: 6rem;
   align-items: stretch;
@@ -37,7 +27,14 @@ const Container = styled.main`
 `;
 // axios 가져오기
 // login 유무 확인하기
-const Settings = ({ isUserActive, userId, userEmail }) => {
+const Settings = ({
+  isUserActive,
+  userId,
+  userEmail,
+  mode,
+  ChangeTheme,
+  setUserID,
+}) => {
   const [data, setData] = useState("");
   const [settings, setSettings] = useState({});
   const navigate = useNavigate();
@@ -62,7 +59,13 @@ const Settings = ({ isUserActive, userId, userEmail }) => {
   return (
     <>
       <Container>
-        <LC userEmail={userEmail} />
+        <LC
+          mode={mode}
+          ChangeTheme={ChangeTheme}
+          userEmail={userEmail}
+          userId={userId}
+          setUserID={setUserID}
+        />
         <NewS
           userId={userId}
           data={data}

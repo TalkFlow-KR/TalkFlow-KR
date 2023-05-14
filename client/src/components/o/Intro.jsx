@@ -26,12 +26,11 @@ const OptBtn = styled.button`
   text-align: left;
   font-size: 2.2rem;
   font-weight: 700;
-  //background-color: ${({ theme }) => theme.color.accent100};
+  //background-color: ${({ theme }) => theme.color.accent200};
   color: ${({ theme }) => theme.color.text200};
   &:hover {
     color: #444;
   }
- k
 `;
 
 const Btn = styled.button`
@@ -40,15 +39,6 @@ const Btn = styled.button`
 `;
 
 const CS = () => {
-  const [isOpen, setIsOpen] = useState([false, false, false]);
-  const [option0, setOption0] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-  const onClick = (number, option) => {
-    const newIsOpen = isOpen.map((v, i) => (i === number ? !v : false));
-    setIsOpen(newIsOpen);
-  };
-
   // 1번 옵션(0)버튼의 하위 태그버튼들 클릭시 0번의 n번옵션이라고 알려준뒤 useState에 저장
   return (
     <Wrapper>
