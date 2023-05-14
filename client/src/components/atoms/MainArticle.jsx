@@ -11,9 +11,20 @@ const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-around;
   margin: 4rem;
+  padding: 2rem;
+  ${({ theme }) => theme.shadow};
+
+  & h1 {
+    margin-left: 2rem;
+    text-align: left;
+    color: ${({ theme }) => theme.color.highlight};
+  }
+  & h2 {
+    font-size: 2.4rem;
+    font-weight: 900;
+  }
 `;
 
 const MainArticle = ({ children, bgColor }) => {

@@ -7,9 +7,7 @@ import theme from "../styles/themeProvider/theme";
 import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
-import IH from "components/o/IH";
-import DarkModeBtn from "../components/atoms/DarkModeBtn";
-
+import LOGO from "assets/logo.png";
 const Container = styled.main`
   flex: 1 1 0;
   //width: 140rem;
@@ -25,6 +23,8 @@ const Container = styled.main`
   border-radius: 2rem;
   color: ${({ theme }) => theme.color.text100};
   background-color: ${({ theme }) => theme.color.bg200};
+  ${({ theme }) => theme.shadow};
+
   margin: 2rem;
   padding: 2rem;
   display: flex;
@@ -46,41 +46,72 @@ const Wrapper = styled.section`
   /* margin: 0 2.8rem; */
   /* margin-top: 6rem; */
   /* height: 10%; */
+  & h1 {
+    display: inline;
+    font-size: 7.2rem;
+    font-weight: 900;
+    letter-spacing: -0.4rem;
+  }
 `;
 const Button = styled.button`
   width: 51.2rem;
   height: 6rem;
-  background-color: #dae2f9;
   margin: 0 auto;
   border-radius: 1rem;
+  font-weight: 900;
+  background-color: ${({ theme }) => theme.color.primary100};
+  ${({ theme }) => theme.shadow};
+
+  & span {
+    font-weight: 300;
+  }
 `;
 
 const IndexHeader = styled.section`
+  width: 100%;
   display: flex;
   /* flex: 1 1 0; */
   //min-width: 103.2rem;
   //max-width: 32rem;
-  height: 5.6rem;
   height: ${({ theme }) => theme.layout.height.top};
   //background-color: tan;
+  background-color: ${({ theme }) => theme.color.bg100};
   /* background-color: transparent; */
   color: ${({ theme }) => theme.color.text100};
   border-radius: 1.2rem;
-  padding: 1.2rem;
-  margin: 2rem;
   font-size: ${({ theme }) => theme.fontSizes.main}rem;
   //flex: 0 1 0;
   //overflow-y: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   justify-content: space-between;
   align-items: center;
+  ${({ theme }) => theme.shadow};
+
+  & button {
+    background-color: ${({ theme }) => theme.color.primary100};
+    padding: 1.2rem 2rem;
+    border-radius: 1.2rem;
+    margin: 0 2rem;
+    font-weight: 900;
+    letter-spacing: -0.06rem;
+    ${({ theme }) => theme.shadow};
+  }
 `;
-
-const Div = styled.div``;
-const Btn = styled.div``;
-const Logo = styled.div``;
-
+const Logo = styled.div`
+  padding: 1.2rem;
+  display: flex;
+  width: 26rem;
+  font-weight: 900;
+  user-select: none;
+  justify-content: center;
+  align-items: center;
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+const Highlight = styled.span`
+  color: ${({ theme }) => theme.color.primary200};
+`;
 const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
   const [isHover, setIsHover] = useState(false);
   const [isToast, setIsToast] = useState(false);
@@ -99,6 +130,10 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
     ChangeTheme();
   };
 
+  const onLogin = () => {
+    notify("로그인 화면으로 이동합니다.!");
+    navigate("/login");
+  };
   useEffect(() => {
     if (isToast) {
       if (isUserActive) {
@@ -119,17 +154,26 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
     <>
       <Container>
         <IndexHeader>
-          <Logo>LOGO</Logo>
-          <Btn>비로그인</Btn>
-          <Div onClick={handleChangeTheme}>
-            <DarkModeBtn mode={mode} />
-          </Div>
+          <Logo>
+            <img src={LOGO} alt="logo" />
+          </Logo>
+          <button onClick={onLogin}>Login/Registry</button>
         </IndexHeader>
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
-            <h1>CHAT FLOW-KR</h1>
-            <h2>Chatflow는 AI와 현실 대화로,흐름 을 이해하는</h2>
-            <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
+            <h1>CHAT FLOW</h1>
+            <div> </div>
+            <h2>
+              저희 Chatflow는 창의적이고 <br />
+              유용한 당신의
+              <Highlight>언어 파트너</Highlight>
+              입니다.
+            </h2>
+            <p>
+              다양한 환경을 손쉽게 접근하여 회화를 실현하도록 도와드립니다.
+              <br />
+              Chatflow는 아직 실험 버전으로 부정확할 수 있습니다.
+            </p>
             <Button onClick={onClick}>
               GET STARTED <span>It's free !</span>
             </Button>
