@@ -33,7 +33,7 @@ const Container = styled.main`
   }
 `;
 
-const Main = ({ isUserActive, userId }) => {
+const Main = ({ isUserActive, userId, mode, ChangeTheme, userEmail }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -49,14 +49,7 @@ const Main = ({ isUserActive, userId }) => {
     <Skeleton />
   ) : (
     <Container>
-      {isUserActive ? (
-        `로그인 중 : UserID :^ ${userId} ^ `
-      ) : (
-        <>
-          <button>비로그인 중 다크테마 테스트중 </button>
-        </>
-      )}
-      <LC></LC>
+      <LC mode={mode} ChangeTheme={ChangeTheme} userEmail={userEmail} />
       <MC></MC>
     </Container>
   );

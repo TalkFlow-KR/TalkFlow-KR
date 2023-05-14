@@ -35,7 +35,7 @@ const Container = styled.main`
   }
 `;
 
-const History = () => {
+const History = ({ userEmail }) => {
   const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
   const [roomNumber, setRoomNumber] = useState();
 
@@ -53,14 +53,12 @@ const History = () => {
 
   // 빼온 방번호 roomNumber에 담아놓았음
 
-
   return (
     <>
       <Container>
-        <LC></LC>
+        <LC userEmail={userEmail} />
 
         <HrC roomNumber={roomNumber}></HrC>
-
       </Container>
     </>
   );

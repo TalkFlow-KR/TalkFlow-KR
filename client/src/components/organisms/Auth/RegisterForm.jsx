@@ -87,7 +87,7 @@ const GoBack = styled.button`
   background-color: ${({ theme }) => theme.color.bg300};
   color: ${({ theme }) => theme.color.text200};
 `;
-const RegisterForm = ({ isFinish, setIsFinish }) => {
+const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   const [checkEmoji, setCheckEmoji] = useState(<AiOutlineQuestion />);
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(-1);
@@ -179,6 +179,7 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
       setValid(valid.test(value));
     }
     setState(value);
+    setCheckEmoji(<AiOutlineQuestion />);
   };
 
   // 유효성 검사후 가입 버튼 활성화
@@ -214,6 +215,19 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      notify("회원가입 성공 ! 로그인 페이지로 이동합니다.");
+      setTimeout(() => {
+        navigate("/login");
+      }, 850);
+    } else {
+      notify("입력하신 정보가 올바르지 않습니다.");
+    }
+    //
+  }, [isSuccess, navigate, notify]);
+
   const onShow = () => {
     setShowPassword(!showPassword);
   };
