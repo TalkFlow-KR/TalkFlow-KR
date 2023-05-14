@@ -1,5 +1,5 @@
 //Main.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import MainArticle from "../components/atoms/MainArticle";
@@ -9,6 +9,7 @@ import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
 import IH from "components/o/IH";
 import DarkMode from "components/atoms/DarkMode";
+import DarkModeBtn from "../components/atoms/DarkModeBtn";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -56,41 +57,64 @@ const Button = styled.button`
   border-radius: 1rem;
 `;
 
-const Main = ({ isUserActive, userId, ChangeTheme }) => {
+const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
+  const [isHover, setIsHover] = useState(false);
+  const [isToast, setIsToast] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const res = axios.get("http://localhost:8000/");
-    console.log(res);
+    setIsToast(false);
+    // const res = axios.get("http://localhost:8000/");
+    // console.log(res);
   }, []);
+
   const onClick = () => {
-    const url = isUserActive ? "/main" : "/login";
-    navigate(url);
+    setIsToast(true);
   };
+  const handleChangeTheme = () => {
+    ChangeTheme();
+  };
+
+  useEffect(() => {
+    if (isToast) {
+      if (isUserActive) {
+        notify("메인화면으로이동합니다");
+        setTimeout(() => {
+          navigate("/main");
+        }, 850);
+      } else {
+        notify("진행하시려면 로그인 하셔야합니다 !");
+        setTimeout(() => {
+          navigate("/login");
+        }, 850);
+      }
+    }
+  }, [isToast, navigate, notify]);
+
   return (
     <>
       <Container>
-        {isUserActive ? (
-          `로그인 중 : UserID :^ ${userId} ^ `
-        ) : (
-          <>
-            <button onClick={() => ChangeTheme()}>
-              비로그인 중 다크테마 테스트중{" "}
-            </button>
-          </>
-        )}
-        <IH></IH>
+        <div onClick={handleChangeTheme}>
+          <DarkModeBtn mode={mode} />
+        </div>
+
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW-KR</h1>
-            <h2>Chatflow는 AI와 현실 대화로,흐름을 이해하는</h2>
+            <h2>Chatflow는 AI와 현실 대화로,흐름 을 이해하는</h2>
             <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
             <Button onClick={onClick}>
               GET STARTED <span>It's free !</span>
             </Button>
           </MainArticle>
           <MainArticle bgColor="#dae2f9">
-            <Lottie animationData={learning} />
+            <Lottie
+              animationData={learning}
+              speed={0.7}
+              onMouseEnter={() => setIsHover(true)}
+              onMouseLeave={() => setIsHover(false)}
+              isPaused={isHover}
+            />
           </MainArticle>
           {/*<MainArticle>Test</MainArticle>*/}
         </Wrapper>
@@ -100,4 +124,4 @@ const Main = ({ isUserActive, userId, ChangeTheme }) => {
   );
 };
 
-export default Main;
+export default Index;

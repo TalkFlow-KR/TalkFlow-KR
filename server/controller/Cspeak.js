@@ -101,7 +101,7 @@ exports.post_login = async (req, res) => {
     const getCry = await getCryptoPassword(req.body.password, result.salt);
 
     if(getCry.password === result.password) {
-      res.send({msg: 'success', userid : result.id}); // 성공메시지와 유저아디 반환
+      res.send({msg: 'success', userid : result.id, email : result.email}); // 성공메시지와 유저아디 반환
     }
     else {
     // 로그인 틀림

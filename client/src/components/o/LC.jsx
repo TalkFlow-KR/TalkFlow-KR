@@ -6,10 +6,10 @@ import MenuItem from "../m/MenuItem";
 import { Link } from "react-router-dom";
 
 // import homeIcon from "components/atoms/homeIcon";
-import HomeIcon from "../atoms/HomeIcon";
+import HomeIcon from "components/atoms/homeIcon";
 import DarkMode from "../atoms/DarkMode";
 import PlusIcon from "components/atoms/PlusIcon";
-import History from "components/atoms/History";
+import History from "components/atoms/history";
 import Notice from "components/atoms/Notice";
 
 // import One from "../atoms/One";
