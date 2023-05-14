@@ -7,6 +7,8 @@ import theme from "../styles/themeProvider/theme";
 import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
+import IH from "components/o/IH";
+import DarkMode from "components/atoms/DarkMode";
 import DarkModeBtn from "../components/atoms/DarkModeBtn";
 
 const Container = styled.main`
@@ -29,8 +31,8 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 6rem;
   align-items: stretch;
+  /* gap: 6rem; */
 
   & > div {
     display: flex;

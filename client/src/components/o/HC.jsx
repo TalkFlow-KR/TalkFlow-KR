@@ -20,6 +20,10 @@ const Container = styled.section`
   //overflow-y: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 900px) {
+    font-size: 2rem;
+  }
 `;
 const HC = ({ children }) => {
   return <Container>{children}</Container>;
