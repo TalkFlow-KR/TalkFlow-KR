@@ -33,15 +33,16 @@ const Container = styled.main`
     flex-direction: column;
   }
 `;
-const Main = () => {
+
+const History = ({ userId }) => {
   return (
     <>
       <Container>
         <LC></LC>
-        <HrC></HrC>
+        <HrC userId={userId}></HrC>
       </Container>
     </>
   );
 };
 
-export default Main;
+export default History;

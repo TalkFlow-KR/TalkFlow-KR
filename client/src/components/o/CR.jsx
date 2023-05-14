@@ -124,6 +124,7 @@ const sendChatToServer = async (message) => {
 // };
 
 const CR = ({ data, userId, roomId }) => {
+  console.log("userId입니다.", userId);
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
