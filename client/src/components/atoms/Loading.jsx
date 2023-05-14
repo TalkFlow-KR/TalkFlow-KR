@@ -18,17 +18,12 @@ const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 100;
-  background-color: #0008;
+  background-color: #fff1;
 `;
-const style = {
-  height: "300px",
-  width: "300px",
-  backgroundColor: "red",
-};
+
 const Loading = () => {
-  const [speed, setSpeed] = useState(0.5);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isStopped, setIsStopped] = useState(false);
+  // const [isPaused, setIsPaused] = useState(false);
+  // const [isStopped, setIsStopped] = useState(false);
 
   return (
     <>
@@ -36,13 +31,17 @@ const Loading = () => {
         <Wrapper>
           <Lottie
             animationData={animationData}
-            speed={speed}
-            isPaused={isPaused}
-            isStopped={isStopped}
+            speed={0.4}
+            // isPaused={isPaused}
+            // isStopped={isStopped}
+            style={{
+              width: "10rem",
+              height: "10rem",
+            }}
           />
           {/*<button onClick={() => setSpeed(speed)}>double</button>*/}
-          <button onClick={() => setIsPaused(!isPaused)}>pause/play</button>
-          <button onClick={() => setIsStopped(!isStopped)}>stop/play</button>
+          {/*<button onClick={() => setIsPaused(!isPaused)}>pause/play</button>*/}
+          {/*<button onClick={() => setIsStopped(!isStopped)}>stop/play</button>*/}
         </Wrapper>
       </Overlay>
     </>

@@ -78,6 +78,7 @@ const CS = ({ userId, data, onSubmit, setSettings }) => {
       situation: situation,
     });
     console.log("payload", payload);
+    console.log("onsubmitcs", onSubmit);
     onSubmit(payload);
   };
   // 1번 옵션(0)버튼의 하위 태그버튼들 클릭시 0번의 n번옵션이라고 알려준뒤 useState에 저장
