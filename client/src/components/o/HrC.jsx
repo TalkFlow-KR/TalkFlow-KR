@@ -39,7 +39,11 @@ const data = {
   },
 };
 
+
+const HrC = () => {
+
 const CW = ({ userId }) => {
+
   return (
     <Wrapper>
       <ContentsBox>
@@ -50,4 +54,4 @@ const CW = ({ userId }) => {
   );
 };
 
-export default CW;
+export default HrC;

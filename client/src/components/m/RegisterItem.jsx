@@ -1,17 +1,42 @@
 import React from "react";
+import styled from "styled-components";
 
-const RegisterItem = ({ data }) => {
+const input = styled.input`
+  width: 100%;
+  position: relative;
+  z-index: 20;
+  border: 0.1rem solid #777;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  margin: 1.2rem 0;
+  box-sizing: border-box;
+  &::placeholder {
+    font-size: 1.4rem;
+  }
+`;
+
+const S = {
+  input,
+};
+const RegisterItem = ({ data, onChange, value, state }) => {
   const { id, title, type, label, options } = data;
 
-  const handleChange = (e) => {
+  const handleChange = (e, state) => {
     console.log(e.target.value);
+    onChange(e.target.value, state);
   };
 
   return (
     <div>
       <label htmlFor={id}>{title}</label>
       {type === "text" || type === "password" ? (
-        <input type={type} id={id} name={id} onChange={handleChange} />
+        <S.input
+          type={type}
+          id={id}
+          name={id}
+          value={value}
+          onChange={handleChange}
+        />
       ) : (
         options.map((option) => (
           <div key={option.value}>

@@ -96,7 +96,7 @@ const LC = () => {
     <Container>
       <UserInfo />
       <MenuList>
-        <Link to={"/"}>
+        <Link to={"/main"}>
           <Wrapper>
             <HomeIcon />
             <MenuItem>HOME</MenuItem>
