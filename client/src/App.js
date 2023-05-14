@@ -21,6 +21,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import DarkModeBtn from "./components/atoms/DarkModeBtn";
 import Loading from "./components/atoms/Loading";
+import RegisterForm from "./components/organisms/Auth/RegisterForm";
+// import NewRegister from "./components/organisms/Auth/NewRegister";
 
 function App() {
   // 유저의 로그인 값
@@ -223,11 +225,12 @@ function App() {
           <Route path="/authRedirect" element={<AuthRedirect />} />
           <Route
             path="/register"
-            element={<SignUp isUserActive={isUserActive} />}
+            element={<RegisterForm isUserActive={isUserActive} />}
           />
           <Route path="/sk" element={<Skeleton />} />
           <Route path="/test" element={<DarkModeBtn />} />
           <Route path="/loading" element={<Loading />} />
+          {/*<Route path="/newRegister" element={<NewRegister />} />*/}
           <Route path="/*" element={<Error />} />
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}

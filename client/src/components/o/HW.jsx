@@ -25,15 +25,6 @@ const data = {
 };
 
 const HW = () => {
-  const [isOpen, setIsOpen] = useState([false, false, false]);
-  const [option0, setOption0] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-  const onClick = (number, option) => {
-    const newIsOpen = isOpen.map((v, i) => (i === number ? !v : false));
-    setIsOpen(newIsOpen);
-  };
-
   return (
     <Wrapper>
       <CL></CL>

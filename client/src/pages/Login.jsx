@@ -63,7 +63,7 @@ const emailInput = styled.input`
   }
   &:focus {
     border: 0.1rem solid transparent;
-    outline: 0.3rem solid red;
+    outline: 0.3rem solid ${({ theme }) => theme.color.primary100};
   }
 `;
 const clearEmailValueBtn = styled.button`

@@ -1,5 +1,20 @@
 import React, { memo } from "react";
+import styled from "styled-components";
 
+const SInput = styled.input`
+  width: 100%;
+  position: relative;
+  z-index: 20;
+  border: 0.1rem solid #777;
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  margin: 1.2rem 0;
+  box-sizing: border-box;
+  &::placeholder {
+    font-size: 1.4rem;
+  }
+`;
+const RadioInput = styled.input``;
 const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
   // console.log(data);
   // console.log(data.id);
@@ -12,7 +27,7 @@ const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
         <label>
           {data.label}
           <br />
-          <input
+          <RadioInput
             type={data.male.type}
             id={data.male.id}
             name={data.male.name}
@@ -23,7 +38,7 @@ const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
           />
           <label htmlFor={data.male.id}>{data.male.label}</label>
           <br />
-          <input
+          <RadioInput
             type={data.female.type}
             id={data.female.id}
             name={data.female.name}
@@ -42,7 +57,7 @@ const InputWithLabels = memo(({ data, value, onChange, ...rest }) => {
       <label htmlFor={data.id}>
         {data.label}
         <br />
-        <input
+        <SInput
           id={data.id}
           type={data.type}
           placeholder={data.placeholder}
