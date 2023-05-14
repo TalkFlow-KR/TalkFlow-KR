@@ -87,11 +87,15 @@ function App() {
       // {msg: 'success', userid : result.id, email : result.email});
       const res = await axios.post("http://localhost:8000/post-login", data);
       console.log(res);
+      
       if (res.data === "fail") {
+
         setLoginData(false);
         notify("비밀번호 혹은 아이디가 맞지 않습니다.");
       }
       if (res.data.msg === "success") {
+        console.log("2", "success");
+
         setLoginData(true);
         setIsUserActive(true);
         setUserID(res.data.userid);
