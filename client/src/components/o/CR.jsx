@@ -7,6 +7,10 @@ import animationData from "assets/micIdle.json";
 import { MicButton } from "styles/Chat.styled";
 import LogoIcon from "../atoms/LogoIcon";
 
+// stt , tts
+import useSpeechRecognition from "assets/useSpeechRecognition";
+import useSpeechSynthesis from "assets/useSpeechSynthesis";
+
 // axios
 import axios from "axios";
 
@@ -120,6 +124,7 @@ const sendChatToServer = async (message) => {
 // };
 
 const CR = ({ data, userId, roomId }) => {
+  console.log("userId입니다.", userId);
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -135,6 +140,45 @@ const CR = ({ data, userId, roomId }) => {
     // },
     // { id: 3, text: "0513" },
   ]);
+
+  //------------------------------추---------------------------------//
+  //------------------------------가---------------------------------//
+  //------------------------------작---------------------------------//
+  //------------------------------업---------------------------------//
+  //------------------------------시---------------------------------//
+  //------------------------------작---------------------------------//
+
+  const [lang, setLang] = useState("en-AU");
+
+  const onEnd = () => {
+    // 녹음이 끝난 후, 실행 할 함수를 추가할 수 있습니다.
+    // console.log(gptAns);
+    // speak({ text: gptAns });
+    console.log("onEnd  : ", "녹음이 끝났습니다.");
+  };
+
+  const onResult = (result) => {
+    console.log("on Result (번역 결과) : ", result);
+    setInputValue(result);
+  };
+
+  const changeLang = (event) => {
+    console.log("changeLang : ", event.target.value);
+    setLang(event.target.value);
+  };
+
+  const { speak } = useSpeechSynthesis();
+  const { listen, listening, stop } = useSpeechRecognition({
+    onResult,
+    onEnd,
+  });
+
+  //------------------------------추---------------------------------//
+  //------------------------------가---------------------------------//
+  //------------------------------작---------------------------------//
+  //------------------------------업---------------------------------//
+  //------------------------------시---------------------------------//
+  //------------------------------작---------------------------------//
 
   useEffect(() => {
     setText([...text, data.ai.answer]);
@@ -197,7 +241,6 @@ const CR = ({ data, userId, roomId }) => {
   //     });
   // };
 
-
   return (
     <Wrapper>
       <RoomTitle />
@@ -238,7 +281,11 @@ const CR = ({ data, userId, roomId }) => {
             }}>
             <LogoIcon />
           </button>
-          <MicButton onClick={handleSendClick}>
+          <MicButton
+            onMouseDown={() => {
+              listen({ lang: lang, maxAlternatives: 10000 });
+            }}
+            onMouseUp={stop}>
             <Lottie animationData={animationData} />
           </MicButton>
         </InputComponent>

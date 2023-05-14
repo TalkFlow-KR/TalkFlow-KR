@@ -6,15 +6,15 @@ import HC from "./HC";
 import HW from "./HW";
 
 const Wrapper = styled.section`
-height: 100%;
-flex: 1 1 0;
-display: flex;
-flex-direction: column;
-border-radius: 2rem;
-background-color: ${({ theme }) => theme.color.bg100};
-align-items: center;
-gap: 2rem;
-overflow: hidden;
+  height: 100%;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2rem;
+  background-color: ${({ theme }) => theme.color.bg100};
+  align-items: center;
+  gap: 2rem;
+  overflow: hidden;
   // width: 100%;
   // display: flex;
   // align-items: center;
@@ -39,21 +39,12 @@ const data = {
   },
 };
 
-const CW = () => {
-  const [isOpen, setIsOpen] = useState([false, false, false]);
-  const [option0, setOption0] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-  const onClick = (number, option) => {
-    const newIsOpen = isOpen.map((v, i) => (i === number ? !v : false));
-    setIsOpen(newIsOpen);
-  };
-
+const CW = ({ userId }) => {
   return (
     <Wrapper>
       <ContentsBox>
         <HC>HISTORY</HC>
-        <HW></HW>
+        <HW userId={userId}></HW>
       </ContentsBox>
     </Wrapper>
   );

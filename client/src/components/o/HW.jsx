@@ -24,20 +24,11 @@ const data = {
   },
 };
 
-const HW = () => {
-  const [isOpen, setIsOpen] = useState([false, false, false]);
-  const [option0, setOption0] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
-  const onClick = (number, option) => {
-    const newIsOpen = isOpen.map((v, i) => (i === number ? !v : false));
-    setIsOpen(newIsOpen);
-  };
-
+const HW = ({ userId }) => {
   return (
     <Wrapper>
       <CL></CL>
-      <CR data={data} />
+      <CR userId={userId} data={data} />
     </Wrapper>
   );
 };
