@@ -122,9 +122,7 @@ const sendChatToServer = async (message) => {
 //     sendChatToServer(inputValue); // Call the sendChatToServer function
 //   }
 // };
-
 const CR = ({ data, userId, roomId }) => {
-  console.log("userId입니다.", userId);
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -147,6 +145,9 @@ const CR = ({ data, userId, roomId }) => {
   //------------------------------업---------------------------------//
   //------------------------------시---------------------------------//
   //------------------------------작---------------------------------//
+  console.log("userId입니다.", userId);
+  const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
+  const roomid = 1;
 
   const [lang, setLang] = useState("en-AU");
 
@@ -230,16 +231,22 @@ const CR = ({ data, userId, roomId }) => {
 
   //**************** */ CR 채팅 보내기
 
-  // const OnSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post(`http://localhost:5000/chat/${userid}/${roomid}`, {
-  //       msg: inputValue,
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // };
+  useEffect(() => {
+    OnSubmitHandler();
+  }, [inputValue]);
+
+  const OnSubmitHandler = (e) => {
+    // e.preventDefault();
+
+    console.log("inputValue : ", inputValue);
+    axios
+      .post(`http://localhost:8000/chat/${userid}/${roomid}`, {
+        msg: inputValue,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   return (
     <Wrapper>
@@ -257,17 +264,17 @@ const CR = ({ data, userId, roomId }) => {
         ))}
         <div ref={messagesEndRef} />
         <InputComponent>
-          {/* <InputForm onSubmit={OnSubmitHandler}> */}
-          <ChatInput
-            type="text"
-            name="text"
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyDown}
-            placeholder="메시지를 입력하세요.">
-            {/* <button></button> */}
-          </ChatInput>
-          {/* </InputForm> */}
+          <InputForm onSubmit={OnSubmitHandler}>
+            <ChatInput
+              type="text"
+              name="text"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyPress={handleKeyDown}
+              placeholder="메시지를 입력하세요.">
+              {/* <button></button> */}
+            </ChatInput>
+          </InputForm>
           <button
             onClick={handleSendClick}
             style={{
