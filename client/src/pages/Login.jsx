@@ -359,7 +359,7 @@ const LoginForm = ({
                   </LoginBtn>
                 )}
               </div>
-              <Or>or</Or>
+
               <p style={{ textAlign: "center", margin: "1.6rem 0" }}>
                 처음이신가요 ? <br />{" "}
                 <span

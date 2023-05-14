@@ -218,7 +218,6 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
     } else if (isSuccess === "fail") {
       notify("입력하신 정보가 올바르지 않습니다.");
     }
-    //
   }, [isSuccess, navigate, notify]);
 
   const onShow = () => {
