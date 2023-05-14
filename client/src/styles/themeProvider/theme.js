@@ -98,6 +98,7 @@ const darkTheme = {
     bg200: "#2d2d2d",
     bg300: "#454545",
     highlight: "#f0f0f0",
+    reverse: "#101010",
   },
 };
 const lightTheme = {
@@ -117,6 +118,7 @@ const lightTheme = {
     bg200: "#ededed",
     bg300: "#c4c4c4",
     highlight: "#101010",
+    reverse: "#101010",
   },
 };
 const theme = {

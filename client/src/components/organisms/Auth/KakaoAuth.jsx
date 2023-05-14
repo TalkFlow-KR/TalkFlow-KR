@@ -71,14 +71,13 @@ const KakaoAuth = () => {
         console.log("successs");
       });
 
-
-  return (
-    <>
-      <div>{token} ||||| </div>
-      <div>{id} |||| </div>
-      <div>{name}</div>
-    </>
-  );
+    return (
+      <>
+        <div>{token} |||||</div>
+        <div>{id} ||||</div>
+        <div>{name}</div>
+      </>
+    );
+  };
 };
-
 export default KakaoAuth;

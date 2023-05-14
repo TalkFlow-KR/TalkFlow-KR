@@ -8,6 +8,8 @@ import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
 import LOGO from "assets/logo.png";
+import LOGO2 from "assets/logo2.png";
+import DarkModeBtn from "../components/atoms/DarkModeBtn";
 const Container = styled.main`
   flex: 1 1 0;
   //width: 140rem;
@@ -51,6 +53,7 @@ const Wrapper = styled.section`
     font-size: 7.2rem;
     font-weight: 900;
     letter-spacing: -0.4rem;
+    color: ${({ theme }) => theme.color.reverse};
   }
 `;
 const Button = styled.button`
@@ -109,14 +112,20 @@ const Logo = styled.div`
     height: 100%;
   }
 `;
+const Div = styled.div`
+  margin: 2rem;
+`;
 const Highlight = styled.span`
   color: ${({ theme }) => theme.color.primary200};
 `;
 const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
   const [isHover, setIsHover] = useState(false);
   const [isToast, setIsToast] = useState(false);
+  const [logo, setLogo] = useState(false);
   const navigate = useNavigate();
-
+  // useEffect(() => {
+  //   // mode 값이 변경될 때마다 실행되는 부분
+  // }, [mode]);
   useEffect(() => {
     setIsToast(false);
     // const res = axios.get("http://localhost:8000/");
@@ -132,7 +141,9 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
 
   const onLogin = () => {
     notify("로그인 화면으로 이동합니다.!");
-    navigate("/login");
+    setTimeout(() => {
+      navigate("/login");
+    }, 700);
   };
   useEffect(() => {
     if (isToast) {
@@ -155,10 +166,13 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
       <Container>
         <IndexHeader>
           <Logo>
-            <img src={LOGO} alt="logo" />
+            <img src={mode === "light" ? LOGO : LOGO2} alt="logo" />
           </Logo>
           <button onClick={onLogin}>Login/Registry</button>
         </IndexHeader>
+        <Div onClick={handleChangeTheme}>
+          <DarkModeBtn mode={mode} />
+        </Div>
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW</h1>
