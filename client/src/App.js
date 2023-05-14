@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Main from "./pages/Main";
@@ -35,7 +35,9 @@ function App() {
   //
   //
   // 다크모드
-  const [isDark, setIsDark] = useState(false);
+  const getLocalTheme = window.localStorage.getItem("theme") || "light";
+  const [mode, setMode] = useState(getLocalTheme);
+
   //
 
   //로그인 됐는지 안됐는지
@@ -51,6 +53,13 @@ function App() {
   const onChange = (setState, e) => {
     setState(e.target.value);
   };
+  // 다크모드 체크
+  useEffect(() => {
+    const currentTheme = window.localStorage.getItem("theme") || "light";
+    if (mode !== currentTheme) {
+      setMode(currentTheme);
+    }
+  }, [mode]);
 
   // login submit 버튼
   const onSubmit = async (emailfromLogin, pwfromLogin) => {
@@ -72,10 +81,15 @@ function App() {
   };
 
   // dark mode 기능 함수
-  const ChangeTheme = () => {
-    console.log(isDark);
-    setIsDark((prev) => prev === false);
-  };
+  const ChangeTheme = useCallback(() => {
+    if (mode === "light") {
+      setMode("dark");
+      window.localStorage.setItem("theme", "dark");
+    } else {
+      setMode("light");
+      window.localStorage.setItem("theme", "light");
+    }
+  }, [mode, setMode]);
   const loginProps = {
     email,
     setEmail,
@@ -89,7 +103,9 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={isDark === true ? theme.lightTheme : theme.darkTheme}>
+    <ThemeProvider
+      theme={mode === "light" ? theme.lightTheme : theme.darkTheme}>
+      <ToastContainer />
       <GlobalStyle />
       <BrowserRouter>
         <Routes>

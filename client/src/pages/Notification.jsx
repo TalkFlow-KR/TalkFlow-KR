@@ -1,7 +1,7 @@
 //Notification.jsx
 import React from "react";
 import styled from "styled-components";
-import LC from "../components/o/LC";
+import LC from "components/o/LC";
 import NC from "components/o/NC";
 
 const Container = styled.main`
