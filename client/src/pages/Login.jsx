@@ -207,6 +207,9 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   };
   const onKeyDown = (e) => {
     if (e.key === "Enter") {
+      if (email.length === 0) {
+        return;
+      }
       // console.log(top);
       setShowPwInput(true);
       if (passwordRef.current) {
@@ -218,6 +221,7 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   };
   const onClear = () => {
     setEmail("");
+    setShowPwInput(false);
   };
   useEffect(() => {
     if (showPwInput) {
@@ -274,7 +278,7 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
                           onMouseEnter={() => setIsHover(true)}
                           onMouseLeave={() => setIsHover(false)}
                           animationData={animationData}
-                          isStopped={!isHover}
+                          isPaused={!isHover}
                           style={{ width: "2rem", height: "2rem" }}
                           speed={0.8}
                         />

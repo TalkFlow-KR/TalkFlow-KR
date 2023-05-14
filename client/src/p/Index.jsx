@@ -54,12 +54,13 @@ const Button = styled.button`
   border-radius: 1rem;
 `;
 
-const Main = ({ isUserActive, userId }) => {
+const Main = ({ isUserActive, userId, ChangeTheme }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const res = axios.get("http://localhost:8000/");
     console.log(res);
-  });
-  const navigate = useNavigate();
+  }, []);
   const onClick = () => {
     const url = isUserActive ? "/main" : "/login";
     navigate(url);
@@ -67,7 +68,15 @@ const Main = ({ isUserActive, userId }) => {
   return (
     <>
       <Container>
-        {isUserActive ? `로그인 중 : UserID :^ ${userId} ^ ` : "비로그인"}
+        {isUserActive ? (
+          `로그인 중 : UserID :^ ${userId} ^ `
+        ) : (
+          <>
+            <button onClick={() => ChangeTheme()}>
+              비로그인 중 다크테마 테스트중{" "}
+            </button>
+          </>
+        )}
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW-KR</h1>

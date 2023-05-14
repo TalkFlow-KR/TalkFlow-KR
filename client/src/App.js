@@ -4,21 +4,17 @@
 // 회원가입 페이지
 import SignUp from "pages/SignUp";
 import Settings from "p/Settings";
-// import AuthForm from "./components/organisms/Auth/AuthForm";
 // 404 페이지
 import Error from "pages/Error";
 
 //style
 import { GlobalStyle } from "styles/GlobalStyle.styled";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
-import LoginForm from "./components/organisms/Auth/LoginForm";
-import RegisterForm from "./components/organisms/Auth/RegisterForm";
 
 import Main from "./p/Main";
 import Index from "./p/Index";
 
-import NewChat2 from "./p/NewChat2";
 import History from "./p/History";
 import Notification from "./p/Notification";
 import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
@@ -43,6 +39,11 @@ function App() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState(null);
+  //
+  //
+  // 다크모드
+  const [isDark, setIsDark] = useState(false);
+  //
 
   //로그인 됐는지 안됐는지
   useEffect(() => {
@@ -77,6 +78,11 @@ function App() {
     setIsLoading(false);
   };
 
+  // dark mode 기능 함수
+  const ChangeTheme = () => {
+    console.log(isDark);
+    setIsDark((prev) => prev === false);
+  };
   const loginProps = {
     email,
     setEmail,
@@ -90,19 +96,31 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme.lightTheme}>
+    <ThemeProvider theme={isDark === true ? theme.lightTheme : theme.darkTheme}>
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
           <Route
             path="/main"
-            element={<Main isUserActive={isUserActive} userId={UserID} />}
+            element={
+              <Main
+                isUserActive={isUserActive}
+                userId={UserID}
+                ChangeTheme={ChangeTheme}
+              />
+            }
           />
           {/*화면 첫페이지 */}
           <Route
             exact
             path="/"
-            element={<Index isUserActive={isUserActive} userId={UserID} />}
+            element={
+              <Index
+                isUserActive={isUserActive}
+                userId={UserID}
+                ChangeTheme={ChangeTheme}
+              />
+            }
           />
 
           {/* 채팅방 생성 페이지*/}
