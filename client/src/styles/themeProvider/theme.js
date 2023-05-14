@@ -1,8 +1,36 @@
 import Token from "assets/design-tokens.json";
-
+import { keyframes, css } from "styled-components";
 // 반응형 디자인을 위한 픽셀 REM 컨버팅
 // design token 은 컨버팅 해야함
 const px2Rem = (px) => `${px / 16}rem`;
+const pulse = keyframes`
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+`;
+const shimmer = keyframes`
+        0% {
+          background-position: -400px 0;
+        }
+        50% {
+          background-position: 400px 0;
+        }
+  100%{
+    background-position: -400px 0;
+    
+  }
+`;
 
 const layout = {
   // rem
@@ -116,8 +144,21 @@ const lightTheme = {
     bg300: "#c4c4c4",
   },
   gradient: {
-    gradient100: 'background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);'
+    gradient100:
+      "background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);",
   },
+  animation: {
+    shimmer: {
+      keyframes: css`
+        ${shimmer}
+      `,
+      duration: "8s",
+      timingFunction: "ease-in-out",
+      iterationCount: "infinite",
+    },
+  },
+  background: "linear-gradient(120deg, #eee 10%, #e0e0e0 50%, #eee 90%)",
+  skeletonBackground: "background-color : #282828",
 };
 const theme = {
   lightTheme,

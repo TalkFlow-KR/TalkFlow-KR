@@ -28,24 +28,31 @@ import Login from "pages/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Skeleton from "./components/molecules/Skeleton";
+import AuthRedirect from "./pages/AuthRedirect";
 
 function App() {
+  // 유저의 로그인 값
+  // const [UserID, setUserID] = useState("유저임시키값 test");
+  const [UserID, setUserID] = useState("");
+  // 로그인 & 로그아웃
+  const [isUserActive, setIsUserActive] = useState(false);
+  //
+  //
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState(null);
-  const [UserID, setUserID] = useState("");
-  const [isUserActive, setIsUserActive] = useState(false);
 
   //로그인 됐는지 안됐는지
   useEffect(() => {
-    console.log("로그인상태", UserID);
+    console.log("App.Js 에서 login 여부", UserID, isUserActive);
     if (!UserID) {
       setIsUserActive(false);
     } else {
       setIsUserActive(true);
     }
-  }, [UserID]);
+  }, [UserID, isUserActive]);
   // login input value 변화
   const onChange = (setState, e) => {
     setState(e.target.value);
@@ -77,7 +84,6 @@ function App() {
     setPassword,
     onChange,
     onSubmit,
-    isLoading,
     setIsLoading,
     loginData,
     setLoginData,
@@ -88,14 +94,21 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main isUserActive={isUserActive} />} />
+          <Route
+            path="/main"
+            element={<Main isUserActive={isUserActive} userId={UserID} />}
+          />
           {/*화면 첫페이지 */}
-          <Route path="/index" element={<Index />} />
+          <Route
+            exact
+            path="/"
+            element={<Index isUserActive={isUserActive} userId={UserID} />}
+          />
+
           {/* 채팅방 생성 페이지*/}
           <Route
-
             path="/newChat"
-            element={<Settings isUserActive={isUserActive} />}
+            element={<Settings isUserActive={isUserActive} userId={UserID} />}
           />
           <Route
             path="/settings"
@@ -104,21 +117,27 @@ function App() {
           {/* 채팅 내역  페이지 */}
           <Route
             path="/history"
-            element={<History isUserActive={isUserActive} UserID={UserID} />}
+            element={<History isUserActive={isUserActive} userId={UserID} />}
           />
           {/* 공지사항 페이지*/}
           <Route
             path="/notification"
-            element={<Notification isUserActive={isUserActive} />}
+            element={
+              <Notification isUserActive={isUserActive} userId={UserID} />
+            }
           />
 
           {/*로그인 페이지 경로 /login*/}
-          <Route path="/login" element={<Login {...loginProps} />} />
+          <Route
+            path="/login"
+            element={<Login {...loginProps} isUserActive={isUserActive} />}
+          />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
+          <Route path="/authRedirect" element={<AuthRedirect />} />
           <Route path="/register" element={<SignUp />} />
+          <Route path="/sk" element={<Skeleton />} />
           <Route path="/*" element={<Error />} />
-          {/* <Route path="/register" element={<RegisterForm />} /> */}
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}
           {/* <Route path="/login" element={<Login />} /> */}

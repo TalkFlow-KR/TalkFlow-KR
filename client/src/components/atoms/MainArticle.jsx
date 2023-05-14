@@ -7,12 +7,12 @@ const Wrapper = styled.article`
   height: ${({ theme }) => theme.layout.height.mainArticle};
   border-radius: ${({ theme }) => theme.layout.radius.l};
   color: ${({ theme }) => theme.color.textColor};
-  margin: ${({ theme }) => theme.layout.margin.l};
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  margin: 4rem;
 `;
 
 const MainArticle = ({ children, bgColor }) => {

@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import RoomTitle from "../m/RoomTitle";
-import Lottie from "lottie-react";
+import Lottie from "components/atoms/LottieComponent";
 import animationData from "assets/micIdle.json";
 import { MicButton } from "styles/Chat.styled";
 import LogoIcon from "../atoms/LogoIcon";
@@ -119,7 +119,7 @@ const sendChatToServer = async (message) => {
 //   }
 // };
 
-const CR = ({ data }) => {
+const CR = ({ data, userId, roomId }) => {
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -187,16 +187,16 @@ const CR = ({ data }) => {
   // CR 채팅 보내기
 
   const OnSubmitHandler = (e) => {
-    e.preventDefault();
-    // const value = e.tartget.text.value;
-
-    axios
-      .post(`http://localhost:5000/chat/${userid}/${roomid}`, {
-        msg: inputValue,
-      })
-      .then((res) => {
-        console.log(res);
-      });
+    //   e.preventDefault();
+    //   // const value = e.tartget.text.value;
+    //
+    //   axios
+    //     .post(`http://localhost:5000/chat/${userid}/${roomid}`, {
+    //       msg: inputValue,
+    //     })
+    //     .then((res) => {
+    //       console.log(res);
+    //     });
   };
 
   return (
