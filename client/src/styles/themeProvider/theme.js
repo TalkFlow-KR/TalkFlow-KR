@@ -1,9 +1,4 @@
-import Token from "assets/design-tokens.json";
 import { keyframes, css } from "styled-components";
-// 반응형 디자인을 위한 픽셀 REM 컨버팅
-// design token 은 컨버팅 해야함
-const px2Rem = (px) => `${px / 16}rem`;
-
 const shimmer = keyframes`
         0% {
           background-position: -400px 0;
@@ -16,9 +11,18 @@ const shimmer = keyframes`
     
   }
 `;
-
+const fontSizes = {
+  boxTitle: 1.8,
+  boxNormal: 1.8,
+  body: 1.8,
+  main: 7.2,
+  mainSubtitle: 3.6,
+  mainDesc: 2.4,
+  mainBtn: 2.4,
+  navMenu: 2.4,
+};
+const lineHeight = 1.5;
 const layout = {
-  // rem
   spacing: "-0.045rem",
   radius: {
     xs: ".4rem",
@@ -57,51 +61,27 @@ const layout = {
   align-items:center;
   `,
 };
-// const color = {
-//   background: `
-//     background: linear-gradient(120deg, #121316 -5%, #36383E 90%) center/cover no-repeat;
-//   `,
-//   boxBackground: Token.style.color.charcoal["charcoal-900"].value,
-//   boxTextColor: Token.style.color.charcoal["charcoal-100"].value,
-//   textColor: Token.style.color.charcoal["charcoal-100"].value,
-//   selectedColor: Token.style.color.charcoal["charcoal-200"].value,
-//   highlightColor: Token.style.color.lightblue["lb-400"].value,
-//   blueColor: Token.style.color.primary["indigo-600"].value,
-//   chatBoxBackground: Token.style.color.charcoal["charcoal-700"].value,
-//   chatBackground: Token.style.color.charcoal["charcoal-800"].value,
-//   animationBackgroundColor: "#dae2f9",
-//   inputShadow: "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07);",
-//   a: "#F2F8FC",
-//   b: "#3d3e3f",
-//   c: "#fff",
-//   d: "#6A7FD3",
-//   e: "#95DB9B",
-// };
-const fontSizes = {
-  // layout
-  boxTitle: px2Rem(Token.style.typography["font-700-18"].size.value),
-  boxNormal: px2Rem(Token.style.typography["font-500-18"].size.value),
-  body: px2Rem(Token.style.typography["font-500-18"].size.value),
-  // header
-
-  // main
-  mainTitle: px2Rem(Token.style.typography["font-900-72"].size.value),
-  mainSubtitle: px2Rem(Token.style.typography["font-500-36"].size.value),
-  mainDesc: px2Rem(Token.style.typography["font-500-24"].size.value),
-  mainBtn: px2Rem(Token.style.typography["font-900-24"].size.value),
-
-  // nav
-  navMenu: px2Rem(Token.style.typography["font-500-24"].size.value),
-};
-const lineHeight = 1.5;
 
 const common = {
-  layout,
-  fontSizes,
-  lineHeight,
+  gradient: {
+    gradient100:
+      "background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);",
+  },
+  animation: {
+    shimmer: {
+      keyframes: css`
+        ${shimmer}
+      `,
+      duration: "8s",
+      timingFunction: "ease-in-out",
+      iterationCount: "infinite",
+    },
+  },
+  background: "linear-gradient(120deg, #eee 10%, #e0e0e0 50%, #eee 90%)",
+  skeletonBackground: "background-color : #282828",
 };
-
 const darkTheme = {
+  ...common,
   layout,
   fontSizes,
   lineHeight,
@@ -119,6 +99,7 @@ const darkTheme = {
   },
 };
 const lightTheme = {
+  ...common,
   layout,
   fontSizes,
   lineHeight,
@@ -134,22 +115,6 @@ const lightTheme = {
     bg200: "#ededed",
     bg300: "#c4c4c4",
   },
-  gradient: {
-    gradient100:
-      "background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);",
-  },
-  animation: {
-    shimmer: {
-      keyframes: css`
-        ${shimmer}
-      `,
-      duration: "8s",
-      timingFunction: "ease-in-out",
-      iterationCount: "infinite",
-    },
-  },
-  background: "linear-gradient(120deg, #eee 10%, #e0e0e0 50%, #eee 90%)",
-  skeletonBackground: "background-color : #282828",
 };
 const theme = {
   lightTheme,

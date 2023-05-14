@@ -278,7 +278,7 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
                           onMouseEnter={() => setIsHover(true)}
                           onMouseLeave={() => setIsHover(false)}
                           animationData={animationData}
-                          isStopped={!isHover}
+                          isPaused={!isHover}
                           style={{ width: "2rem", height: "2rem" }}
                           speed={0.8}
                         />
