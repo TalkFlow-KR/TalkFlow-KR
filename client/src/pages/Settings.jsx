@@ -52,7 +52,7 @@ const Settings = ({ isUserActive, userId, userEmail }) => {
   const handleSubmit = async (payload) => {
     console.log(payload);
     const res = await axios.post(
-      `http://localhost:8000/room/make/${userId}`,
+      `${process.env.REACT_APP_DB_HOST}/room/make/${userId}`,
       settings
     );
     console.log(res);

@@ -86,7 +86,7 @@ const CS = ({ userId, data, onSubmit, setSettings }) => {
     onSubmit(payload);
 
     axios
-      .post(`http://localhost:8000/room/make/${userid}`, {
+      .post(`${process.env.REACT_APP_DB_HOST}/room/make/${userid}`, {
         language: language,
         accent: accent,
         situation: situation,

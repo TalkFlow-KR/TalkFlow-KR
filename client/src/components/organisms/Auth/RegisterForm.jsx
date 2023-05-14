@@ -198,7 +198,10 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   const onSubmit = async () => {
     console.log(data);
     setIsLoading(true);
-    const res = await axios.post("http://localhost:8000/post-signup", data);
+    const res = await axios.post(
+      `${process.env.REACT_APP_DB_HOST}/post-signup`,
+      data
+    );
     console.log(res.data);
     setIsSuccess(res.data);
     if (res.data === "success") {
@@ -225,9 +228,12 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   };
   const onAuthEmail = async () => {
     console.log(emailValue);
-    const res = await axios.post("http://localhost:8000/signup/checkemail", {
-      email: emailValue,
-    });
+    const res = await axios.post(
+      `${process.env.REACT_APP_DB_HOST}/signup/checkemail`,
+      {
+        email: emailValue,
+      }
+    );
     console.log(res.data);
     // 중복이 아닐경우
     if (res.data) {

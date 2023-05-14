@@ -242,7 +242,7 @@ const CR = ({ data, userId, roomId }) => {
 
   const OnSubmitHandler = () => {
     axios
-      .post(`http://localhost:8000/chat/${userid}/${roomid}`, {
+      .post(`${process.env.REACT_APP_DB_HOST}/chat/${userid}/${roomid}`, {
         msg: inputValue,
       })
       .then((res) => {
