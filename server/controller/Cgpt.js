@@ -77,8 +77,9 @@ exports.runGPT35 = async (req,res) => {
       const accent = settings[0].accent
       const language = settings[0].language
 
-      const msg = `Let's play a role play. you can play any role in ${situation}.
-                   but you have to talk with ${language} and please speak with ${accent}.`
+      const msg = `You are a converstation bot.
+                   Let's play a role play. you can play any role in ${situation}.
+                   but you must use ${language} and please speak with ${accent} accent.`
                    
       const response = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",

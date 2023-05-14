@@ -18,7 +18,7 @@ const Wrapper = styled.main`
 
 const History = () => {
   // const [speed, setSpeed] = useState(0.5);
-  const userid = '32b16654-e983-47ef-a382-eb3bf1f9b789'
+  const userid = '32b16654-e983-47ef-a382-eb3bf1f9b789' // 임시 데이터
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
   const [roomNumber, setRoomNumber] = useState()
