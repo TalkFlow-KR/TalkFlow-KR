@@ -6,6 +6,7 @@ import MenuItem from "../m/MenuItem";
 import { Link } from "react-router-dom";
 
 // import homeIcon from "components/atoms/homeIcon";
+
 import Lottie from "components/atoms/LottieComponent";
 import home from "assets/home.json";
 import history from "assets/history.json";
@@ -22,7 +23,6 @@ const Container = styled.section`
   width: ${({ theme }) => theme.layout.width.lc};
   width: 26.4rem;
   height: 100%;
-  /* background-color: #ddd; */
   /* background-color: ${({ theme }) => theme.color.bg100}; */
   border-radius: 2rem;
   display: flex;
@@ -91,6 +91,7 @@ const Wrapper = styled.button`
     }
   }
 `;
+
 const Icon = styled.div`
   width: 2.5rem;
   height: 2.5rem;
@@ -164,6 +165,7 @@ const LC = ({ mode, ChangeTheme, userEmail }) => {
           </Wrapper>
         </Link>
       </MenuList>
+
       <div onClick={handleChangeTheme}>
         <DarkModeBtn mode={mode} />
       </div>

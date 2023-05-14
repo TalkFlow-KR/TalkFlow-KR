@@ -7,7 +7,7 @@ import SettingItem from "../m/SettingItem";
 const Wrapper = styled.section`
   width: 25.7rem;
   height: 50vh;
-  background-color: #eee;
+  background-color: ${({ theme }) => theme.color.bg200};
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -40,10 +40,10 @@ const Btn = styled.button`
   position: absolute;
   bottom: 0;
 `;
-const userid = '2787496442' // 임시
+const userid = "2787496442"; // 임시
 
 const CS = ({ userId, data, onSubmit, setSettings }) => {
-  console.log('userid!!!!!!: ',userId)
+  console.log("userid!!!!!!: ", userId);
   console.log("CS onSubmit", onSubmit);
   // 옵션 아코디언
   const [isOpen, setIsOpen] = useState([false, false, false]);
@@ -84,18 +84,19 @@ const CS = ({ userId, data, onSubmit, setSettings }) => {
     console.log("payload", payload);
     console.log("onsubmitcs", onSubmit);
     onSubmit(payload);
-  
-    axios.post(`http://localhost:8000/room/make/${userid}`,
-    {
-      language: language,
-      accent: accent,
-      situation: situation,
-    })
-    .then((res)=>{
-        console.log(res)
-    }).catch((err)=>{
-      console.log(err)
-    })
+
+    axios
+      .post(`http://localhost:8000/room/make/${userid}`, {
+        language: language,
+        accent: accent,
+        situation: situation,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   // 1번 옵션(0)버튼의 하위 태그버튼들 클릭시 0번의 n번옵션이라고 알려준뒤 useState에 저장
   return (

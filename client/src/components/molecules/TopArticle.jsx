@@ -29,7 +29,7 @@ const TopArticle = () => {
         <button
           style={{
             fontSize: "1.6rem",
-            backgroundColor: "#2a2b2d",
+            // backgroundColor: "#2a2b2d",
             width: "5rem",
             height: "2.8rem",
             color: "white",

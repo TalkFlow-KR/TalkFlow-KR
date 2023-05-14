@@ -38,7 +38,6 @@ const Container = styled.section`
 `;
 
 const Wrapper = styled.main`
-  /* background-color: tan; */
   ${({ theme }) => theme.color.background}
   height: calc(100vh - 12.8rem);
   display: flex;
