@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ProfileIcon from "../a/ProfileIcon";
 import { Link } from "react-router-dom";
 import Lottie from "../atoms/LottieComponent";
 import animationData from "../../assets/82473-login.json";
-import LogoIcon from "../a/LogoIcon";
 
 const Wrapper = styled.article`
   background-color: ${({ theme }) => theme.color.primary100};
@@ -33,29 +31,37 @@ const LoginButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.color.text200};
 `;
-const UserInfo = ({ children }) => {
+const UserInfo = ({ userEmail, children }) => {
   const [isHover, setIsHover] = useState(false);
   return (
     <>
       <Wrapper>
-        <LogoIcon />
-        <Btn>
-          <Link to={"/Login"}>
-            <LoginButton
-              onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}>
-              Login / Register
-              <Lottie
-                animationData={animationData}
-                isStopped={!isHover}
-                style={{ width: "4rem", height: "4rem" }}
-              />
-            </LoginButton>
-          </Link>
-        </Btn>
-        {children}
+        {userEmail ? (
+          <>
+            <h2>{userEmail}</h2>
+          </>
+        ) : (
+          <>
+            <Btn>
+              <Link to={"/Login"}>
+                <LoginButton
+                  onMouseEnter={() => setIsHover(true)}
+                  onMouseLeave={() => setIsHover(false)}>
+                  Login / Register
+                  <Lottie
+                    animationData={animationData}
+                    isStopped={!isHover}
+                    style={{ width: "4rem", height: "4rem" }}
+                  />
+                </LoginButton>
+              </Link>
+            </Btn>
+          </>
+        )}
       </Wrapper>
     </>
   );

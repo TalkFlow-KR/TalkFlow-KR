@@ -63,6 +63,7 @@ const layout = {
 };
 
 const common = {
+  shadow: "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07)",
   gradient: {
     gradient100:
       "background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);",
@@ -86,13 +87,13 @@ const darkTheme = {
   fontSizes,
   lineHeight,
   color: {
-    primary300: "#0085ff",
+    primary100: "#0085ff",
     primary200: "#69b4ff",
-    primary100: "#e0ffff",
-    accent100: "#006fff",
-    accent200: "#e1ffff",
-    text100: "#FFFFFF",
-    text200: "#9e9e9e",
+    primary300: "#e0ffff",
+    accent200: "#006fff",
+    accent100: "#e1ffff",
+    text200: "#FFFFFF",
+    text100: "#9e9e9e",
     bg100: "#1E1E1E",
     bg200: "#2d2d2d",
     bg300: "#454545",

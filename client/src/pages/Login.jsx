@@ -34,6 +34,7 @@ const Wrapper = styled.div`
   max-width: 40rem;
   ${({ theme }) => theme.layout.flexCenter};
   align-items: center;
+
   //background-color: orange;
 
   & section {
@@ -45,6 +46,7 @@ const Wrapper = styled.div`
     border-radius: 2rem;
     border: 1px solid #aaa;
     background-color: #fff;
+    ${({ theme }) => theme.shadow};
   }
 
   //버튼 디자인
@@ -63,7 +65,7 @@ const emailInput = styled.input`
   }
   &:focus {
     border: 0.1rem solid transparent;
-    outline: 0.3rem solid red;
+    outline: 0.3rem solid ${({ theme }) => theme.color.primary100};
   }
 `;
 const clearEmailValueBtn = styled.button`
@@ -92,7 +94,7 @@ const pwInput = styled.input`
   }
   &:focus {
     border: 0.1rem solid transparent;
-    outline: 0.3rem solid red;
+    outline: 0.3rem solid ${({ theme }) => theme.color.primary100};
   }
 `;
 const loginBox = styled.section`
@@ -102,9 +104,17 @@ const loginBox = styled.section`
 
 const title = styled.h2`
   margin-bottom: 2rem;
+  color: ${({ theme }) => theme.color.text100};
 `;
 const register = styled.p`
-  color: brown;
+  color: ${({ theme }) => theme.color.text200};
+`;
+const LoginBtn = styled.button`
+  width: 100%;
+  padding: 1.2rem 2rem;
+  border-radius: 2rem;
+  background-color: ${({ theme, isPassword }) =>
+    isPassword === true ? theme.color.bg200 : theme.color.primary100};
 `;
 const emailBox = styled.div`
   width: 100%;
@@ -137,12 +147,24 @@ const showPasswordBtn = styled.button`
   border: 0.1rem solid #ddd;
   border-radius: 50%;
 `;
+const KaKaoBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  & button {
+    padding: 1.2rem;
+    border-radius: 2rem;
+    background-color: #f7e111;
+  }
+`;
 const Or = styled.h4`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   text-align: center;
+  margin: 1.2rem 0;
   &:before {
     display: inline-block;
     content: "";
@@ -160,12 +182,13 @@ const Or = styled.h4`
     margin-left: 0.5rem;
   }
 `;
+
 const S = {
+  register,
   emailInput,
   pwInput,
   loginBox,
   title,
-  register,
   pwBox,
   inputBox,
   showPasswordBtn,
@@ -205,7 +228,9 @@ const LoginForm = ({
   const onShow = () => {
     setShowPassword(!showPassword);
   };
-
+  const onRegister = () => {
+    navigate("/register");
+  };
   const onClick = () => {
     console.log("Login 폼에서 버튼 테스트");
     onSubmit(email, password);
@@ -326,18 +351,26 @@ const LoginForm = ({
               )}
               <div
                 style={{
-                  backgroundColor: "#eee",
                   textAlign: "center",
-                  width: "100%",
-                  height: "3rem",
                 }}>
-                {password && <button onClick={onClick}>로그인하기</button>}
+                {password && (
+                  <LoginBtn onClick={onClick} isPassword={password}>
+                    로그인하기
+                  </LoginBtn>
+                )}
               </div>
               <Or>or</Or>
-              <p style={{ textAlign: "center" }}>
-                처음이신가요 ? <span>회원가입 하기</span>
+              <p style={{ textAlign: "center", margin: "1.6rem 0" }}>
+                처음이신가요 ? <br />{" "}
+                <span
+                  onClick={onRegister}
+                  style={{ cursor: "pointer", fontWeight: "900" }}>
+                  회원가입 하기
+                </span>
               </p>
-              <KaKaoLogin />
+              <KaKaoBox>
+                <KaKaoLogin />
+              </KaKaoBox>
             </>
           )}
         </S.loginBox>

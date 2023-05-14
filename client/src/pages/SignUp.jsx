@@ -6,6 +6,7 @@ import SuccessRegister from "../components/organisms/Auth/SuccessRegister";
 import Register from "../components/organisms/Auth/Register";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/atoms/Loading";
+import RegisterForm from "../components/organisms/Auth/RegisterForm";
 
 const Container = styled.main`
   position: relative;
@@ -31,7 +32,7 @@ const Container = styled.main`
   gap: 6rem;
   align-items: stretch;
 `;
-const SignUp = ({ isUserActive }) => {
+const SignUp = ({ isUserActive, notify }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
   const navigate = useNavigate();
@@ -54,7 +55,13 @@ const SignUp = ({ isUserActive }) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <>{isFinish ? <SuccessRegister /> : <Register {...registerProps} />}</>
+        <>
+          {isFinish ? (
+            <SuccessRegister />
+          ) : (
+            <RegisterForm {...registerProps} notify={notify} />
+          )}
+        </>
       )}
     </Container>
   );

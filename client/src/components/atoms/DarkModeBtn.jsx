@@ -41,7 +41,7 @@ const DarkModeBtn = ({ mode }) => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
           animationData={animationData}
-          direction={mode === "light" ? true : false}
+          direction={mode === "light"}
           isPaused={!isHover}
           loop={false}
           speed={10}

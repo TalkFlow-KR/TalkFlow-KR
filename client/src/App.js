@@ -21,6 +21,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import DarkModeBtn from "./components/atoms/DarkModeBtn";
 import Loading from "./components/atoms/Loading";
+import RegisterForm from "./components/organisms/Auth/RegisterForm";
+// import NewRegister from "./components/organisms/Auth/NewRegister";
 
 function App() {
   // 유저의 로그인 값
@@ -140,6 +142,7 @@ function App() {
             path="/main"
             element={
               <Main
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 ChangeTheme={ChangeTheme}
@@ -167,6 +170,7 @@ function App() {
             path="/newChat"
             element={
               <Settings
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -177,6 +181,7 @@ function App() {
             path="/settings"
             element={
               <Settings
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -188,6 +193,7 @@ function App() {
             path="/history"
             element={
               <History
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -199,6 +205,7 @@ function App() {
             path="/notification"
             element={
               <Notification
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -223,11 +230,12 @@ function App() {
           <Route path="/authRedirect" element={<AuthRedirect />} />
           <Route
             path="/register"
-            element={<SignUp isUserActive={isUserActive} />}
+            element={<SignUp isUserActive={isUserActive} notify={notify} />}
           />
           <Route path="/sk" element={<Skeleton />} />
           <Route path="/test" element={<DarkModeBtn />} />
           <Route path="/loading" element={<Loading />} />
+          {/*<Route path="/newRegister" element={<NewRegister />} />*/}
           <Route path="/*" element={<Error />} />
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}

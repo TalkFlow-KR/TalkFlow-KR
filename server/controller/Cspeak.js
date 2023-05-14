@@ -158,6 +158,7 @@ exports.allRoom = async(req,res)=>{
 
 // 4. /room/:userid : room setting
 exports.room = async (req, res) => {
+  console.log(req.body)
   const userId = req.params.userid // 가입한 사람 id나 kakaoId
   try{
     const result = await models.USER.findOne({ // params랑 user의 id가 같은 사람 찾기

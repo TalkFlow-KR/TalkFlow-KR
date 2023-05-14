@@ -2,87 +2,144 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InputWithLabels from "../../molecules/InputWithLabels";
 import axios from "axios";
+import Lottie from "components/atoms/LottieComponent";
+import animationData from "assets/1401-eye01.json";
 import Loading from "../../atoms/Loading";
+import { AiFillHome } from "react-icons/ai";
+
+import {
+  AiOutlineCheck,
+  AiOutlineQuestion,
+  AiOutlineClose,
+} from "react-icons/ai";
+
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.section`
-  ${({ theme }) => theme.layout.flexCenter};
-  overflow: hidden;
-  position: absolute;
-`;
-const StyledForm = styled.form`
+  width: 100%;
+  height: 100%;
   display: flex;
-  transition: all 0.4s;
   justify-content: center;
   align-items: center;
-  background-color: red;
-  & fieldset {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    //margin: 0 20rem;
-    background-color: tomato;
-    border-radius: 2rem;
-    //margin: 0 50%;
+`;
 
-    //transform: translateX(770%);
+const StyledForm = styled.div`
+  text-align: center;
+  transition: all 0.4s;
+  background-color: ${({ theme }) => theme.color.bg100};
+  border-radius: 0.8rem;
+  padding: 1.6rem 4rem;
+  border: 0.1rem solid white;
+  ${({ theme }) => theme.shadow};
+
+  & fieldset {
+    flex: 1 1 0;
+    display: flex;
+    //justify-content: space-between;
+    //margin: 0 20rem;
+    padding: 0.8rem;
   }
 `;
 const StyledFieldSet = styled.fieldset`
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
   border: 0;
   margin: 0;
   padding: 0;
   word-break: keep-all;
 `;
+const NextBtn = styled.button`
+  width: 80%;
+  border-radius: 0.4rem;
+  height: 4rem;
+  background-color: ${({ isOkay, theme }) =>
+    isOkay ? theme.color.primary100 : theme.color.bg300};
+`;
+const RegisterBtn = styled(NextBtn)`
+  background-color: ${({ isDisable, theme }) =>
+    !isDisable === true ? theme.color.primary100 : theme.color.bg200};
+  margin: 2rem 0;
+`;
+const SmallBtn = styled.button`
+  height: 100%;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
+  margin: 1.2rem 0;
+  border-radius: 1.2rem;
+  background-color: #fff;
+  ${({ theme }) => theme.shadow};
+`;
 
-const RegisterForm = ({ isFinish, setIsFinish }) => {
+const GoBack = styled.button`
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  background-color: ${({ theme }) => theme.color.bg300};
+  color: ${({ theme }) => theme.color.text200};
+`;
+const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
+  const [checkEmoji, setCheckEmoji] = useState(<AiOutlineQuestion />);
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(-1);
   const [position, setPosition] = useState(1);
   // email state
-  const [emailValue, setEmailValue] = useState("smurf@kakao.com");
+  const [emailValue, setEmailValue] = useState("");
   // 이메일 유효성
   const [isValidEmail, setIsValidEmail] = useState(false);
   // password state
-  const [passwordValue, setPasswordValue] = useState("test");
+  const [passwordValue, setPasswordValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   // userName state
-  const [userNameValue, setUserNameValue] = useState("smurf");
+  const [userNameValue, setUserNameValue] = useState("");
   // gender state
   const [genderValue, setGenderValue] = useState("male");
   // phone state
-  const [phoneValue, setPhoneValue] = useState("0100000000");
+  const [phoneValue, setPhoneValue] = useState("");
   // 폰 유효성
   const [isValidPhone, setIsValidPhone] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
   const [registerText, setRegisterText] = useState("가입하기");
+  const [isHover, setIsHover] = useState(false);
 
   // 회원가입 성공/실패
   const [isSuccess, setIsSuccess] = useState(false);
+  //
+  const navigate = useNavigate();
 
   const JOIN_DATA = {
     emailText: {
       id: "email",
       name: "email",
-      label: "what's your email?",
+      label: "사용하실 이메일을 입력해주세요.",
       type: "text",
-      placeholder: "type your email.",
+      placeholder: "Email",
     },
     passwordText: {
       id: "password",
       name: "password",
-      label: "Enter the password to use.",
+      label: "사용하실 비밀번호를 입력해주세요.",
       type: !showPassword ? "password" : "text",
-      placeholder: "******",
+      placeholder: "password",
     },
     userNameText: {
       id: "name",
       name: "name",
-      label: "What's your name tho ?",
+      label: "성함이 어떻게 되시죠?",
       type: "text",
       placeholder: "James",
     },
     genderText: {
-      label: "are you male? or female?",
+      label: "성별을 알려주세요.",
       male: {
         id: "male",
         name: "gender",
@@ -101,7 +158,7 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     phoneText: {
       id: "phone",
       name: "phone",
-      label: "enter your phone number",
+      label: "모바일 번호가 필요해요.",
       type: "text",
       placeholder: "010-1234-5678",
     },
@@ -122,6 +179,7 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
       setValid(valid.test(value));
     }
     setState(value);
+    setCheckEmoji(<AiOutlineQuestion />);
   };
 
   // 유효성 검사후 가입 버튼 활성화
@@ -157,6 +215,19 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      notify("회원가입 성공 ! 로그인 페이지로 이동합니다.");
+      setTimeout(() => {
+        navigate("/login");
+      }, 850);
+    } else {
+      notify("입력하신 정보가 올바르지 않습니다.");
+    }
+    //
+  }, [isSuccess, navigate, notify]);
+
   const onShow = () => {
     setShowPassword(!showPassword);
   };
@@ -169,12 +240,19 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     // 중복이 아닐경우
     if (res.data) {
       setIsValid(1);
-    } else setIsValid(0);
+      setCheckEmoji(<AiOutlineCheck style={{ color: "#2ea043" }} />);
+    } else {
+      setIsValid(0);
+      setCheckEmoji(<AiOutlineClose style={{ color: "#e23e32" }} />);
+    }
+  };
+
+  const goIndex = () => {
+    navigate("/");
   };
   return (
     <>
       <Wrapper>
-        {/*{isLoading ? <Loading /> : "isLoading가 false라면,이게 뜸"};*/}
         <StyledForm
           action=""
           style={{ transform: `translateX(${position}rem)` }}>
@@ -190,18 +268,10 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
                 if (e.key === " ") e.preventDefault();
               }}
             />
-            {isValidEmail ? (
-              <p>Good.</p>
-            ) : (
-              <p>please enter a valid email. Bad</p>
-            )}
             {!isValid ? <p>중복된 이메일 입니다. </p> : null}
-            <button type="button" onClick={onAuthEmail}>
-              중 복 확 인 버 튼
-            </button>
-            <button type="button" onClick={onClick} disabled={!isValidEmail}>
-              NEXT
-            </button>
+            <SmallBtn type="NextBtn" onClick={onAuthEmail}>
+              {checkEmoji}
+            </SmallBtn>
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
@@ -213,27 +283,24 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
                 if (e.key === " ") e.preventDefault();
               }}
             />
-            {!(passwordValue.length >= 8 || passwordValue.length === 0) ? (
-              <p>Good</p>
-            ) : (
-              <p>Bad (8글자까지)</p>
-            )}
-            <button type="button" onClick={onShow}>
-              show Password
-            </button>
-            <button type="button" onClick={onClick}>
-              NEXT
-            </button>
+            <SmallBtn type="NextBtn" onClick={onShow}>
+              <Lottie
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
+                animationData={animationData}
+                isPaused={!isHover}
+                style={{ width: "2rem", height: "2rem" }}
+                speed={0.8}
+              />
+            </SmallBtn>
           </StyledFieldSet>
+
           <StyledFieldSet>
             <InputWithLabels
               data={userNameText}
               onChange={(e) => onChange(e, setUserNameValue)}
               value={userNameValue}
             />
-            <button type="button" onClick={onClick}>
-              NEXT
-            </button>
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
@@ -241,9 +308,6 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
               onChange={(e) => onChange(e, setGenderValue)}
               value={genderValue}
             />
-            <button type="button" onClick={onClick}>
-              NEXT
-            </button>
           </StyledFieldSet>
           <StyledFieldSet>
             <InputWithLabels
@@ -253,19 +317,17 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
               }
               value={phoneValue}
             />
-            {isValidPhone ? (
-              <p>Good.</p>
-            ) : (
-              <p>please enter a valid number. Bad</p>
-            )}
-            <button type="button" onClick={onClick}>
-              NEXT
-            </button>
           </StyledFieldSet>
-          {/*submit 버튼*/}
-          <button type="button" onClick={onSubmit} disabled={isDisable}>
+          <RegisterBtn
+            type="NextBtn"
+            onClick={onSubmit}
+            isDisable={isDisable}
+            disabled={isDisable}>
             {registerText}
-          </button>
+          </RegisterBtn>
+          <GoBack onClick={goIndex}>
+            <AiFillHome />
+          </GoBack>
         </StyledForm>
       </Wrapper>
     </>
