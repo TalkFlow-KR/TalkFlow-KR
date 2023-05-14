@@ -174,7 +174,14 @@ const S = {
   Or,
 };
 
-const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
+const LoginForm = ({
+  onChange,
+  onSubmit,
+  loginData,
+  isUserActive,
+  notify,
+  setLoginData,
+}) => {
   const navigate = useNavigate();
   const passwordRef = useRef(null);
 
@@ -186,6 +193,7 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
   const [top, setTop] = useState("2.4rem");
   const [isHover, setIsHover] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isToast, setIsToast] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     if (isUserActive) {
@@ -231,6 +239,30 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
       }
     }
   }, [showPwInput]);
+
+  useEffect(() => {
+    if (loginData === false) {
+      setIsToast(true);
+      setLoginData(null);
+      console.log("test", loginData);
+    } else if (loginData === true) {
+      setIsToast(true);
+    }
+  }, [loginData, setLoginData]);
+
+  // 비밀번호가 일치하지않는 렌더링
+  useEffect(() => {
+    console.log("test1", isToast);
+    if (isToast) {
+      if (loginData === false) {
+        notify("아이디 혹은 비밀번호가 일치하지 않아요.");
+      } else if (loginData === true) {
+        notify("로그인 성공");
+      }
+      setIsToast(false);
+    }
+    console.log("test2", isToast);
+  }, [isToast, notify]);
 
   return (
     <Container>
@@ -300,7 +332,6 @@ const LoginForm = ({ onChange, onSubmit, loginData, isUserActive }) => {
                 }}>
                 {password && <button onClick={onClick}>로그인하기</button>}
               </div>
-
               <Or>or</Or>
               <p style={{ textAlign: "center" }}>
                 처음이신가요 ? <span>회원가입 하기</span>

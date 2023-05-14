@@ -1,31 +1,24 @@
-//components
-// import MainPage from "pages/MainPage.jsx";
-// import Chat from "pages/Chat.jsx";
-// 회원가입 페이지
+import { useCallback, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import Main from "./pages/Main";
+import Index from "./pages/Index";
+import History from "./pages/History";
 import SignUp from "pages/SignUp";
-import Settings from "p/Settings";
-// 404 페이지
+import Settings from "pages/Settings";
+import Notification from "pages/Notification";
 import Error from "pages/Error";
+import Login from "pages/Login";
+import AuthRedirect from "pages/AuthRedirect";
+import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
+import Skeleton from "./components/molecules/Skeleton";
 
 //style
 import { GlobalStyle } from "styles/GlobalStyle.styled";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
-
-import Main from "./p/Main";
-import Index from "./p/Index";
-
-import History from "./p/History";
-import Notification from "./p/Notification";
-import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
-// 로그인 페이지
-import Login from "pages/Login";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Skeleton from "./components/molecules/Skeleton";
-import AuthRedirect from "./pages/AuthRedirect";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   // 유저의 로그인 값
@@ -38,11 +31,13 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [loginData, setLoginData] = useState(null);
+  const [loginData, setLoginData] = useState(false);
   //
   //
   // 다크모드
-  const [isDark, setIsDark] = useState(false);
+  const getLocalTheme = window.localStorage.getItem("theme") || "light";
+  const [mode, setMode] = useState(getLocalTheme);
+
   //
 
   //로그인 됐는지 안됐는지
@@ -55,34 +50,53 @@ function App() {
     }
   }, [UserID, isUserActive]);
   // login input value 변화
-  const onChange = (setState, e) => {
+  const onChange = useCallback((setState, e) => {
     setState(e.target.value);
-  };
+  }, []);
+  // 다크모드 체크
+  useEffect(() => {
+    const currentTheme = window.localStorage.getItem("theme") || "light";
+    if (mode !== currentTheme) {
+      setMode(currentTheme);
+    }
+  }, [mode]);
 
   // login submit 버튼
-  const onSubmit = async (emailfromLogin, pwfromLogin) => {
-    console.log("App.js onSubmit Test", emailfromLogin, pwfromLogin);
-    setIsLoading(true);
-    const data = {
-      email: emailfromLogin,
-      password: pwfromLogin,
-    };
-    const res = await axios.post("http://localhost:8000/post-login", data);
-    if (res.data.msg === "wrong") {
-      setLoginData(false);
-    }
-    if (res.data.msg === "success") {
-      setLoginData(true);
-      setUserID(res.data.userid);
-    }
-    setIsLoading(false);
-  };
+  const onSubmit = useCallback(
+    async (emailfromLogin, pwfromLogin) => {
+      console.log("App.js onSubmit Test", emailfromLogin, pwfromLogin);
+      setIsLoading(true);
+      const data = {
+        email: emailfromLogin,
+        password: pwfromLogin,
+      };
+      const res = await axios.post("http://localhost:8000/post-login", data);
+      if (res.data.msg === "wrong") {
+        setLoginData(false);
+      }
+      if (res.data.msg === "success") {
+        setLoginData(true);
+        setUserID(res.data.userid);
+      }
+      setIsLoading(false);
+    },
+    [setLoginData, setUserID]
+  );
 
+  const toastId = "testnumber";
+  const notify = useCallback((text) => {
+    toast(text);
+  }, []);
   // dark mode 기능 함수
-  const ChangeTheme = () => {
-    console.log(isDark);
-    setIsDark((prev) => prev === false);
-  };
+  const ChangeTheme = useCallback(() => {
+    if (mode === "light") {
+      setMode("dark");
+      window.localStorage.setItem("theme", "dark");
+    } else {
+      setMode("light");
+      window.localStorage.setItem("theme", "light");
+    }
+  }, [mode, setMode]);
   const loginProps = {
     email,
     setEmail,
@@ -96,7 +110,19 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={isDark === true ? theme.lightTheme : theme.darkTheme}>
+    <ThemeProvider
+      theme={mode === "light" ? theme.lightTheme : theme.darkTheme}>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={8000}
+        hideProgressBar={true}
+        limit={1}
+        closeButton={true}
+        closeOnClick={true}
+        draggable={true}
+        theme={mode === "light" ? "light" : "dark"}
+        toastId={toastId}
+      />
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
@@ -148,7 +174,13 @@ function App() {
           {/*로그인 페이지 경로 /login*/}
           <Route
             path="/login"
-            element={<Login {...loginProps} isUserActive={isUserActive} />}
+            element={
+              <Login
+                {...loginProps}
+                isUserActive={isUserActive}
+                notify={notify}
+              />
+            }
           />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
