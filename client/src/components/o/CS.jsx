@@ -83,7 +83,7 @@ const userid = "2787496442"; // 임시
 const langData = ["영어", "한국어", "일본어"];
 const themeData = ["헬스장", "공원"];
 const accentData = ["여성", "군인", "래퍼"];
-const CS = ({ userId, data, onSubmit, setSettings }) => {
+const CS = ({ userId, data, onSubmit, setSettings, getRes }) => {
   console.log("userid!!!!!!: ", userId);
   console.log("CS onSubmit", onSubmit);
   // 옵션 아코디언
@@ -145,6 +145,7 @@ const CS = ({ userId, data, onSubmit, setSettings }) => {
       })
       .then((res) => {
         console.log(res);
+        getRes(res.data);
       })
       .catch((err) => {
         console.log(err);

@@ -23,8 +23,12 @@ const Wrapper = styled.section`
 
 const CW = ({ userId, data, onSubmit, setSettings }) => {
   const [isCreated, setIsCreated] = useState(true);
+  const [roomData, setRoomData] = useState(null);
   console.log("CW onSubmit", onSubmit);
-
+  const getRes = (data) => {
+    console.log(data);
+    setRoomData(data);
+  };
   const Box = styled.div`
     display: flex;
     justify-content: center;
@@ -45,10 +49,11 @@ const CW = ({ userId, data, onSubmit, setSettings }) => {
         onSubmit={onSubmit}
         setSettings={setSettings}
         isCreated={isCreated}
+        getRes={getRes}
       />
 
       <Box>
-        {!isCreated ? <h1>대화하기전, 회화 테마를 선택 해주세요.</h1> : <HrC />}
+        {!roomData ? <h1>대화하기전, 회화 테마를 선택 해주세요.</h1> : <HrC />}
       </Box>
     </Wrapper>
   );
