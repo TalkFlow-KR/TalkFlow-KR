@@ -1,9 +1,11 @@
 //Main.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 // import RegisterForm from "components/organisms/Auth/RegisterForm";
 import SuccessRegister from "../components/organisms/Auth/SuccessRegister";
 import Register from "../components/organisms/Auth/Register";
+import { useNavigate } from "react-router-dom";
+import Loading from "../components/atoms/Loading";
 
 const Container = styled.main`
   position: relative;
@@ -29,8 +31,19 @@ const Container = styled.main`
   gap: 6rem;
   align-items: stretch;
 `;
-const SignUp = () => {
+const SignUp = ({ isUserActive }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsLoading(true);
+    if (isUserActive) {
+      navigate("/authredirect");
+    } else {
+      setIsLoading(false);
+    }
+  }, [isUserActive, navigate]);
 
   const registerProps = {
     isFinish,
@@ -38,7 +51,11 @@ const SignUp = () => {
   };
   return (
     <Container>
-      {isFinish ? <SuccessRegister /> : <Register {...registerProps} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>{isFinish ? <SuccessRegister /> : <Register {...registerProps} />}</>
+      )}
     </Container>
   );
 };

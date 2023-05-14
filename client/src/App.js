@@ -25,7 +25,7 @@ function App() {
   // const [UserID, setUserID] = useState("유저임시키값 test");
   const [UserID, setUserID] = useState("");
   // 로그인 & 로그아웃
-  const [isUserActive, setIsUserActive] = useState(false);
+  const [isUserActive, setIsUserActive] = useState(true);
   //
   //
   const [email, setEmail] = useState("");
@@ -145,6 +145,7 @@ function App() {
                 isUserActive={isUserActive}
                 userId={UserID}
                 ChangeTheme={ChangeTheme}
+                notify={notify}
               />
             }
           />
@@ -185,7 +186,10 @@ function App() {
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
           <Route path="/authRedirect" element={<AuthRedirect />} />
-          <Route path="/register" element={<SignUp />} />
+          <Route
+            path="/register"
+            element={<SignUp isUserActive={isUserActive} />}
+          />
           <Route path="/sk" element={<Skeleton />} />
           <Route path="/*" element={<Error />} />
 

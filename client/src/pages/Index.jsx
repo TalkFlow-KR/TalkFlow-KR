@@ -1,5 +1,5 @@
 //Main.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import MainArticle from "../components/atoms/MainArticle";
@@ -54,17 +54,32 @@ const Button = styled.button`
   border-radius: 1rem;
 `;
 
-const Main = ({ isUserActive, userId, ChangeTheme }) => {
+const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
+  const [isToast, setIsToast] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const res = axios.get("http://localhost:8000/");
-    console.log(res);
+    setIsToast(false);
+    // const res = axios.get("http://localhost:8000/");
+    // console.log(res);
   }, []);
+
   const onClick = () => {
-    const url = isUserActive ? "/main" : "/login";
-    navigate(url);
+    setIsToast(true);
   };
+
+  useEffect(() => {
+    if (isToast) {
+      if (isUserActive) {
+        notify("메인화면으로이동합니다");
+        navigate("/main");
+      } else {
+        notify("진행하시려면 로그인 하셔야합니다 !");
+        navigate("/login");
+      }
+    }
+  }, [isToast, isUserActive, navigate, notify]);
+
   return (
     <>
       <Container>
@@ -97,4 +112,4 @@ const Main = ({ isUserActive, userId, ChangeTheme }) => {
   );
 };
 
-export default Main;
+export default Index;

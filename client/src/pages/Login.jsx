@@ -278,12 +278,13 @@ const LoginForm = ({
                   <S.emailInput
                     autoFocus={true}
                     type="text"
-                    name="userEmail"
+                    name="hmUserEmail"
                     id="userEmail"
                     placeholder="Email"
                     value={email}
                     onChange={handleOnChange}
                     onKeyDown={onKeyDown}
+                    autoComplete={false}
                   />
                   {email && (
                     <>
