@@ -4,6 +4,7 @@ import Lottie from "lottie-web";
 // Lottie 컴포넌트 정의
 const LottieComponent = ({
   animationData,
+  hover,
   loop,
   autoplay,
   speed,
@@ -21,6 +22,7 @@ const LottieComponent = ({
     const animationOptions = {
       container: animationContainer.current,
       renderer: "svg",
+      // hover: hover !== undefined ? hover : false,
       loop: loop !== undefined ? loop : true,
       autoplay: autoplay !== undefined ? autoplay : true,
       animationData: animationData,
@@ -38,7 +40,7 @@ const LottieComponent = ({
     return () => {
       animation.destroy();
     };
-  }, [animationData, loop, autoplay]);
+  }, [animationData, hover, loop, autoplay]);
 
   // Lottie 인터랙션 관리
   useEffect(() => {

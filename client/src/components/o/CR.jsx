@@ -184,20 +184,19 @@ const CR = ({ data, userId, roomId }) => {
   //     .then((data) => setMessageList(data));
   // }, []);
 
-  // CR 채팅 보내기
+  //**************** */ CR 채팅 보내기
 
-  const OnSubmitHandler = (e) => {
-    //   e.preventDefault();
-    //   // const value = e.tartget.text.value;
-    //
-    //   axios
-    //     .post(`http://localhost:5000/chat/${userid}/${roomid}`, {
-    //       msg: inputValue,
-    //     })
-    //     .then((res) => {
-    //       console.log(res);
-    //     });
-  };
+  // const OnSubmitHandler = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post(`http://localhost:5000/chat/${userid}/${roomid}`, {
+  //       msg: inputValue,
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
+
 
   return (
     <Wrapper>
@@ -215,17 +214,17 @@ const CR = ({ data, userId, roomId }) => {
         ))}
         <div ref={messagesEndRef} />
         <InputComponent>
-          <InputForm onSubmit={OnSubmitHandler}>
-            <ChatInput
-              type="text"
-              name="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyDown}
-              placeholder="메시지를 입력하세요.">
-              {/* <button></button> */}
-            </ChatInput>
-          </InputForm>
+          {/* <InputForm onSubmit={OnSubmitHandler}> */}
+          <ChatInput
+            type="text"
+            name="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyDown}
+            placeholder="메시지를 입력하세요.">
+            {/* <button></button> */}
+          </ChatInput>
+          {/* </InputForm> */}
           <button
             onClick={handleSendClick}
             style={{

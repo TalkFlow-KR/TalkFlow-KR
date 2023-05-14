@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPizzaSlice } from "@fortawesome/free-solid-svg-icons";
 
 const LogoIcon = () => {
-  console.log("LOGO ICON CLICKED!");
   return (
     <div>
       <h1>

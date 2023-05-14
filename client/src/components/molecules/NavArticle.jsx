@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"; // import Link component
 
 const text = {
   menuText: "HOME",
-  menuText2: "NEW CHAT",
+  menuText2: "CREATE",
   menuText3: "CHATROON",
   menuText4: "BOOKMARK",
   menuText5: "NOTICE",

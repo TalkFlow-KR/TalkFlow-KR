@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import animationData from "assets/history.json";
+import animationData from "assets/plus.json";
 import styled from "styled-components";
 import Lottie from "./LottieComponent";
 
 const Wrapper = styled.main`
   width: 2.5rem;
   height: 2.5rem;
-  /* color: ${({ theme }) => theme.color.text100}; */
   /* position: absolute; */
   /* top: 50%; */
   /* left: 50%; */
@@ -14,13 +13,19 @@ const Wrapper = styled.main`
   /* z-index: 1000; */
 `;
 
-const History = () => {
+// const style = {
+//   height: "300px",
+//   width: "300px",
+//   backgroundColor: "red",
+// };
+const PlusIcon = () => {
   // const [speed, setSpeed] = useState(0.5);
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
 
   return (
     <>
+      {/* <Overlay> */}
       <Wrapper>
         <Lottie
           animationData={animationData}
@@ -32,8 +37,9 @@ const History = () => {
         {/* <button onClick={() => setIsPaused(!isPaused)}>pause/play</button> */}
         {/* <button onClick={() => setIsStopped(!isStopped)}>stop/play</button> */}
       </Wrapper>
+      {/* </Overlay> */}
     </>
   );
 };
 
-export default History;
+export default PlusIcon;
