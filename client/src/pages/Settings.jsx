@@ -37,7 +37,7 @@ const Container = styled.main`
 `;
 // axios 가져오기
 // login 유무 확인하기
-const Settings = ({ isUserActive, userId }) => {
+const Settings = ({ isUserActive, userId, userEmail }) => {
   const [data, setData] = useState("");
   const [settings, setSettings] = useState({});
   const navigate = useNavigate();
@@ -62,9 +62,7 @@ const Settings = ({ isUserActive, userId }) => {
   return (
     <>
       <Container>
-        {isUserActive ? `로그인 중 : UserID :^ ${userId} ^ ` : "비로그인"}
-
-        <LC />
+        <LC userEmail={userEmail} />
         <NewS
           userId={userId}
           data={data}

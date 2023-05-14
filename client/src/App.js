@@ -142,6 +142,7 @@ function App() {
             path="/main"
             element={
               <Main
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 ChangeTheme={ChangeTheme}
@@ -169,6 +170,7 @@ function App() {
             path="/newChat"
             element={
               <Settings
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -179,6 +181,7 @@ function App() {
             path="/settings"
             element={
               <Settings
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -190,6 +193,7 @@ function App() {
             path="/history"
             element={
               <History
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -201,6 +205,7 @@ function App() {
             path="/notification"
             element={
               <Notification
+                userEmail={userEmail}
                 isUserActive={isUserActive}
                 userId={UserID}
                 mode={mode}
@@ -225,7 +230,7 @@ function App() {
           <Route path="/authRedirect" element={<AuthRedirect />} />
           <Route
             path="/register"
-            element={<SignUp isUserActive={isUserActive} />}
+            element={<SignUp isUserActive={isUserActive} notify={notify} />}
           />
           <Route path="/sk" element={<Skeleton />} />
           <Route path="/test" element={<DarkModeBtn />} />

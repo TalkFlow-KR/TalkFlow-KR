@@ -32,7 +32,7 @@ const Container = styled.main`
   gap: 6rem;
   align-items: stretch;
 `;
-const SignUp = ({ isUserActive }) => {
+const SignUp = ({ isUserActive, notify }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
   const navigate = useNavigate();
@@ -56,7 +56,11 @@ const SignUp = ({ isUserActive }) => {
         <Loading />
       ) : (
         <>
-          {isFinish ? <SuccessRegister /> : <RegisterForm {...registerProps} />}
+          {isFinish ? (
+            <SuccessRegister />
+          ) : (
+            <RegisterForm {...registerProps} notify={notify} />
+          )}
         </>
       )}
     </Container>
