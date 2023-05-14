@@ -33,7 +33,14 @@ const Container = styled.main`
   }
 `;
 
-const Main = ({ isUserActive, userId, mode, ChangeTheme, userEmail }) => {
+const Main = ({
+  isUserActive,
+  userId,
+  mode,
+  ChangeTheme,
+  userEmail,
+  setUserID,
+}) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +56,13 @@ const Main = ({ isUserActive, userId, mode, ChangeTheme, userEmail }) => {
     <Skeleton />
   ) : (
     <Container>
-      <LC mode={mode} ChangeTheme={ChangeTheme} userEmail={userEmail} />
+      <LC
+        mode={mode}
+        ChangeTheme={ChangeTheme}
+        userEmail={userEmail}
+        userId={userId}
+        setUserID={setUserID}
+      />
       <MC></MC>
     </Container>
   );

@@ -32,7 +32,6 @@ const Container = styled.main`
   justify-content: space-around;
   align-items: stretch;
   /* gap: 6rem; */
-
   & > div {
     display: flex;
     flex-direction: column;
@@ -58,13 +57,12 @@ const Button = styled.button`
 
 const IndexHeader = styled.section`
   display: flex;
-  width: 100vw;
   /* flex: 1 1 0; */
   //min-width: 103.2rem;
   //max-width: 32rem;
   height: 5.6rem;
   height: ${({ theme }) => theme.layout.height.top};
-  background-color: tan;
+  //background-color: tan;
   /* background-color: transparent; */
   color: ${({ theme }) => theme.color.text100};
   border-radius: 1.2rem;
@@ -79,8 +77,9 @@ const IndexHeader = styled.section`
   align-items: center;
 `;
 
-const Logo = styled.div``;
+const Div = styled.div``;
 const Btn = styled.div``;
+const Logo = styled.div``;
 
 const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
   const [isHover, setIsHover] = useState(false);
@@ -119,12 +118,12 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
   return (
     <>
       <Container>
-        <div onClick={handleChangeTheme}>
-          <DarkModeBtn mode={mode} />
-        </div>
         <IndexHeader>
           <Logo>LOGO</Logo>
           <Btn>비로그인</Btn>
+          <Div onClick={handleChangeTheme}>
+            <DarkModeBtn mode={mode} />
+          </Div>
         </IndexHeader>
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>

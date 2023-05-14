@@ -97,7 +97,7 @@ const Icon = styled.div`
   height: 2.5rem;
 `;
 
-const LC = ({ mode, ChangeTheme, userEmail }) => {
+const LC = ({ mode, ChangeTheme, userEmail, userId, setUserID }) => {
   const [isHover, setIsHover] = useState(false);
   const [isHover2, setIsHover2] = useState(false);
   const [isHover3, setIsHover3] = useState(false);
@@ -107,7 +107,7 @@ const LC = ({ mode, ChangeTheme, userEmail }) => {
   };
   return (
     <Container>
-      <UserInfo userEmail={userEmail} />
+      <UserInfo userEmail={userEmail} userId={userId} setUserID={setUserID} />
       <MenuList>
         <Link to={"/main"}>
           <Wrapper
