@@ -10,13 +10,24 @@ const Btn = styled.button`
   //padding: 1.2rem;
 `;
 
-const SettingItem = ({ onClick }) => {
+const SettingItem = ({ onSelectButton }) => {
+  const onClick = (number) => {
+    onSelectButton(number);
+    console.log(number);
+  };
+  // onCustom 을 하기위해
+  // input 모달창 띄우기
+  // inpurt 창 확인누르면
+  // setState의 값 넣기
+  // onSelectbutton 에게 값 보내주기
+  const onCustom = () => {
+    onSelectButton(-1);
+  };
   return (
     <div>
-      <Btn onClick={onClick}>영어</Btn>
-      <Btn onClick={onClick}>중국어</Btn>
-      <Btn onClick={onClick}>일본어</Btn>
-      <Btn onClick={onClick}>한국어</Btn>
+      <Btn onClick={() => onClick(0, "영어")}>영어</Btn>
+      <Btn onClick={() => onClick(0, "한국어")}>한국어</Btn>
+      <Btn onClick={onCustom}>다른 언어</Btn>
     </div>
   );
 };

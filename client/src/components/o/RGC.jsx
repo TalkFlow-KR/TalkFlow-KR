@@ -39,7 +39,6 @@ const RGC = () => {
   };
   return (
     <Wrapper>
-      <HC>회원 가입 </HC>
       <ContentsBox>
         {isFinish ? <SuccessRegister /> : <RegisterForm {...registerProps} />}
       </ContentsBox>

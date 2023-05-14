@@ -94,7 +94,7 @@ const Wrapper = styled.button`
 const LC = () => {
   return (
     <Container>
-      <UserInfo>{/* <button> logout / edit</button> */}</UserInfo>
+      <UserInfo />
       <MenuList>
         <Link to={"/"}>
           <Wrapper>

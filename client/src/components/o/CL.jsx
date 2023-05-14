@@ -26,6 +26,7 @@ const CL = () => {
         <ChatItem
           title={"Title"}
           lastMessage={"LastMessage"}
+          w
           date="2099.09.26"
         />
         <ChatItem
@@ -79,4 +80,3 @@ const CL = () => {
 };
 
 export default CL;
-

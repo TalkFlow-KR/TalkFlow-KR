@@ -1,9 +1,10 @@
 //Main.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import LC from "../components/o/LC";
 import MC from "../components/o/MC";
-import HC from "components/o/HC";
+import axios from "axios";
+import Skeleton from "../components/molecules/Skeleton";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -32,9 +33,29 @@ const Container = styled.main`
   }
 `;
 
-const Main = () => {
-  return (
+const Main = ({ isUserActive, userId }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loading() {
+      setIsLoading(false);
+      const data = 0;
+      const res = await axios.post("https://localhost:8000/", data);
+      console.log(res);
+    }
+    loading();
+  }, []);
+  return isLoading ? (
+    <Skeleton />
+  ) : (
     <Container>
+      {isUserActive ? (
+        `로그인 중 : UserID :^ ${userId} ^ `
+      ) : (
+        <>
+          <button>비로그인 중 다크테마 테스트중 </button>
+        </>
+      )}
       <LC></LC>
       <MC></MC>
     </Container>

@@ -4,7 +4,7 @@ import InputWithLabels from "../../molecules/InputWithLabels";
 import axios from "axios";
 import Loading from "../../atoms/Loading";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   ${({ theme }) => theme.layout.flexCenter};
   overflow: hidden;
   position: absolute;
@@ -33,6 +33,7 @@ const StyledFieldSet = styled.fieldset`
   padding: 0;
   word-break: keep-all;
 `;
+
 const RegisterForm = ({ isFinish, setIsFinish }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isValid, setIsValid] = useState(-1);
@@ -123,14 +124,6 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     setState(value);
   };
 
-  const data = {
-    email: emailValue,
-    name: userNameValue,
-    password: passwordValue,
-    gender: genderValue,
-    telephone: phoneValue,
-  };
-
   // 유효성 검사후 가입 버튼 활성화
   useEffect(() => {
     if (!(isValidEmail && isValidPhone && passwordValue.length < 9)) {
@@ -140,16 +133,16 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     }
   }, [isValidEmail, isValidPhone, passwordValue]);
 
+  const data = {
+    email: emailValue,
+    name: userNameValue,
+    password: passwordValue,
+    gender: genderValue,
+    telephone: phoneValue,
+  };
   // 가입하기 버튼 누르기
   const onSubmit = async () => {
-    console.log(
-      emailValue,
-      passwordValue,
-      phoneValue,
-      genderValue,
-      userNameValue,
-      data
-    );
+    console.log(data);
     setIsLoading(true);
     const res = await axios.post("http://localhost:8000/post-signup", data);
     console.log(res.data);
@@ -168,7 +161,10 @@ const RegisterForm = ({ isFinish, setIsFinish }) => {
     setShowPassword(!showPassword);
   };
   const onAuthEmail = async () => {
-    const res = await axios.post("http://localhost:8000/", emailText);
+    console.log(emailValue);
+    const res = await axios.post("http://localhost:8000/signup/checkemail", {
+      email: emailValue,
+    });
     console.log(res.data);
     // 중복이 아닐경우
     if (res.data) {
