@@ -24,11 +24,13 @@ const data = {
   },
 };
 
-const HW = () => {
+
+const HW = ({ userId }) => {
+
   return (
     <Wrapper>
       <CL></CL>
-      <CR data={data} />
+      <CR userId={userId} data={data} />
     </Wrapper>
   );
 };

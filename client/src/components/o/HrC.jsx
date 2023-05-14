@@ -39,12 +39,16 @@ const data = {
   },
 };
 
+
 const HrC = () => {
+
+const CW = ({ userId }) => {
+
   return (
     <Wrapper>
       <ContentsBox>
         <HC>HISTORY</HC>
-        <HW></HW>
+        <HW userId={userId}></HW>
       </ContentsBox>
     </Wrapper>
   );

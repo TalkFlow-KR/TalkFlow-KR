@@ -34,7 +34,8 @@ const Container = styled.main`
     flex-direction: column;
   }
 `;
-const Main = () => {
+
+const History = () => {
   const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
   const [roomNumber, setRoomNumber] = useState();
 
@@ -52,14 +53,17 @@ const Main = () => {
 
   // 빼온 방번호 roomNumber에 담아놓았음
 
+
   return (
     <>
       <Container>
         <LC></LC>
+
         <HrC roomNumber={roomNumber}></HrC>
+
       </Container>
     </>
   );
 };
 
-export default Main;
+export default History;
