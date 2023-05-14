@@ -123,7 +123,7 @@ const sendChatToServer = async (message) => {
 //   }
 // };
 const CR = ({ data, userId, roomId }) => {
-  const [gpt,setGpt] = useState("") // gpt 답변 담길곳
+  const [gpt, setGpt] = useState(""); // gpt 답변 담길곳
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -157,6 +157,12 @@ const CR = ({ data, userId, roomId }) => {
     // console.log(gptAns);
     // speak({ text: gptAns });
     console.log("onEnd  : ", "녹음이 끝났습니다.");
+    console.log("inputValue : ", inputValue);
+    const newMessage1 = {
+      id: Date.now(),
+      text: inputValue,
+    };
+    setMessageList([...messageList, newMessage1]);
   };
 
   const onResult = (result) => {
@@ -185,6 +191,7 @@ const CR = ({ data, userId, roomId }) => {
   useEffect(() => {
     setText([...text, data.ai.answer]);
   }, []);
+
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   }, [messageList]);
@@ -233,24 +240,51 @@ const CR = ({ data, userId, roomId }) => {
   //**************** */ CR 채팅 보내기
 
   useEffect(() => {
-    if(!inputValue) return
+    if (!inputValue) return;
     OnSubmitHandler();
   }, []);
 
   const OnSubmitHandler = () => {
-    console.log("inputValue : ", inputValue);
     axios
       .post(`http://localhost:8000/chat/${userid}/${roomid}`, {
         msg: inputValue,
       })
       .then((res) => {
-        console.log('res: ',res.data);
-        setGpt(res.data)
+        console.log("res (gpt): ", res.data);
+        setGpt(res.data);
+        const newMessage = {
+          id: Date.now(),
+          text: res.data,
+        };
+        console.log("gpt : ", res.data);
+        setMessageList([...messageList, newMessage]);
+        console.log(messageList);
       })
-      .catch((err)=>{
-        console.log(err)
-      })
-      setInputValue('')
+      .catch((err) => {
+        console.log(err);
+      });
+    setInputValue("");
+
+    ///////////////////////////////
+    ////////////////////////////////
+
+    console.log("Sending message:", inputValue);
+    // if (inputValue.trim()) {
+    //   const newMessage = {
+    //     id: Date.now(),
+    //     text: inputValue,
+    //   };
+    //   // time;
+    //   setMessageList([...messageList, newMessage]);
+
+    //   setInputValue("");
+    //   setMessage("");
+    // }
+
+    ////////////////////////////////
+    ////////////////////////////////
+
+    console.log("messageList : ", messageList);
   };
 
   return (
