@@ -1,7 +1,7 @@
 const models = require("../models");
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-  apiKey: "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", // openai api key
+  apiKey: "", // openai api key
 });
 const openai = new OpenAIApi(configuration);
 
@@ -45,6 +45,27 @@ exports.runGPT35 = async (req, res) => {
     for (let i = 0; i < result.length; i++) {
       newMsg.push({ role: result[i].part_id, content: result[i].content });
     }
+
+    else{ // MSG 테이블이 비었다면 ROOM에 저장된 세팅 값으로 gpt 세팅
+      const settings = await models.ROOM.findOne({
+        where : {
+          raw : true,
+          room_id : roomid
+        }
+      })
+      const situation = settings[0].situation
+      const accent = settings[0].accent
+      const language = settings[0].language
+
+      const msg = `You are a converstation bot.
+                   Let's play a role play. you can play any role in ${situation}.
+                   but you must use ${language} and please speak with ${accent} accent.`
+                   
+      const response = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: 'system', content: msg},{ role: "user", content: req.body.msg}]
+      });
+
 
     // 과거내역 불러오기
     const response = await openai.createChatCompletion({
