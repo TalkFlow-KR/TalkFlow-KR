@@ -26,20 +26,11 @@ const style = {
   backgroundColor: "red",
 };
 const ErrorAnimation = () => {
-  const [speed, setSpeed] = useState(0.5);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isStopped, setIsStopped] = useState(false);
-
   return (
     <>
       {/* <Overlay> */}
       <Wrapper>
-        <Lottie
-          animationData={animationData}
-          speed={speed}
-          isPaused={isPaused}
-          isStopped={isStopped}
-        />
+        <Lottie animationData={animationData} loop={false} />
         {/*<button onClick={() => setSpeed(speed)}>double</button>*/}
         {/* <button onClick={() => setIsPaused(!isPaused)}>pause/play</button>
           <button onClick={() => setIsStopped(!isStopped)}>stop/play</button> */}

@@ -154,7 +154,7 @@ const KaKaoBox = styled.div`
   margin: 0 auto;
   & button {
     padding: 1.2rem;
-    border-radius: 2rem;
+    border-radius: 50%;
     background-color: #f7e111;
   }
 `;
@@ -359,7 +359,7 @@ const LoginForm = ({
                   </LoginBtn>
                 )}
               </div>
-              <Or>or</Or>
+
               <p style={{ textAlign: "center", margin: "1.6rem 0" }}>
                 처음이신가요 ? <br />{" "}
                 <span

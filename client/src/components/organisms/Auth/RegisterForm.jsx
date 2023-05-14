@@ -112,7 +112,7 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   const [isHover, setIsHover] = useState(false);
 
   // 회원가입 성공/실패
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState("");
   //
   const navigate = useNavigate();
 
@@ -165,10 +165,6 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   };
   const { emailText, passwordText, userNameText, genderText, phoneText } =
     JOIN_DATA;
-  const onClick = (e) => {
-    e.preventDefault();
-    setPosition(position - 80);
-  };
 
   const emailRageX = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   const phoneRageX = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
@@ -204,9 +200,8 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
     setIsLoading(true);
     const res = await axios.post("http://localhost:8000/post-signup", data);
     console.log(res.data);
-
-    if (res.data === "Success") {
-      setIsSuccess(true);
+    setIsSuccess(res.data);
+    if (res.data === "success") {
       // 가입 성공에 대한 화면 출력 및 상태 변경
       setIsFinish(true);
     } else {
@@ -217,15 +212,12 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess === "success") {
       notify("회원가입 성공 ! 로그인 페이지로 이동합니다.");
-      setTimeout(() => {
-        navigate("/login");
-      }, 850);
-    } else {
+      navigate("/successregister");
+    } else if (isSuccess === "fail") {
       notify("입력하신 정보가 올바르지 않습니다.");
     }
-    //
   }, [isSuccess, navigate, notify]);
 
   const onShow = () => {
