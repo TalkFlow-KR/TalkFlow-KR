@@ -23,7 +23,8 @@ import "react-toastify/dist/ReactToastify.min.css";
 function App() {
   // 유저의 로그인 값
   // const [UserID, setUserID] = useState("유저임시키값 test");
-  const [UserID, setUserID] = useState("");
+  // test 위해서는 UserID 채워주시고 , isUseeActive true 해주셔야해요
+  const [UserID, setUserID] = useState("test");
   // 로그인 & 로그아웃
   const [isUserActive, setIsUserActive] = useState(true);
   //
@@ -49,6 +50,7 @@ function App() {
       setIsUserActive(true);
     }
   }, [UserID, isUserActive]);
+
   // login input value 변화
   const onChange = useCallback((setState, e) => {
     setState(e.target.value);
@@ -76,6 +78,7 @@ function App() {
       }
       if (res.data.msg === "success") {
         setLoginData(true);
+        setIsUserActive(true);
         setUserID(res.data.userid);
       }
       setIsLoading(false);
@@ -83,7 +86,6 @@ function App() {
     [setLoginData, setUserID]
   );
 
-  const toastId = "testnumber";
   const notify = useCallback((text) => {
     toast(text);
   }, []);
@@ -121,7 +123,6 @@ function App() {
         closeOnClick={true}
         draggable={true}
         theme={mode === "light" ? "light" : "dark"}
-        toastId={toastId}
       />
       <GlobalStyle />
       <BrowserRouter>

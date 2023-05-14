@@ -55,6 +55,7 @@ const Button = styled.button`
 `;
 
 const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
+  console.log("why isUSerActive", isUserActive);
   const [isToast, setIsToast] = useState(false);
   const navigate = useNavigate();
 
@@ -78,7 +79,7 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify }) => {
         navigate("/login");
       }
     }
-  }, [isToast, isUserActive, navigate, notify]);
+  }, [isToast, navigate, notify]);
 
   return (
     <>
