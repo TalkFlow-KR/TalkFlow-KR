@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
-
+import { RiCloseFill, RiKakaoTalkFill } from "react-icons/ri";
 
 const KaKaoLogin = () => {
   const Rest_api_key = "00dc2bc4743842e52f97986b0d1c037e"; //REST API KEY
@@ -12,11 +12,13 @@ const KaKaoLogin = () => {
 
   const handleLogin = async () => {
     window.location.href = kakaoURL;
-  }
-   
+  };
+
   return (
     <>
-      <button onClick={handleLogin}>카카오 로그인</button>
+      <button onClick={handleLogin}>
+        <RiKakaoTalkFill />
+      </button>
     </>
   );
 };
