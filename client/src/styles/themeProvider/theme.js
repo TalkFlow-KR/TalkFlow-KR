@@ -63,6 +63,7 @@ const layout = {
 };
 
 const common = {
+  shadow: "box-shadow: 0 5px 20px -5px rgba(0,0,0,.07)",
   gradient: {
     gradient100:
       "background: linear-gradient(90deg, hsla(190, 79%, 59%, 1) 0%, hsla(190, 88%, 66%, 1) 100%);",

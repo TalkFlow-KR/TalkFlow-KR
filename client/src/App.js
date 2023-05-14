@@ -225,7 +225,7 @@ function App() {
           <Route path="/authRedirect" element={<AuthRedirect />} />
           <Route
             path="/register"
-            element={<RegisterForm isUserActive={isUserActive} />}
+            element={<SignUp isUserActive={isUserActive} />}
           />
           <Route path="/sk" element={<Skeleton />} />
           <Route path="/test" element={<DarkModeBtn />} />
