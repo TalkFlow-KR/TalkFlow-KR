@@ -8,7 +8,6 @@ import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
 import IH from "components/o/IH";
-import DarkMode from "components/atoms/DarkMode";
 import DarkModeBtn from "../components/atoms/DarkModeBtn";
 
 const Container = styled.main`
@@ -65,14 +64,13 @@ const IndexHeader = styled.section`
   //max-width: 32rem;
   height: 5.6rem;
   height: ${({ theme }) => theme.layout.height.top};
-  /* background-color: ${({ theme }) => theme.color.bg200}; */
   background-color: tan;
   /* background-color: transparent; */
-
+  color: ${({ theme }) => theme.color.text100};
   border-radius: 1.2rem;
   padding: 1.2rem;
   margin: 2rem;
-  font-size: 3.2rem;
+  font-size: ${({ theme }) => theme.fontSizes.main}rem;
   //flex: 0 1 0;
   //overflow-y: hidden;
   text-overflow: ellipsis;

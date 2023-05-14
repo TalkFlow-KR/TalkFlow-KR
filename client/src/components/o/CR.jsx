@@ -16,17 +16,11 @@ import axios from "axios";
 
 const Wrapper = styled.section`
   flex: 1 1 0;
+  position: relative;
   height: 50vh;
-  //width: 44.4rem;
-  //height: 56.2rem;
-  //margin: 1.4rem;
-  background-color: #ddd;
-  /* background-color: tomato; */
+  background-color: ${({ theme }) => theme.color.bg200};
   border-radius: 2rem;
-  //padding: 1.6rem;
   margin: 2rem;
-  //overflow-y: hidden;
-  /* overflow: auto; */
 `;
 
 const InputForm = styled.form`
@@ -35,30 +29,32 @@ const InputForm = styled.form`
 
 const ChatBox = styled.article`
   position: relative;
-  ////height: 1rem;
-  /* ////height: 40rem; */
   background-color: ${({ theme }) => theme.color.bg300};
-  /* background-color: teal; */
   height: 30vh;
   margin: 2rem;
   border-radius: 2rem;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  /* width: 50vw; */
 `;
 
 const InputComponent = styled.div`
   display: flex;
+  position: sticky;
+  bottom: 0;
   justify-content: space-between;
 `;
 
 const ChatInput = styled.input`
-  width: 90%;
+  width: 100%;
   height: 3rem;
   margin: 1rem;
   border-radius: 1rem;
   border: 0;
   justify-content: center;
-
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.25);
+  align-items: center;
 `;
 
 // const micIdle = styled.button``;
@@ -83,14 +79,13 @@ const User = styled.p`
   position: relative;
   width: 100%;
   padding: 0.8rem;
-  //background-color: tan;
   font-size: 1.6rem;
   border-radius: 0.8rem;
 
   & span {
     position: relative;
     display: inline-block;
-    float: right;
+    /* float: right; */
     right: 0;
     top: 0;
     background-color: lightcoral;

@@ -4,9 +4,9 @@ import styled from "styled-components";
 const Btn = styled.button`
   border-radius: 0.8rem;
   width: 100%;
-  color: black;
+  color: ${({ theme }) => theme.color.bg300};
   margin: 0.4rem 0;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.color.accent100};
   //padding: 1.2rem;
 `;
 

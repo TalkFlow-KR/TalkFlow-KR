@@ -35,8 +35,8 @@ const First = () => {
   return (
     <>
       <Wrapper>
-        <MainArticle bgColor={theme.lightTheme.color.bg100}>
-          <h1>CHAT FLOW-KR</h1>
+        <MainArticle bgColor={theme.color.bg200}>
+          <h1 color={theme.color.accent100}>CHAT FLOW-KR</h1>
           <h2>Chatflow는 AI와 현실 대화로,흐름을 이해하는</h2>
           <p>가장 효과적이고 효율적인 언어학습자의 능력향상 공부법입니다.</p>
           <Link to="/">

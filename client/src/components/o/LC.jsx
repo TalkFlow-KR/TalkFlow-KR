@@ -9,8 +9,9 @@ import { Link } from "react-router-dom";
 import HomeIcon from "components/atoms/HomeIcon";
 import DarkMode from "../atoms/DarkMode";
 import PlusIcon from "components/atoms/PlusIcon";
-import History from "components/atoms/History";
+import History from "components/atoms/history";
 import Notice from "components/atoms/Notice";
+import DarkModeBtn from "components/atoms/DarkModeBtn";
 
 // import One from "../atoms/One";
 // import NewPro from "../atoms/NewPro";
@@ -20,7 +21,6 @@ const Container = styled.section`
   width: ${({ theme }) => theme.layout.width.lc};
   width: 26.4rem;
   height: 100%;
-  /* background-color: #ddd; */
   /* background-color: ${({ theme }) => theme.color.bg100}; */
   border-radius: 2rem;
   display: flex;
@@ -90,7 +90,6 @@ const Wrapper = styled.button`
     }
   }
 `;
-
 const LC = () => {
   return (
     <Container>
@@ -121,9 +120,7 @@ const LC = () => {
           </Wrapper>
         </Link>
       </MenuList>
-      <button>
-        <DarkMode />
-      </button>
+      <button></button>
     </Container>
   );
 };

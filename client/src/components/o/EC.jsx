@@ -6,6 +6,7 @@ import CL from "./CL";
 import CR from "./CR";
 import CS from "./CS";
 import ErrorAnimation from "components/atoms/ErrorAnimation";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.section`
   flex: 1 1 0;
@@ -15,7 +16,6 @@ const Wrapper = styled.section`
   //height: 70rem;
   //height: 100%;
   border-radius: 2rem;
-  background-color: tomato;
   background-color: ${({ theme }) => theme.color.bg100};
   //justify-content: center;
   align-items: center;
@@ -25,9 +25,29 @@ const Wrapper = styled.section`
 `;
 const ContentsBox = styled.section`
   /* //width: 100%; */
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   padding-bottom: 11.2rem;
+`;
+
+const GoMain = styled.button`
+  /* display: flex; */
+  width: 10rem;
+  height: 5rem;
+  background-color: transparent;
+  font-size: ${({ theme }) => theme.fontSizes.boxTitle};
+  color: ${({ theme }) => theme.color.text200};
+  background-color: ${({ theme }) => theme.color.bg200};
+  border-radius: 1rem;
+  transform: translateY(-2rem);
+  /* padding: 1rem; */
+
+  &:active {
+    border: 0.1rem solid;
+    border-radius: 1rem;
+    border-color: #ddd;
+    background-color: ${({ theme }) => theme.color.bg300};
+  }
 `;
 const EC = () => {
   return (
@@ -35,7 +55,9 @@ const EC = () => {
       <ContentsBox>
         <ErrorAnimation />
       </ContentsBox>
-      ! ERROR !
+      <Link to={"/main"}>
+        <GoMain>메인으로 가기</GoMain>
+      </Link>
     </Wrapper>
   );
 };

@@ -23,7 +23,7 @@ const Wrapper = styled.main`
 const style = {
   height: "300px",
   width: "300px",
-  backgroundColor: "red",
+  // backgroundColor: "red",
 };
 const Waiting = () => {
   const [speed, setSpeed] = useState(0.5);
