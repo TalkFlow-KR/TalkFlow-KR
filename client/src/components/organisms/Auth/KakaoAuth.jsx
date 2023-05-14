@@ -55,10 +55,14 @@ const KakaoAuth = () => {
         setId(res.data.id);
         setName(res.data.properties.nickname);
       });
-      axios.post('http://localhost:8000/kakao',{id:id, nickname: name})
-        .then((res)=>{
-          console.log('successs')
-        })
+    axios
+      .post(`${process.env.REACT_APP_DB_HOST}/kakao`, {
+        id: id,
+        nickname: name,
+      })
+      .then((res) => {
+        console.log("successs");
+      });
   };
 
   return (

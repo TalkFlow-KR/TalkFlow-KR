@@ -9,9 +9,19 @@ CREATE TABLE `USER` (
   PRIMARY KEY (`id`)
 );
 
+
+CREATE TABLE `kakao` (
+  `kakaoId` varchar(20) NOT NULL,
+  `kakao_nickname` varchar(10) NOT NULL,
+  PRIMARY KEY (`kakaoId`)
+);
+
+
+
+
 CREATE TABLE `ROOM` (
   `room_id` int NOT NULL AUTO_INCREMENT,
-  `id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `id` varchar(255) NOT NULL,
   `situation` varchar(50) NOT NULL,
   `accent` varchar(50) NOT NULL,
   `language` varchar(50) NOT NULL,
@@ -19,8 +29,8 @@ CREATE TABLE `ROOM` (
   PRIMARY KEY (`room_id`),
   KEY `id` (`id`),
   KEY `kakaoId` (`kakaoId`),
-  CONSTRAINT `room_ibfk_685` FOREIGN KEY (`id`) REFERENCES `USER` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `room_ibfk_686` FOREIGN KEY (`kakaoId`) REFERENCES `kakao` (`kakaoId`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `room_ibfk_477` FOREIGN KEY (`id`) REFERENCES `USER` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `room_ibfk_478` FOREIGN KEY (`kakaoId`) REFERENCES `kakao` (`kakaoId`) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE `MSG` (
@@ -34,13 +44,17 @@ CREATE TABLE `MSG` (
   CONSTRAINT `msg_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `ROOM` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE `kakao` (
-  `kakaoId` varchar(20) NOT NULL,
-  `kakao_nickname` varchar(10) NOT NULL,
-  PRIMARY KEY (`kakaoId`)
-);
 
 
 
 
-
+create table `MSG`(
+    `msg_id` int NOT NULL AUTO_INCREMET,
+    `part_id` varchar(20) NOT NULL,
+    `content` text NOT NULL,
+    `room_id` int NOT NULL,
+    `user_id` varchar(225) NOT NULL,
+    PRIMARY KEY (`msg_id`),
+    KEY `room_id` (`room_id`),
+    CONSTRAINT `msg_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `ROOM` (`room_id`) ON DELETE CASCADE
+    );

@@ -40,7 +40,7 @@ const Main = ({ isUserActive, userId, mode, ChangeTheme, userEmail }) => {
     async function loading() {
       setIsLoading(false);
       const data = 0;
-      const res = await axios.post("https://localhost:8000/", data);
+      const res = await axios.post(`${process.env.REACT_APP_DB_HOST}/`, data);
       console.log(res);
     }
     loading();

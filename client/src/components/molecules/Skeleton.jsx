@@ -265,7 +265,7 @@ const Sk = {
 const Skeleton = ({ isUserActive, userId }) => {
   useEffect(() => {
     const data = 0;
-    const res = axios.post("https://localhost:8000/", data);
+    const res = axios.post(`${process.env.REACT_APP_DB_HOST}`, data);
     console.log(res);
   }, []);
   return (
