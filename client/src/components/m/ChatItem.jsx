@@ -3,7 +3,8 @@ import styled from "styled-components";
 import ChatIcon from "../a/ChatIcon";
 
 const Wrapper = styled.div`
-  background-color: thistle;
+  /* background-color: thistle; */
+  background-color: ${({ theme }) => theme.color.bg300};
   width: 25.4rem;
   height: 9rem;
   border-radius: 0.8rem;

@@ -57,6 +57,33 @@ const Button = styled.button`
   border-radius: 1rem;
 `;
 
+const IndexHeader = styled.section`
+  display: flex;
+  width: 100vw;
+  /* flex: 1 1 0; */
+  //min-width: 103.2rem;
+  //max-width: 32rem;
+  height: 5.6rem;
+  height: ${({ theme }) => theme.layout.height.top};
+  /* background-color: ${({ theme }) => theme.color.bg200}; */
+  background-color: tan;
+  /* background-color: transparent; */
+
+  border-radius: 1.2rem;
+  padding: 1.2rem;
+  margin: 2rem;
+  font-size: 3.2rem;
+  //flex: 0 1 0;
+  //overflow-y: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Logo = styled.div``;
+const Btn = styled.div``;
+
 const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
   const [isHover, setIsHover] = useState(false);
   const [isToast, setIsToast] = useState(false);
@@ -97,7 +124,10 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
         <div onClick={handleChangeTheme}>
           <DarkModeBtn mode={mode} />
         </div>
-
+        <IndexHeader>
+          <Logo>LOGO</Logo>
+          <Btn>비로그인</Btn>
+        </IndexHeader>
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW-KR</h1>

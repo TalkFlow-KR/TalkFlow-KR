@@ -3,8 +3,9 @@ import React from "react";
 import styled from "styled-components";
 import DarkMode from "components/atoms/DarkMode";
 
-const Container = styled.section`
+const IndexHeader = styled.section`
   display: flex;
+  width: 100vw;
   /* flex: 1 1 0; */
   //min-width: 103.2rem;
   //max-width: 32rem;
@@ -31,11 +32,10 @@ const Btn = styled.div``;
 const IH = () => {
   return (
     <>
-      <Container>
+      <IndexHeader>
         <Logo>LOGO</Logo>
-        <DarkMode></DarkMode>
         <Btn>비로그인</Btn>
-      </Container>
+      </IndexHeader>
     </>
   );
 };
