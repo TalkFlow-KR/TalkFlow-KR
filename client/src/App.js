@@ -31,7 +31,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [loginData, setLoginData] = useState(null);
+  const [loginData, setLoginData] = useState(false);
   //
   //
   // 다크모드
@@ -50,9 +50,9 @@ function App() {
     }
   }, [UserID, isUserActive]);
   // login input value 변화
-  const onChange = (setState, e) => {
+  const onChange = useCallback((setState, e) => {
     setState(e.target.value);
-  };
+  }, []);
   // 다크모드 체크
   useEffect(() => {
     const currentTheme = window.localStorage.getItem("theme") || "light";
@@ -62,24 +62,31 @@ function App() {
   }, [mode]);
 
   // login submit 버튼
-  const onSubmit = async (emailfromLogin, pwfromLogin) => {
-    console.log("App.js onSubmit Test", emailfromLogin, pwfromLogin);
-    setIsLoading(true);
-    const data = {
-      email: emailfromLogin,
-      password: pwfromLogin,
-    };
-    const res = await axios.post("http://localhost:8000/post-login", data);
-    if (res.data.msg === "wrong") {
-      setLoginData(false);
-    }
-    if (res.data.msg === "success") {
-      setLoginData(true);
-      setUserID(res.data.userid);
-    }
-    setIsLoading(false);
-  };
+  const onSubmit = useCallback(
+    async (emailfromLogin, pwfromLogin) => {
+      console.log("App.js onSubmit Test", emailfromLogin, pwfromLogin);
+      setIsLoading(true);
+      const data = {
+        email: emailfromLogin,
+        password: pwfromLogin,
+      };
+      const res = await axios.post("http://localhost:8000/post-login", data);
+      if (res.data.msg === "wrong") {
+        setLoginData(false);
+      }
+      if (res.data.msg === "success") {
+        setLoginData(true);
+        setUserID(res.data.userid);
+      }
+      setIsLoading(false);
+    },
+    [setLoginData, setUserID]
+  );
 
+  const toastId = "testnumber";
+  const notify = useCallback((text) => {
+    toast(text);
+  }, []);
   // dark mode 기능 함수
   const ChangeTheme = useCallback(() => {
     if (mode === "light") {
@@ -105,7 +112,17 @@ function App() {
   return (
     <ThemeProvider
       theme={mode === "light" ? theme.lightTheme : theme.darkTheme}>
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={8000}
+        hideProgressBar={true}
+        limit={1}
+        closeButton={true}
+        closeOnClick={true}
+        draggable={true}
+        theme={mode === "light" ? "light" : "dark"}
+        toastId={toastId}
+      />
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
@@ -157,7 +174,13 @@ function App() {
           {/*로그인 페이지 경로 /login*/}
           <Route
             path="/login"
-            element={<Login {...loginProps} isUserActive={isUserActive} />}
+            element={
+              <Login
+                {...loginProps}
+                isUserActive={isUserActive}
+                notify={notify}
+              />
+            }
           />
           {/*<Route path="/oauth/kakao/callback" element={<LoginForm />} />*/}
           <Route path="/oauth" element={<KakaoAuth />} />
