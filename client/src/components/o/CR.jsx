@@ -123,6 +123,7 @@ const sendChatToServer = async (message) => {
 //   }
 // };
 const CR = ({ data, userId, roomId }) => {
+  const [gpt,setGpt] = useState("") // gpt 답변 담길곳
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -149,7 +150,7 @@ const CR = ({ data, userId, roomId }) => {
   const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
   const roomid = 1;
 
-  const [lang, setLang] = useState("en-AU");
+  const [lang, setLang] = useState("en-US");
 
   const onEnd = () => {
     // 녹음이 끝난 후, 실행 할 함수를 추가할 수 있습니다.
@@ -210,18 +211,18 @@ const CR = ({ data, userId, roomId }) => {
     setMessage(e.target.value);
   };
 
-  const handleSendClick = () => {
-    if (inputValue.trim()) {
-      const newMessage = {
-        id: Date.now(),
-        text: inputValue,
-      };
-      setMessageList([...messageList, newMessage]);
-      setInputValue("");
-      setMessage("");
-      sendChatToServer(inputValue); // Call the sendChatToServer function
-    }
-  };
+  // const handleSendClick = () => {
+  //   if (inputValue.trim()) {
+  //     const newMessage = {
+  //       id: Date.now(),
+  //       text: inputValue,
+  //     };
+  //     setMessageList([...messageList, newMessage]);
+  //     setInputValue("");
+  //     setMessage("");
+  //     sendChatToServer(inputValue); // Call the sendChatToServer function
+  //   }
+  // };
 
   // useEffect(() => {
   //   fetch(`http://localhost:5000/room/make/${userid}`)
@@ -232,20 +233,24 @@ const CR = ({ data, userId, roomId }) => {
   //**************** */ CR 채팅 보내기
 
   useEffect(() => {
+    if(!inputValue) return
     OnSubmitHandler();
-  }, [inputValue]);
+  }, []);
 
-  const OnSubmitHandler = (e) => {
-    // e.preventDefault();
-
+  const OnSubmitHandler = () => {
     console.log("inputValue : ", inputValue);
     axios
       .post(`http://localhost:8000/chat/${userid}/${roomid}`, {
         msg: inputValue,
       })
       .then((res) => {
-        console.log(res);
-      });
+        console.log('res: ',res.data);
+        setGpt(res.data)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+      setInputValue('')
   };
 
   return (
@@ -264,7 +269,7 @@ const CR = ({ data, userId, roomId }) => {
         ))}
         <div ref={messagesEndRef} />
         <InputComponent>
-          <InputForm onSubmit={OnSubmitHandler}>
+          <InputForm>
             <ChatInput
               type="text"
               name="text"
@@ -275,8 +280,9 @@ const CR = ({ data, userId, roomId }) => {
               {/* <button></button> */}
             </ChatInput>
           </InputForm>
+
           <button
-            onClick={handleSendClick}
+            onClick={OnSubmitHandler}
             style={{
               width: "3rem",
               height: "3rem",
