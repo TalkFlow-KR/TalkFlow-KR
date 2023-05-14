@@ -22,6 +22,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import DarkModeBtn from "./components/atoms/DarkModeBtn";
 import Loading from "./components/atoms/Loading";
 import RegisterForm from "./components/organisms/Auth/RegisterForm";
+import SuccessRegister from "./components/organisms/Auth/SuccessRegister";
 // import NewRegister from "./components/organisms/Auth/NewRegister";
 
 function App() {
@@ -232,10 +233,9 @@ function App() {
             path="/register"
             element={<SignUp isUserActive={isUserActive} notify={notify} />}
           />
+          <Route path="/successregister" element={<SuccessRegister />} />
           <Route path="/sk" element={<Skeleton />} />
-          <Route path="/test" element={<DarkModeBtn />} />
           <Route path="/loading" element={<Loading />} />
-          {/*<Route path="/newRegister" element={<NewRegister />} />*/}
           <Route path="/*" element={<Error />} />
 
           {/* 사라지는 login -> loginForm으로 바로 연결 */}
