@@ -10,6 +10,8 @@ const LottieComponent = ({
   speed,
   isPaused,
   isStopped,
+  direction,
+  initialSegment,
   ...restProps
 }) => {
   // Lottie 애니메이션 컨테이너에 대한 ref
@@ -40,7 +42,7 @@ const LottieComponent = ({
     return () => {
       animation.destroy();
     };
-  }, [animationData, hover, loop, autoplay]);
+  }, [animationData, loop, autoplay]);
 
   // Lottie 인터랙션 관리
   useEffect(() => {
@@ -59,8 +61,28 @@ const LottieComponent = ({
       if (speed !== undefined) {
         animationInstance.setSpeed(speed);
       }
+      // direction 값에 따라 역방향 재생 여부 결정
+      if (direction !== undefined) {
+        if (direction === true) {
+          // direction 값이 true 일 경우 역방향으로 재생
+          animationInstance.setDirection(-1);
+        } else {
+          // direction 값이 false 일 경우 정방향으로 재생
+          animationInstance.setDirection(1);
+        }
+      }
+      if (initialSegment !== undefined) {
+        animationInstance.playSegments(initialSegment, true);
+      }
     }
-  }, [isPaused, isStopped, speed, animationInstance]);
+  }, [
+    isPaused,
+    isStopped,
+    speed,
+    animationInstance,
+    direction,
+    initialSegment,
+  ]);
 
   return <div ref={animationContainer} {...restProps} />;
 };
