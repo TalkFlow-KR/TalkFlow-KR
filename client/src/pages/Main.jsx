@@ -8,7 +8,7 @@ import Skeleton from "../components/molecules/Skeleton";
 
 const Container = styled.main`
   flex: 1 1 0;
-  //width: 140rem;
+  width: 100vw;
   //max-width: 144rem;
   //min-width: 36rem;
   //width: 100%;

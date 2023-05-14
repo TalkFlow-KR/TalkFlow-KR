@@ -3,7 +3,8 @@ import styled from "styled-components";
 import theme from "../../styles/themeProvider/theme";
 
 const Wrapper = styled.article`
-  width: ${({ theme }) => theme.layout.width.mainArticle};
+  /* width: ${({ theme }) => theme.layout.width.mainArticle}; */
+  width: 100%;
   height: ${({ theme }) => theme.layout.height.mainArticle};
   border-radius: ${({ theme }) => theme.layout.radius.l};
   color: ${({ theme }) => theme.color.textColor};

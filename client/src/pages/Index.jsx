@@ -7,6 +7,8 @@ import theme from "../styles/themeProvider/theme";
 import Lottie from "../components/atoms/LottieComponent";
 import learning from "../assets/learning.json";
 import { useNavigate } from "react-router-dom";
+import IH from "components/o/IH";
+import DarkMode from "components/atoms/DarkMode";
 
 const Container = styled.main`
   flex: 1 1 0;
@@ -28,8 +30,8 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 6rem;
   align-items: stretch;
+  /* gap: 6rem; */
 
   & > div {
     display: flex;
@@ -77,6 +79,7 @@ const Main = ({ isUserActive, userId, ChangeTheme }) => {
             </button>
           </>
         )}
+        <IH></IH>
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW-KR</h1>
