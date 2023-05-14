@@ -25,7 +25,7 @@ const style = {
   width: "300px",
   backgroundColor: "red",
 };
-const Chatting = () => {
+const Waiting = () => {
   const [speed, setSpeed] = useState(0.5);
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
@@ -49,4 +49,4 @@ const Chatting = () => {
   );
 };
 
-export default Chatting;
+export default Waiting;

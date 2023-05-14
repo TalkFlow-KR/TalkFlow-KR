@@ -24,7 +24,7 @@ const NewC = () => {
   return (
     <Wrapper>
       <ContentsBox>
-        <HC>New Chat</HC>
+        <HC>CREATE</HC>
         <CW></CW>
       </ContentsBox>
     </Wrapper>
@@ -32,4 +32,3 @@ const NewC = () => {
 };
 
 export default NewC;
-
