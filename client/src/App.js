@@ -1,31 +1,24 @@
-//components
-// import MainPage from "pages/MainPage.jsx";
-// import Chat from "pages/Chat.jsx";
-// 회원가입 페이지
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
+import Main from "./pages/Main";
+import Index from "./pages/Index";
+import History from "./pages/History";
 import SignUp from "pages/SignUp";
-import Settings from "p/Settings";
-// 404 페이지
+import Settings from "pages/Settings";
+import Notification from "pages/Notification";
 import Error from "pages/Error";
+import Login from "pages/Login";
+import AuthRedirect from "pages/AuthRedirect";
+import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
+import Skeleton from "./components/molecules/Skeleton";
 
 //style
 import { GlobalStyle } from "styles/GlobalStyle.styled";
 import { ThemeProvider } from "styled-components";
 import theme from "styles/themeProvider/theme";
-
-import Main from "./p/Main";
-import Index from "./p/Index";
-
-import History from "./p/History";
-import Notification from "./p/Notification";
-import KakaoAuth from "./components/organisms/Auth/KakaoAuth";
-// 로그인 페이지
-import Login from "pages/Login";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import Skeleton from "./components/molecules/Skeleton";
-import AuthRedirect from "./pages/AuthRedirect";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   // 유저의 로그인 값
