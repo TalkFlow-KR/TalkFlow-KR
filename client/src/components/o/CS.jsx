@@ -91,7 +91,7 @@ const CS = ({ userId, data, onSubmit, setSettings, getRes }) => {
   //
   const navigate = useNavigate();
   const [language, setLanguage] = useState("English");
-  const [accent, setAccent] = useState("Health Trainer");
+  const [accent, setAccent] = useState("Friend");
   const [situation, setSituation] = useState("at the Gym");
   const [payload, setPayload] = useState({
     language,
