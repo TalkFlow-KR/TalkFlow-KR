@@ -53,7 +53,11 @@ const CW = ({ userId, data, onSubmit, setSettings }) => {
       />
 
       <Box>
-        {!roomData ? <h1>대화하기전, 회화 테마를 선택 해주세요.</h1> : <HrC />}
+        {roomData ? (
+          <h1>대화하기전, 회화 테마를 선택 해주세요.</h1>
+        ) : (
+          <HrC roomData={roomData} data={data} />
+        )}
       </Box>
     </Wrapper>
   );

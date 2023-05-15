@@ -90,21 +90,24 @@ export const Input = styled.input`
 `;
 
 export const MicButton = styled(Btn)`
-  width: 4rem;
-  height: 4rem;
-  margin-left: 1.6 erm;
-  border-radius: 5rem;
+  border: 0.2rem solid ${({ theme }) => theme.color.primary100};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
   font-size: 1.2rem;
-  background-color: #5f5aa2;
+  //background-color: ${({ theme }) => theme.color.primary100};
+  transform: scale(0.6);
+
   margin-right: 1.6rem;
   color: #ffffff;
   cursor: pointer;
-  align-items: center;
+  overflow: hidden;
 `;
 export const SendButton = styled(Btn)`
   width: 4rem;
   height: 4rem;
-  margin-left: 1.6 erm;
+  margin-left: 1.6rem;
   border-radius: 5rem;
   font-size: 1.2rem;
   background-color: #5f5aa2;

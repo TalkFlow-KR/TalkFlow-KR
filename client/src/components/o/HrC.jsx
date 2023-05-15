@@ -2,7 +2,6 @@
 // New Chat center flex 요소 Wrapper
 import React from "react";
 import styled from "styled-components";
-import HC from "./HC";
 import HW from "./HW";
 
 const Wrapper = styled.section`
@@ -15,6 +14,7 @@ const Wrapper = styled.section`
   align-items: center;
   gap: 2rem;
   overflow: hidden;
+
   // width: 100%;
   // display: flex;
   // align-items: center;
@@ -27,25 +27,16 @@ const Wrapper = styled.section`
   }
 `;
 
-const ContentsBox = styled.section`
-  width: 100%;
-  height: 100%;
-  padding-bottom: 11.2rem;
-`;
-
 const data = {
   ai: {
     answer: ["partners test", "1", "2", "3"],
   },
 };
 
-const HrC = ({ userId }) => {
+const HrC = ({ userId, roomData, data }) => {
   return (
     <Wrapper>
-      <ContentsBox>
-        <HC>HISTORY</HC>
-        <HW userId={userId}></HW>
-      </ContentsBox>
+      <HW userId={userId} roomData={roomData} data={data} />
     </Wrapper>
   );
 };

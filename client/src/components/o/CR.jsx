@@ -5,7 +5,6 @@ import RoomTitle from "../m/RoomTitle";
 import Lottie from "components/atoms/LottieComponent";
 import animationData from "assets/micIdle.json";
 import { MicButton } from "styles/Chat.styled";
-import LogoIcon from "../atoms/LogoIcon";
 
 // stt , tts
 import useSpeechRecognition from "assets/useSpeechRecognition";
@@ -13,48 +12,76 @@ import useSpeechSynthesis from "assets/useSpeechSynthesis";
 
 // axios
 import axios from "axios";
+import { IoIosSend } from "react-icons/io";
 
 const Wrapper = styled.section`
+  width: 100%;
   flex: 1 1 0;
   position: relative;
-  height: 50vh;
   background-color: ${({ theme }) => theme.color.bg200};
   border-radius: 2rem;
   margin: 2rem;
+  font-size: 1.5rem;
+  height: 100%;
+  display: flex;
+  justify-content: normal;
+  align-items: stretch;
+  flex-direction: column;
+  ${({ theme }) => theme.shadow};
 `;
 
-const InputForm = styled.form`
+const InputForm = styled.div`
+  position: relative;
+  margin: 1.2rem 2rem;
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ChatBox = styled.article`
+  flex: 1 1 0;
   position: relative;
   background-color: ${({ theme }) => theme.color.bg300};
   height: 30vh;
   margin: 2rem;
   border-radius: 2rem;
-  overflow: scroll;
+  overflow: auto;
   display: flex;
   flex-direction: column;
+  box-shadow: 4px 4px 3px ${({ theme }) => theme.color.bg100},
+    -4px -4px 8px ${({ theme }) => theme.color.bg200};
   /* width: 50vw; */
 `;
 
 const InputComponent = styled.div`
   display: flex;
-  position: sticky;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
-  justify-content: space-between;
 `;
 
 const ChatInput = styled.input`
   width: 100%;
+  flex: 1 1 0;
   height: 3rem;
   margin: 1rem;
   border-radius: 1rem;
+  padding: 2rem;
   border: 0;
   justify-content: center;
-  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.25);
   align-items: center;
+  display: flex;
+  ${({ theme }) => theme.shadow};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.color.primary200};
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  &:focus {
+    outline: 0.4rem solid ${({ theme }) => theme.color.primary200};
+  }
 `;
 
 // const micIdle = styled.button``;
@@ -94,6 +121,45 @@ const User = styled.p`
   }
 `;
 
+const SendBtn = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 2.4rem;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 0.4rem solid ${({ theme }) => theme.color.primary200};
+  color: ${({ theme }) => theme.color.primary200};
+  overflow: hidden;
+  &:hover {
+    border: 0.4rem solid ${({ theme }) => theme.color.primary100};
+  }
+  & svg {
+    transition: 0.4s all ease-in-out;
+    transform: scale(1.4);
+    margin-left: -0.1rem;
+    margin-top: 0.2rem;
+  }
+  & svg:hover {
+    color: ${({ theme }) => theme.color.primary100};
+  }
+  &:hover svg {
+    transform: translate(200%, -200%);
+  }
+`;
+const LottieBox = styled.div`
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transform: scale(1.6);
+  background-color: transparent;
+  overflow: hidden;
+  ${({ theme }) => theme.shadow};
+`;
+
 const sendChatToServer = async (message) => {
   try {
     const res = await axios.post("/CR", {
@@ -117,8 +183,9 @@ const sendChatToServer = async (message) => {
 //     sendChatToServer(inputValue); // Call the sendChatToServer function
 //   }
 // };
-const CR = ({ data, userId, roomId }) => {
+const CR = ({ data, userId, roomId, roomData }) => {
   const [gpt, setGpt] = useState(""); // gpt 답변 담길곳
+  const [user, setUserChat] = useState("");
   const [text, setText] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [message, setMessage] = useState("");
@@ -183,9 +250,6 @@ const CR = ({ data, userId, roomId }) => {
   //------------------------------시---------------------------------//
   //------------------------------작---------------------------------//
   const voice = voices[2];
-  useEffect(() => {
-    setText([...text, data.ai.answer]);
-  }, []);
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
@@ -289,7 +353,7 @@ const CR = ({ data, userId, roomId }) => {
 
   return (
     <Wrapper>
-      <RoomTitle />
+      <RoomTitle roomData={roomData} />
       <ChatBox>
         {messageList.map((message) => (
           <AI key={message.id}>
@@ -302,41 +366,39 @@ const CR = ({ data, userId, roomId }) => {
           // )
         ))}
         <div ref={messagesEndRef} />
-        <InputComponent>
-          <InputForm>
-            <ChatInput
-              type="text"
-              name="text"
-              value={inputValue}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyDown}
-              placeholder="메시지를 입력하세요.">
-              {/* <button></button> */}
-            </ChatInput>
-          </InputForm>
-
-          <button
+      </ChatBox>
+      <InputComponent>
+        <InputForm>
+          <ChatInput
+            type="text"
+            name="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyDown}
+            placeholder="메시지를 입력하세요."></ChatInput>
+          <SendBtn
             onClick={OnSubmitHandler}
             style={{
               width: "3rem",
               height: "3rem",
-              borderRadius: "50%",
-              transform: "translate(-5rem, 1rem)",
               backgroundColor: "#fff",
               boxShadow: " 0 -0.7rem 1rem rgba(0, 0, 0, 0.25);",
               // border: "1px solid black",
             }}>
-            <LogoIcon />
-          </button>
-          <MicButton
-            onMouseDown={() => {
-              listen({ lang: lang, maxAlternatives: 10000 });
-            }}
-            onMouseUp={stop}>
-            <Lottie animationData={animationData} />
-          </MicButton>
-        </InputComponent>
-      </ChatBox>
+            <IoIosSend />
+          </SendBtn>
+        </InputForm>
+
+        <MicButton
+          onMouseDown={() => {
+            listen({ lang: lang, maxAlternatives: 10000 });
+          }}
+          onMouseUp={stop}>
+          <LottieBox>
+            <Lottie animationData={animationData} speed={0.5} />
+          </LottieBox>
+        </MicButton>
+      </InputComponent>
     </Wrapper>
   );
 };
