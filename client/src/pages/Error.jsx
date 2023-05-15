@@ -6,7 +6,6 @@ import MC from "components/o/MC";
 import EC from "components/o/EC";
 
 const Container = styled.main`
-  line-height: 1.25;
   flex: 1 1 0;
   height: 80vh;
   border-radius: 2rem;
