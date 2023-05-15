@@ -18,9 +18,9 @@ const RoomTitle = ({ roomData }) => {
   return (
     <Wrapper>
       <RoomTextBox>
-        <h2> English at the Gym with Friend </h2>
-        <h3> English / at the Gym / Friend </h3>
-        <span>2023.05.15</span>
+        <h2>RoomTitle</h2>
+        <h3>언어/테마/악센트</h3>
+        <span>2099,09,99</span>
       </RoomTextBox>
     </Wrapper>
   );
