@@ -48,7 +48,7 @@ const History = ({
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_DB_HOST}/room/all/${userid}`)
+      .get(`/room/all/${userid}`)
       .then((res) => {
         setRoomNumber(res.data);
         console.log("res: ", res.data); // 방번호 받아오기

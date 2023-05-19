@@ -81,7 +81,6 @@ const Btn = styled.button`
     transform: scale(1.2);
   }
 `;
-const userid = "2787496442"; // 임시
 
 const langData = ["영어", "한국어", "일본어"];
 const themeData = ["헬스장", "공원"];
@@ -140,8 +139,9 @@ const CS = ({ userId, data, onSubmit, setSettings, getRes }) => {
   };
 
   const onSubmitCS = () => {
+    console.log(language,accent,situation)
     axios
-      .post(`${process.env.REACT_APP_DB_HOST}/room/make/${userid}`, {
+      .post(`/room/make/${userId}`, {
         language: language,
         accent: accent,
         situation: situation,

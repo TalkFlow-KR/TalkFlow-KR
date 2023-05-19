@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ChatIcon from "../a/ChatIcon";
+import ChatIcon from "../atoms/a/ChatIcon";
 
 const Wrapper = styled.div`
   /* background-color: thistle; */
