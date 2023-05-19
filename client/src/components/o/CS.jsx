@@ -49,9 +49,11 @@ const OptBtn = styled.button`
   color: ${({ theme }) => theme.color.reverse};
   border-radius: 1.2rem;
   margin: 2rem;
+
   & span {
     color: ${({ theme }) => theme.color.primary200};
   }
+
   &:hover {
     color: #444;
   }
@@ -72,6 +74,7 @@ const Btn = styled.button`
   //bottom: 0;
   ${({ theme }) => theme.shadow};
   background-color: ${({ theme }) => theme.color.primary100};
+
   &:active {
     transition: 2s background-color ease-in-out;
 
@@ -91,8 +94,8 @@ const CS = ({ userId, data, onSubmit, setSettings, getRes }) => {
   //
   const navigate = useNavigate();
   const [language, setLanguage] = useState("English");
-  const [accent, setAccent] = useState("Health Trainer");
   const [situation, setSituation] = useState("at the Gym");
+  const [accent, setAccent] = useState("Friend");
   const [payload, setPayload] = useState({
     language,
     accent,

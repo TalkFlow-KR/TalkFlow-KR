@@ -29,9 +29,11 @@ const StyledForm = styled.div`
   background-color: ${({ theme }) => theme.color.bg100};
   border-radius: 0.8rem;
   padding: 1.6rem 4rem;
-  border: 0.1rem solid white;
-  ${({ theme }) => theme.shadow};
+  border: 0.1rem solid
+    ${({ isDisable, theme }) =>
+      !isDisable === true ? theme.color.primary100 : theme.color.primary200};
 
+  ${({ theme }) => theme.shadow};
   & fieldset {
     flex: 1 1 0;
     display: flex;
@@ -252,6 +254,7 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
     <>
       <Wrapper>
         <StyledForm
+          isDisable={isDisable}
           action=""
           style={{ transform: `translateX(${position}rem)` }}>
           <StyledFieldSet>

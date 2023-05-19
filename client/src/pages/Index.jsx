@@ -170,9 +170,9 @@ const Index = ({ isUserActive, userId, ChangeTheme, notify, mode }) => {
           </Logo>
           <button onClick={onLogin}>Login/Registry</button>
         </IndexHeader>
-        <Div onClick={handleChangeTheme}>
-          <DarkModeBtn mode={mode} />
-        </Div>
+        {/*<Div onClick={handleChangeTheme}>*/}
+        {/*  <DarkModeBtn mode={mode} />*/}
+        {/*</Div>*/}
         <Wrapper>
           <MainArticle bgColor={theme.lightTheme.color.bg100}>
             <h1>CHAT FLOW</h1>

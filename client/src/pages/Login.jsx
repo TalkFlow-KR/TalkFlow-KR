@@ -44,7 +44,9 @@ const Wrapper = styled.div`
     //background-color: tan;
     padding: 8rem;
     border-radius: 2rem;
-    border: 1px solid #aaa;
+    border: 0.1rem solid
+      ${({ password, theme }) =>
+        !password === true ? theme.color.primary200 : theme.color.primary100};
     background-color: #fff;
     ${({ theme }) => theme.shadow};
   }
@@ -153,6 +155,7 @@ const KaKaoBox = styled.div`
   align-items: center;
   margin: 0 auto;
   & button {
+    display: flex;
     padding: 1.2rem;
     border-radius: 50%;
     background-color: #f7e111;
@@ -290,7 +293,7 @@ const LoginForm = ({
 
   return (
     <Container>
-      <Wrapper>
+      <Wrapper password={password}>
         <S.loginBox>
           <S.title>Login</S.title>
           {isLoading ? (

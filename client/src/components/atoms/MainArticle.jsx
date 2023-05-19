@@ -5,14 +5,14 @@ import theme from "../../styles/themeProvider/theme";
 const Wrapper = styled.article`
   /* width: ${({ theme }) => theme.layout.width.mainArticle}; */
   width: 100%;
-  height: ${({ theme }) => theme.layout.height.mainArticle};
+  //height: ${({ theme }) => theme.layout.height.mainArticle};
   border-radius: ${({ theme }) => theme.layout.radius.l};
+  height: 100%;
   color: ${({ theme }) => theme.color.textColor};
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin: 4rem;
   padding: 2rem;
   ${({ theme }) => theme.shadow};
 
