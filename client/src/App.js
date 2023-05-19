@@ -85,7 +85,7 @@ function App() {
         password: pwfromLogin,
       };
       // {msg: 'success', userid : result.id, email : result.email});
-      const res = await axios.post("http://localhost:8000/post-login", data);
+      const res = await axios.post(`/post-login`, data);
       console.log(res);
 
       if (res.data === "fail") {

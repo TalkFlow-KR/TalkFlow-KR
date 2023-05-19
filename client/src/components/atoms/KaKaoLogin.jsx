@@ -12,7 +12,7 @@ const KaKaoLogin = () => {
     const code = await new URL(window.location.href).searchParams.get("code");
     console.log(code);
     const res = await axios.post(
-      `${process.env.REACT_APP_DB_HOST}/kakao`,
+      `/kakao`,
       code
     );
     console.log(res);
