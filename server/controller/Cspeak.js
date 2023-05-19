@@ -96,7 +96,9 @@ exports.post_login = async (req, res) => {
   try{
      // 입력받은 아이디를 가진 사람을 찾아 salt와 입력한 비밀번호를 조합하며 저장된 비번과 같은지 확인
     const result = await models.USER.findOne({
-      email: req.body.email,
+      where:{
+        email: req.body.email,
+      }
     });
     const getCry = await getCryptoPassword(req.body.password, result.salt);
 

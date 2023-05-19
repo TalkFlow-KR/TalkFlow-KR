@@ -1,5 +1,4 @@
 import React from "react";
-import RoomIcon from "components/a/RoomIcon";
 import styled from "styled-components";
 import theme from "styles/themeProvider/theme";
 
