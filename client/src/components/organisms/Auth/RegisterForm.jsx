@@ -189,20 +189,26 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
     }
   }, [isValidEmail, isValidPhone, passwordValue]);
 
-  const data = {
-    email: emailValue,
-    name: userNameValue,
-    password: passwordValue,
-    gender: genderValue,
-    telephone: phoneValue,
-  };
+  // const data = {
+  //   email: emailValue,
+  //   name: userNameValue,
+  //   password: passwordValue,
+  //   gender: genderValue,
+  //   telephone: phoneValue,
+  // };
   // 가입하기 버튼 누르기
   const onSubmit = async () => {
-    console.log(data);
+    // console.log(data);
     setIsLoading(true);
     const res = await axios.post(
       `${process.env.REACT_APP_DB_HOST}/post-signup`,
-      data
+      {
+        email: emailValue,
+        name: userNameValue,
+        password: passwordValue,
+        gender: genderValue,
+        telephone: phoneValue,
+      }
     );
     console.log(res.data);
     setIsSuccess(res.data);
