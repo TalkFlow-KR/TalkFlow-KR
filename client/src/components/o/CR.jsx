@@ -209,8 +209,6 @@ const CR = ({ data, userId, roomId, roomData }) => {
   //------------------------------시---------------------------------//
   //------------------------------작---------------------------------//
   console.log("userId입니다.", userId);
-  const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
-  const roomid = 1;
 
   const [lang, setLang] = useState("en-US");
 
@@ -305,8 +303,10 @@ const CR = ({ data, userId, roomId, roomData }) => {
   }, []);
 
   const OnSubmitHandler = () => {
+    const userid = "32b16654-e983-47ef-a382-eb3bf1f9b789";
+    const roomid = 1;
     axios
-      .post(`${process.env.REACT_APP_DB_HOST}/chat/${userid}/${roomid}`, {
+      .post(`/chat/${userid}/${roomid}`, {
         msg: inputValue,
       })
       .then((res) => {

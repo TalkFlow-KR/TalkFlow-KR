@@ -1,7 +1,8 @@
 const models = require("../models");
+require('dotenv').config()
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-  apiKey: "", // openai api key
+  apiKey: process.env.GPT_API_KEY // openai api key (환경변수)
 });
 const openai = new OpenAIApi(configuration);
 
@@ -26,6 +27,7 @@ exports.msg = async (req, res) => {
 
 // 답변
 exports.runGPT35 = async (req, res) => {
+  console.log(req.body)
   // MSG 정보 가져오기
   const userid = req.params.userid;
   const roomid = req.params.roomid;

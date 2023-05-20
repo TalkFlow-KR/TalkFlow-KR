@@ -201,7 +201,7 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
     console.log(data);
     setIsLoading(true);
     const res = await axios.post(
-      `${process.env.REACT_APP_DB_HOST}/post-signup`,
+      `/post-signup`,
       data
     );
     console.log(res.data);
@@ -231,7 +231,7 @@ const RegisterForm = ({ isFinish, setIsFinish, notify }) => {
   const onAuthEmail = async () => {
     console.log(emailValue);
     const res = await axios.post(
-      `${process.env.REACT_APP_DB_HOST}/signup/checkemail`,
+      '/signup/checkemail',
       {
         email: emailValue,
       }
